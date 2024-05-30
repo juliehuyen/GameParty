@@ -32,9 +32,6 @@ public class Event {
     @Column(name = "location", nullable = false, length = 255)
     private String location;
 
-    @Column(name = "category", length = 50)
-    private String category;
-
     @Column(name = "created_at", nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private java.util.Date createdAt = new java.util.Date();
@@ -93,14 +90,6 @@ public class Event {
 
     public void setLocation(String location) {
         this.location = location;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     public Date getCreatedAt() {
