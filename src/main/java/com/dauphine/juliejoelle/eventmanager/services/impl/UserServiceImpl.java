@@ -4,13 +4,15 @@ import com.dauphine.juliejoelle.eventmanager.dto.CreationUserRequest;
 import com.dauphine.juliejoelle.eventmanager.entities.User;
 import com.dauphine.juliejoelle.eventmanager.repositories.UserRepository;
 import com.dauphine.juliejoelle.eventmanager.services.UserService;
+
+import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
-
     private final UserRepository userRepository;
 
     public UserServiceImpl(UserRepository userRepository) {
@@ -19,7 +21,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAll() {
-        return null;
+        return userRepository.findAll();
     }
 
     @Override
@@ -29,11 +31,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(CreationUserRequest user) {
-        return null;
+        PasswordEncoder encoder = new Argon2PasswordEncoder(16, 32, 1, 4096,3);
+        String hashedPwd = encoder.encode(user.getPassword());
+        User u = new User(user.getUsername(), user.getEmail(), hashedPwd);
+        return userRepository.save(u);
     }
 
     @Override
     public boolean deleteUserById(String userId) {
+        if(userRepository.findById(userId).isPresent()){
+            userRepository.deleteById(userId);
+            return true;
+        }
         return false;
     }
 }

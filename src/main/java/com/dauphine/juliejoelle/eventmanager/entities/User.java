@@ -27,7 +27,15 @@ public class User {
     private java.util.Date createdAt = new java.util.Date();
 
     public User() {
+
+    }
+
+    public User(String username, String email, String hashedPwd) {
         this.userId = UUID.randomUUID().toString();
+        this.username = username;
+        this.email = email;
+        this.password = hashedPwd;
+        this.createdAt = new Date();
     }
 
     public String getUserId() {
