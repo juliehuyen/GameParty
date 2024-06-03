@@ -3,12 +3,13 @@ package com.dauphine.juliejoelle.eventmanager.services;
 import com.dauphine.juliejoelle.eventmanager.dto.CreationRegistrationRequest;
 import com.dauphine.juliejoelle.eventmanager.entities.Registration;
 import com.dauphine.juliejoelle.eventmanager.entities.User;
+import com.dauphine.juliejoelle.eventmanager.exceptions.RegistrationNotFoundByIdException;
 
 import java.util.List;
 
 public interface RegistrationService {
     List<Registration> getAll();
-    Registration getRegistrationById(String regId);
+    Registration getRegistrationById(String regId) throws RegistrationNotFoundByIdException;
     Registration createRegistration(CreationRegistrationRequest reg);
     //update?
     boolean deleteRegistrationById(String regId);

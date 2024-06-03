@@ -4,6 +4,7 @@ import com.dauphine.juliejoelle.eventmanager.dto.CreationRegistrationRequest;
 import com.dauphine.juliejoelle.eventmanager.entities.Event;
 import com.dauphine.juliejoelle.eventmanager.entities.Registration;
 import com.dauphine.juliejoelle.eventmanager.entities.User;
+import com.dauphine.juliejoelle.eventmanager.exceptions.RegistrationNotFoundByIdException;
 import com.dauphine.juliejoelle.eventmanager.repositories.RegistrationRepository;
 import com.dauphine.juliejoelle.eventmanager.services.EventService;
 import com.dauphine.juliejoelle.eventmanager.services.RegistrationService;
@@ -30,12 +31,13 @@ public class RegistrationServiceImpl implements RegistrationService {
     }
 
     @Override
-    public Registration getRegistrationById(String regId) {
-        return registrationRepository.findById(regId).orElse(null);
+    public Registration getRegistrationById(String regId) throws RegistrationNotFoundByIdException {
+        return registrationRepository.findById(regId).orElseThrow(RegistrationNotFoundByIdException::new);
     }
 
     @Override
     public Registration createRegistration(CreationRegistrationRequest reg) {
+        //TODO throw exceptions
         User user = userService.getUserById(reg.getUserId());
         Event event = eventService.getEventById(reg.getEventId());
         Registration registration = new Registration(user,event);
@@ -53,6 +55,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 
     @Override
     public List<User> getAllUserRegisteredByEvent(String eventId) {
+        //TODO throw exceptions
         return registrationRepository.getAllUsersRegisteredByEvent(eventId);
     }
 }
