@@ -46,7 +46,8 @@ public class FeedbackServiceImpl implements FeedbackService {
     }
 
     @Override
-    public boolean deleteFeedbackById(String feedId) {
+    public boolean deleteFeedbackById(String feedId) throws FeedbackNotFoundByIdException {
+        getFeedbackById(feedId);
         if(feedbackRepository.findById(feedId).isPresent()){
             feedbackRepository.deleteById(feedId);
             return true;

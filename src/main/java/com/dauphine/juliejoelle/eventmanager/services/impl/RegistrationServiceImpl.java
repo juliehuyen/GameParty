@@ -45,7 +45,8 @@ public class RegistrationServiceImpl implements RegistrationService {
     }
 
     @Override
-    public boolean deleteRegistrationById(String regId) {
+    public boolean deleteRegistrationById(String regId) throws RegistrationNotFoundByIdException {
+        getRegistrationById(regId);
         if(registrationRepository.findById(regId).isPresent()){
             registrationRepository.deleteById(regId);
             return true;

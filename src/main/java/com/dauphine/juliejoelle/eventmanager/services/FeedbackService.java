@@ -11,7 +11,7 @@ public interface FeedbackService {
     Feedback getFeedbackById(String feedId) throws FeedbackNotFoundByIdException;
     Feedback createFeedback(CreationFeedbackRequest feed);
     //update?
-    boolean deleteFeedbackById(String feedId);
+    boolean deleteFeedbackById(String feedId) throws FeedbackNotFoundByIdException;
 
     List<Feedback> getFeedbacksByEvent(String eventId);
 }

@@ -12,6 +12,6 @@ public interface RegistrationService {
     Registration getRegistrationById(String regId) throws RegistrationNotFoundByIdException;
     Registration createRegistration(CreationRegistrationRequest reg);
     //update?
-    boolean deleteRegistrationById(String regId);
+    boolean deleteRegistrationById(String regId) throws RegistrationNotFoundByIdException;
     List<User> getAllUserRegisteredByEvent(String eventId);
 }
