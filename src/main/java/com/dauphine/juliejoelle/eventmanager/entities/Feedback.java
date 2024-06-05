@@ -3,6 +3,9 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 import java.util.UUID;
+
+import static jakarta.persistence.FetchType.EAGER;
+
 @Entity
 @Table(name = "feedback")
 public class Feedback {
@@ -16,7 +19,7 @@ public class Feedback {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = EAGER)
     @JoinColumn(name = "event_id", nullable = false)
     private Event event;
 

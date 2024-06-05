@@ -31,9 +31,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(CreationUserRequest user) {
-        PasswordEncoder encoder = new Argon2PasswordEncoder(16, 32, 1, 4096,3);
-        String hashedPwd = encoder.encode(user.getPassword());
-        User u = new User(user.getUsername(), user.getEmail(), hashedPwd);
+        User u = new User(user.getUsername());
         return userRepository.save(u);
     }
 
