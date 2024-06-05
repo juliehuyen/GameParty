@@ -1,6 +1,7 @@
 package com.dauphine.juliejoelle.eventmanager.controllers;
 
 import com.dauphine.juliejoelle.eventmanager.entities.Category;
+import com.dauphine.juliejoelle.eventmanager.exceptions.CategoryNotFoundByIdException;
 import com.dauphine.juliejoelle.eventmanager.services.CategoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -38,5 +39,14 @@ public class CategoryController {
         //TODO
         List<Category> categories = categoryService.getAll();
         return ResponseEntity.ok(categories);
+    }
+
+    @Operation(summary = "To get a category by its id")
+    @GetMapping("/{id}")
+    public ResponseEntity<Category> getCategoryById(
+            @Parameter(description = "Id of the category")
+            @PathVariable String id) throws CategoryNotFoundByIdException {
+        Category category = categoryService.getCategoryById(id);
+        return ResponseEntity.ok(category);
     }
 }

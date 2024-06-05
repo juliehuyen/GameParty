@@ -34,14 +34,35 @@ public class Event {
 
     @Column(name = "created_at", nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private java.util.Date createdAt = new java.util.Date();
+    private java.util.Date createdAt;
 
     @ManyToOne
     @JoinColumn(name = "type_id")
     private Type type;
 
-    public Event() {
+    public Event(String title, String description, Date eventDate, String location, Category category, Type type) {
         this.eventId = UUID.randomUUID().toString();
+        this.title = title;
+        this.description = description;
+        this.eventDate = eventDate;
+        this.location = location;
+        this.category = category;
+        this.type = type;
+        this.createdAt = new java.util.Date();
+    }
+
+    public Event(String title, String description, Date eventDate, Category category, Type type) {
+        this.eventId = UUID.randomUUID().toString();
+        this.title = title;
+        this.description = description;
+        this.eventDate = eventDate;
+        this.category = category;
+        this.type = type;
+        this.createdAt = new java.util.Date();
+    }
+
+    public Event() {
+
     }
 
     public String getEventId() {

@@ -1,7 +1,7 @@
 package com.dauphine.juliejoelle.eventmanager.exceptions;
 
 public class RegistrationNotFoundByIdException extends Exception{
-    public RegistrationNotFoundByIdException(){
-        super("Registration not found /!\\");
+    public RegistrationNotFoundByIdException(String id){
+        super("Registration with id : " + id + " not found /!\\");
     }
 }

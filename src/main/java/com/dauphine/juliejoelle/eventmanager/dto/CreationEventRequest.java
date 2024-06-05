@@ -7,8 +7,9 @@ public class CreationEventRequest {
     private String title;
     private String description;
     private Date eventDate;
-    private Time eventTime;
     private String location;
+    private String categoryId;
+    private String typeId;
 
     public String getTitle() {
         return title;
@@ -22,11 +23,15 @@ public class CreationEventRequest {
         return eventDate;
     }
 
-    public Time getEventTime() {
-        return eventTime;
-    }
-
     public String getLocation() {
         return location;
+    }
+
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public String getTypeId() {
+        return typeId;
     }
 }

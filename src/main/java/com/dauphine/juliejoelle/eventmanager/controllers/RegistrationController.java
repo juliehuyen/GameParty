@@ -3,6 +3,7 @@ package com.dauphine.juliejoelle.eventmanager.controllers;
 import com.dauphine.juliejoelle.eventmanager.dto.CreationRegistrationRequest;
 import com.dauphine.juliejoelle.eventmanager.entities.Registration;
 import com.dauphine.juliejoelle.eventmanager.entities.User;
+import com.dauphine.juliejoelle.eventmanager.exceptions.EventNotFoundByIdException;
 import com.dauphine.juliejoelle.eventmanager.exceptions.RegistrationNotFoundByIdException;
 import com.dauphine.juliejoelle.eventmanager.services.RegistrationService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -41,7 +42,7 @@ public class RegistrationController {
     @PostMapping("")
     public ResponseEntity<Registration> createRegistration(
             @Parameter (description = "The registration to create")
-            @RequestBody CreationRegistrationRequest registration) {
+            @RequestBody CreationRegistrationRequest registration) throws EventNotFoundByIdException {
         Registration registration1 = registrationService.createRegistration(registration);
         return ResponseEntity.created(URI.create("/v1/registrations/" + registration1.getRegistrationId()))
                 .body(registration1);

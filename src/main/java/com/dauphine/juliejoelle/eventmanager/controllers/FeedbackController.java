@@ -2,6 +2,7 @@ package com.dauphine.juliejoelle.eventmanager.controllers;
 
 import com.dauphine.juliejoelle.eventmanager.dto.CreationFeedbackRequest;
 import com.dauphine.juliejoelle.eventmanager.entities.Feedback;
+import com.dauphine.juliejoelle.eventmanager.exceptions.EventNotFoundByIdException;
 import com.dauphine.juliejoelle.eventmanager.exceptions.FeedbackNotFoundByIdException;
 import com.dauphine.juliejoelle.eventmanager.services.FeedbackService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -32,7 +33,7 @@ public class FeedbackController {
     public ResponseEntity<Feedback> getFeedbackById(
             @Parameter(description = "The id of the feedback to get")
             @PathVariable String id) throws FeedbackNotFoundByIdException {
-        Feedback feedback =feedbackService.getFeedbackById(id);
+        Feedback feedback = feedbackService.getFeedbackById(id);
         return ResponseEntity.ok(feedback);
     }
 
@@ -40,7 +41,7 @@ public class FeedbackController {
     @PostMapping("")
     public ResponseEntity<Feedback> createFeedback(
             @Parameter(description = "The feedback to create")
-            @RequestBody CreationFeedbackRequest feedback) {
+            @RequestBody CreationFeedbackRequest feedback) throws EventNotFoundByIdException {
         Feedback FB = feedbackService.createFeedback(feedback);
         return ResponseEntity
                 .created(URI.create("/v1/feedbacks/" +FB.getFeedbackId() ))
