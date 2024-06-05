@@ -16,10 +16,6 @@ public class User {
     @Column(name = "username", nullable = false, length = 50)
     private String username;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private java.util.Date createdAt = new java.util.Date();
-
     public User() {
 
     }
@@ -27,7 +23,6 @@ public class User {
     public User(String username) {
         this.userId = UUID.randomUUID().toString();
         this.username = username;
-        this.createdAt = new Date();
     }
 
     public String getUserId() {
@@ -46,12 +41,5 @@ public class User {
         this.username = username;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
 }
 

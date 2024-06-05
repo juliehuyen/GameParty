@@ -37,7 +37,7 @@ public class Event {
     private java.util.Date createdAt = new java.util.Date();
 
     @ManyToOne
-    @JoinColumn(name = "type")
+    @JoinColumn(name = "type_id")
     private Type type;
 
     public Event() {
