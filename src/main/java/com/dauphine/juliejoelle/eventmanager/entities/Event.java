@@ -25,14 +25,10 @@ public class Event {
     @Temporal(TemporalType.DATE)
     private Date eventDate;
 
-    @Column(name = "event_time", nullable = false)
-    @Temporal(TemporalType.TIME)
-    private Date eventTime;
-
     @Column(name = "location", nullable = false, length = 255)
     private String location;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="category_id")
     private Category category;
 
@@ -41,8 +37,8 @@ public class Event {
     private java.util.Date createdAt = new java.util.Date();
 
     @ManyToOne
-    @JoinColumn(name = "created_by")
-    private User createdBy;
+    @JoinColumn(name = "type_id")
+    private Type type;
 
     public Event() {
         this.eventId = UUID.randomUUID().toString();
@@ -80,14 +76,6 @@ public class Event {
         this.eventDate = eventDate;
     }
 
-    public Date getEventTime() {
-        return eventTime;
-    }
-
-    public void setEventTime(Date eventTime) {
-        this.eventTime = eventTime;
-    }
-
     public String getLocation() {
         return location;
     }
@@ -104,12 +92,21 @@ public class Event {
         this.createdAt = createdAt;
     }
 
-    public User getCreatedBy() {
-        return createdBy;
+
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCreatedBy(User createdBy) {
-        this.createdBy = createdBy;
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
     }
 }
 

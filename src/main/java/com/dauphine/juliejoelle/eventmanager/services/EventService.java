@@ -11,4 +11,6 @@ public interface EventService {
     Event createUser(CreationEventRequest event);
     //update?
     boolean deleteEventById(String eventId);
+
+    int getEventsByCategory(String categoryId);
 }

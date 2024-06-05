@@ -36,4 +36,9 @@ public class EventServiceImpl implements EventService {
     public boolean deleteEventById(String eventId) {
         return false;
     }
+
+    @Override
+    public int getEventsByCategory(String categoryId) {
+        return eventRepository.countEventsByCategoryCategoryId(categoryId);
+    }
 }
