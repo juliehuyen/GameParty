@@ -2,15 +2,17 @@ package com.dauphine.juliejoelle.eventmanager.services;
 
 import com.dauphine.juliejoelle.eventmanager.dto.CreationEventRequest;
 import com.dauphine.juliejoelle.eventmanager.entities.Event;
+import com.dauphine.juliejoelle.eventmanager.exceptions.CategoryNotFoundByIdException;
+import com.dauphine.juliejoelle.eventmanager.exceptions.EventNotFoundByIdException;
+import com.dauphine.juliejoelle.eventmanager.exceptions.TypeNotFoundByIdException;
 
 import java.util.List;
 
 public interface EventService {
-    List<Event> getAll();
-    Event getEventById(String eventId);
-    Event createUser(CreationEventRequest event);
+    List<Event> getEvents();
+    Event getEventById(String eventId) throws EventNotFoundByIdException;
+    Event createEvent(CreationEventRequest eventRequest) throws CategoryNotFoundByIdException, TypeNotFoundByIdException;
     //update?
-    boolean deleteEventById(String eventId);
-
-    int getEventsByCategory(String categoryId);
+    void deleteEventById(String eventId) throws EventNotFoundByIdException;
+    List<Event> getEventsByCategoryId(String categoryId);
 }
