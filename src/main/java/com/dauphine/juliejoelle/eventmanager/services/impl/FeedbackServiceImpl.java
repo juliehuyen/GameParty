@@ -4,6 +4,7 @@ import com.dauphine.juliejoelle.eventmanager.dto.CreationFeedbackRequest;
 import com.dauphine.juliejoelle.eventmanager.entities.Event;
 import com.dauphine.juliejoelle.eventmanager.entities.Feedback;
 import com.dauphine.juliejoelle.eventmanager.entities.User;
+import com.dauphine.juliejoelle.eventmanager.exceptions.FeedbackNotFoundByIdException;
 import com.dauphine.juliejoelle.eventmanager.repositories.FeedbackRepository;
 import com.dauphine.juliejoelle.eventmanager.services.EventService;
 import com.dauphine.juliejoelle.eventmanager.services.FeedbackService;
@@ -30,13 +31,14 @@ public class FeedbackServiceImpl implements FeedbackService {
     }
 
     @Override
-    public Feedback getFeedbackById(String feedId) {
+    public Feedback getFeedbackById(String feedId) throws FeedbackNotFoundByIdException {
         return feedbackRepository.findById(feedId)
-                .orElse(null);
+                .orElseThrow(FeedbackNotFoundByIdException::new);
     }
 
     @Override
     public Feedback createFeedback(CreationFeedbackRequest feed) {
+        //TODO throw exceptions
         User user = userService.getUserById(feed.getUserId());
         Event event = eventService.getEventById(feed.getEventId());
         Feedback feedback = new Feedback(user,event,feed.getRating(),feed.getComments());
@@ -44,7 +46,8 @@ public class FeedbackServiceImpl implements FeedbackService {
     }
 
     @Override
-    public boolean deleteFeedbackById(String feedId) {
+    public boolean deleteFeedbackById(String feedId) throws FeedbackNotFoundByIdException {
+        getFeedbackById(feedId);
         if(feedbackRepository.findById(feedId).isPresent()){
             feedbackRepository.deleteById(feedId);
             return true;
@@ -53,6 +56,7 @@ public class FeedbackServiceImpl implements FeedbackService {
 
     @Override
     public List<Feedback> getFeedbacksByEvent(String eventId) {
+        //TODO throw exceptions
         return feedbackRepository.findFeedbacksByEvent_EventId(eventId);
     }
 }
