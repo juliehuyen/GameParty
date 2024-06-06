@@ -14,9 +14,13 @@ public class Category {
     @Column
     private String name;
 
-    public Category(String uuid, String name) {
+    @Column
+    private String url;
+
+    public Category(String uuid, String name, String url) {
         this.categoryId = uuid;
         this.name = name;
+        this.url = url;
     }
 
     public Category() {
@@ -37,5 +41,9 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUrl() {
+        return url;
     }
 }
