@@ -19,6 +19,7 @@
       </select>
     </div>
   </div>
+
   <div class="input-group mb-4">
     <span class="input-group-text">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="16" height="16" fill="currentColor">
@@ -29,9 +30,7 @@
   </span>
     <input class="form-control border-custom" type="text" placeholder="Rechercher une catégorie" id="example-search-input" (input)="onSearchCategory($event)">
   </div>
-  <div class="row" *ngIf="categories && categories.length">
-    <div class="col mb-4" *ngFor="let category of categories">
-      <app-category-list-item [category]="category"></app-category-list-item>
+
   <div *ngIf="categoriesFromSearch | async as categoriesSearchResult; else showCategories">
     <div *ngIf="categoriesSearchResult && categoriesSearchResult.length > 0">
       <div *ngFor="let category of categoriesSearchResult">
