@@ -8,11 +8,16 @@ import {Category} from "../data/category";
 export class CategoryService {
   private categoriesUrl = `${environment.apiUrl}v1/categories`;
 
+
   constructor(private http: HttpClient) {
   }
 
   getAll() : Observable<Category[]> {
     return this.http.get<Category[]>(this.categoriesUrl).pipe(catchError(this.handleError<Category[]>('getAll')));
+  }
+
+  findByName(name: string): Observable<Category[]> {
+    return this.http.get<Category[]>(`${this.categoriesUrl}/name?name=${name}`).pipe(catchError(this.handleError<Category[]>('getAll')));
   }
 
   update(category: Category): Observable<Category> {
