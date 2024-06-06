@@ -1,0 +1,42 @@
+.navbar-custom {
+  background-color: #18181B;
+}
+
+.navbar-brand-custom {
+  color: #EFEFF1;
+  font-family: 'Rubik', sans-serif;
+  font-size: 25px;
+}
+
+.btn-custom-1 {
+  background-color: #2D2D34;
+  color: #EFEFF1;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 700; /* Bold */
+  font-size: 15px;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.btn-custom-1:active {
+  background-color: #373740;
+  color: #EFEFF1;
+}
+
+.btn-custom-2 {
+  background-color: #9147FF;
+  color: #EFEFF1;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 700; /* Bold */
+  font-size: 15px;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.btn-custom-2:active {
+  background-color: #772CE8;
+  color: #EFEFF1;
+}
+

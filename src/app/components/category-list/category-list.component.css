@@ -1,0 +1,39 @@
+body {
+  background-color: #0E0E10;
+  color: #EFEFF1;
+}
+
+
+.custom-button {
+  position: relative;
+  color: white;
+  font-weight: bold;
+}
+
+.custom-button::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background-color: #8a4af3; /* Couleur violette */
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.custom-button:hover {
+  color: #8a4af3;
+}
+
+.custom-button:hover::after,
+.custom-button:focus::after,
+.custom-button.active::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.custom-button.active {
+  color: #8a4af3; /* Couleur violette */
+}
