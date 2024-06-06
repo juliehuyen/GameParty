@@ -6,6 +6,7 @@ body {
 .container-fluid {
   padding-left: 50px;
   padding-right: 50px;
+  min-height: 93.3vh;
 }
 
 .custom-button {
@@ -63,5 +64,6 @@ body {
 .form-control::placeholder {
   color: #8F8F91;
 }
+
 
 

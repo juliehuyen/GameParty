@@ -32,7 +32,7 @@
   </div>
 
   <div *ngIf="categoriesFromSearch | async as categoriesSearchResult; else showCategories">
-    <div class="row" *ngIf="categoriesSearchResult && categoriesSearchResult.length > 0">
+    <div class="row" *ngIf="categoriesSearchResult && categoriesSearchResult.length > 0 else noCategories ">
       <div class="col mb-4" *ngFor="let category of categoriesSearchResult">
         <app-category-list-item [category]="category"></app-category-list-item>
       </div>
@@ -48,14 +48,15 @@
   </ng-template>
 
   <ng-template #noCategories>
-    <p class="text-light">Aucune catégorie trouvée</p>
+    <div class="text-center">
+      <img class="img-fluid" src="https://cdn.pixabay.com/photo/2021/07/21/12/49/error-6482984_1280.png" alt="Aucun résultat trouvé" style="max-width: 600px; margin-bottom: 20px;">
+      <h1 class="text-light display-1">Aucun résultat trouvé pour "{{ searchQuery }}"</h1>
+      <h2 class="text-light">Assurez-vous que tous les mots sont orthographiés correctement ou essayez différents mots-clés.</h2>
+    </div>
+
   </ng-template>
 
 
 </div>
-
-  <div *ngIf="!allCategories || allCategories.length === 0">
-    <p>No category available.</p>
-  </div>
 
 </body>
