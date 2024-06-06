@@ -6,10 +6,7 @@ import com.dauphine.juliejoelle.eventmanager.services.CategoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,11 +21,10 @@ public class CategoryController {
     }
 
     @Operation(summary = "To get all categories from a given string")
-    @GetMapping("/{name}")
+    @GetMapping("name")
     public ResponseEntity<List<Category>> getCategoriesByName(
             @Parameter(description = "Category's name")
-            @PathVariable String name){
-        //TODO
+            @RequestParam String name){
         List<Category> categories = categoryService.getCategoriesByName(name);
         return ResponseEntity.ok(categories);
     }
