@@ -6,7 +6,10 @@ import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TopBarComponent,
+    CategoryListComponent,
+    CategoryListItemComponent,
   ],
   imports: [
     BrowserModule,
