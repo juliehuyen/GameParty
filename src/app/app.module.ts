@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { CategoryListComponent } from './components/category-list/category-list.component';
 import { CategoryListItemComponent } from './components/category-list-item/category-list-item.component';
+import {CategoryService} from "./services/categoryService";
+import {ReactiveFormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -16,9 +19,11 @@ import { CategoryListItemComponent } from './components/category-list-item/categ
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [CategoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
