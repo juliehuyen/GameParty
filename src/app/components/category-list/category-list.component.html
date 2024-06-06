@@ -27,16 +27,36 @@
       <line x1="168.57" y1="168.57" x2="224" y2="224" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/>
     </svg>
   </span>
-    <input class="form-control border-custom" type="text" placeholder="Rechercher une catégorie" id="example-search-input">
+    <input class="form-control border-custom" type="text" placeholder="Rechercher une catégorie" id="example-search-input" (input)="onSearchCategory($event)">
   </div>
   <div class="row" *ngIf="categories && categories.length">
     <div class="col mb-4" *ngFor="let category of categories">
       <app-category-list-item [category]="category"></app-category-list-item>
+  <div *ngIf="categoriesFromSearch | async as categoriesSearchResult; else showCategories">
+    <div *ngIf="categoriesSearchResult && categoriesSearchResult.length > 0">
+      <div *ngFor="let category of categoriesSearchResult">
+        <app-category-list-item [category]="category"></app-category-list-item>
+      </div>
     </div>
   </div>
 
-  <div *ngIf="!categories || categories.length === 0">
+  <ng-template #showCategories>
+    <div *ngIf="allCategories && allCategories.length > 0; else noCategories">
+      <div *ngFor="let category of allCategories">
+        <app-category-list-item [category]="category"></app-category-list-item>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #noCategories>
+    <p class="text-light">Aucune catégorie trouvée</p>
+  </ng-template>
+
+
+</div>
+
+  <div *ngIf="!allCategories || allCategories.length === 0">
     <p>No category available.</p>
   </div>
-</div>
+
 </body>
