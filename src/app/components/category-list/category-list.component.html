@@ -17,6 +17,14 @@
       </select>
     </div>
   </div>
-  <app-category-list-item></app-category-list-item>
+  <div *ngIf="categories && categories.length">
+    <div *ngFor="let category of categories">
+      <app-category-list-item [category]="category"></app-category-list-item>
+    </div>
+  </div>
+
+  <div *ngIf="!categories || categories.length === 0">
+    <p>No category available.</p>
+  </div>
 </div>
 </body>
