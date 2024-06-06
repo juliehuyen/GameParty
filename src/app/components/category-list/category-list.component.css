@@ -3,10 +3,14 @@ body {
   color: #EFEFF1;
 }
 
+.container-fluid {
+  padding-left: 50px;
+  padding-right: 50px;
+}
 
 .custom-button {
   position: relative;
-  color: white;
+  color: #EFEFF1;
   font-weight: bold;
 }
 
@@ -18,13 +22,13 @@ body {
   height: 2px;
   bottom: -3px;
   left: 0;
-  background-color: #8a4af3; /* Couleur violette */
+  background-color: #BF94FF;
   transform-origin: bottom right;
   transition: transform 0.25s ease-out;
 }
 
 .custom-button:hover {
-  color: #8a4af3;
+  color: #BF94FF;
 }
 
 .custom-button:hover::after,
@@ -35,5 +39,29 @@ body {
 }
 
 .custom-button.active {
-  color: #8a4af3; /* Couleur violette */
+  color: #BF94FF;
 }
+
+.input-group {
+  width: 275px;
+}
+
+.form-control {
+  background-color: #2D2D34;
+  color: #8F8F91;
+  border: 1px solid #8F8F91;
+  border-radius: 0.25rem;
+  font-family: 'Rubik', sans-serif;
+}
+
+.form-control:focus {
+  border-color: #A970FF;
+  color: #EFEFF1;
+  box-shadow: none;
+}
+
+.form-control::placeholder {
+  color: #8F8F91;
+}
+
+
