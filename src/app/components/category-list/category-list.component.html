@@ -23,9 +23,9 @@
     <input type="text" class="form-control" placeholder="Rechercher une catégorie" aria-label="Username" aria-describedby="addon-wrapping" id="example-search-input" (input)="onSearchCategory($event)">
   </div>
 
-  <div *ngIf="categoriesFromSearch | async as categoriesSearchResult; else showCategories">
-    <div class="display-categories" *ngIf="categoriesSearchResult && categoriesSearchResult.length > 0 else noCategories ">
-      <div *ngFor="let category of categoriesSearchResult">
+  <div *ngIf="categoriesFromSearch; else showCategories">
+    <div class="display-categories" *ngIf="categoriesResult && categoriesResult.length > 0 else noCategories ">
+      <div *ngFor="let category of categoriesResult">
         <app-category-list-item [category]="category" [eventsCount]="categoryEventCounts.get(category) ?? 0"></app-category-list-item>
       </div>
     </div>
