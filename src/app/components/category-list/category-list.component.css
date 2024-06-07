@@ -44,25 +44,45 @@ body {
 }
 
 .input-group {
-  width: 275px;
+  width: 20%;
+}
+
+.input-group-text {
+  background-color:#2D2D34;
+  color:#8F8F91;
+  border: 1px solid #8F8F91;
+  border-right: transparent;
+}
+
+.text-custom {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 400;
+  color: #8F8F91;
 }
 
 .form-control {
   background-color: #2D2D34;
   color: #8F8F91;
   border: 1px solid #8F8F91;
+  border-left: transparent;
   border-radius: 0.25rem;
   font-family: 'Rubik', sans-serif;
 }
 
 .form-control:focus {
-  border-color: #A970FF;
+  /*border-color: #A970FF;*/
   color: #EFEFF1;
   box-shadow: none;
 }
 
 .form-control::placeholder {
   color: #8F8F91;
+}
+
+.display-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 
