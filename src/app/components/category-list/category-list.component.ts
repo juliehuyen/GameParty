@@ -15,6 +15,7 @@ export class CategoryListComponent {
   categoriesResult : Category[] = [];
   searchQuery: string = '';
   categoryEventCounts: Map<Category, number> = new Map();
+  sortOrder: 'asc' | 'desc' = 'desc';
 
   constructor(private categoryService: CategoryService, private eventService: EventService) {}
 
@@ -22,6 +23,7 @@ export class CategoryListComponent {
     this.categoryService.getAll().subscribe(categories =>{
       this.allCategories = categories;
       this.loadEventCounts(categories);
+      //this.sortCategories();
     });
 
   }
@@ -69,5 +71,25 @@ export class CategoryListComponent {
     this.activeButton = buttonName;
   }
 
+  sortCategories(): void {
+    const sortedArray = Array.from(this.categoryEventCounts.entries()).sort((a, b) => {
+      return this.sortOrder === 'asc' ? a[1] - b[1] : b[1] - a[1];
+    });
+
+    this.categoryEventCounts = new Map(sortedArray);
+
+    // Mettre à jour categoriesResult ou allCategories selon le contexte
+    if (this.searchQuery) {
+      this.categoriesResult = sortedArray.map(([category]) => category);
+    } else {
+      this.allCategories = sortedArray.map(([category]) => category);
+    }
+  }
+
+  setSortOrder(order: Event): void {
+    const selectElement = order.target as HTMLSelectElement;
+    this.sortOrder = selectElement.value as 'asc' | 'desc';
+    this.sortCategories();
+  }
 
 }

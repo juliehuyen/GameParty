@@ -10,9 +10,9 @@
               (click)="setActive('events')">Évènements</button>
     </div>
     <div class="d-flex ms-auto mt-4">
-      <select class="form-select" aria-label="Trier par">
-        <option selected>Trier par</option>
-        <option value="1">Évènements (décroissant)</option>
+      <select class="form-select" aria-label="Trier par" (change)="setSortOrder($event)">
+        <option value="desc" selected>Évènements (décroissant)</option>
+        <option value="asc">Évènements (croissant)</option>
       </select>
     </div>
   </div>
