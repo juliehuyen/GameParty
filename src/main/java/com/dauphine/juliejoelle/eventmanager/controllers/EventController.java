@@ -61,10 +61,10 @@ public class EventController {
     }
 
     @Operation(summary = "The number of events given a category")
-    @GetMapping("/category/{categoryId}")
+    @GetMapping("/category/categoryId")
     public ResponseEntity<List<Event>> getEventsByCategoryId(
             @Parameter(description = "Category's id")
-            @PathVariable String categoryId) {
+            @RequestParam String categoryId) {
         List<Event> events = eventService.getEventsByCategoryId(categoryId);
         return ResponseEntity.ok(events);
     }
