@@ -12,6 +12,7 @@ import {EventService} from "../../services/eventService";
 export class CategoryListComponent {
   allCategories: Category[] = [];
   categoriesFromSearch: Observable<Category[]> | undefined;
+  categoriesResult : Category[] = [];
   searchQuery: string = '';
   categoryEventCounts: Map<Category, number> = new Map();
 
@@ -22,11 +23,11 @@ export class CategoryListComponent {
       this.allCategories = categories;
       this.loadEventCounts(categories);
     });
+
   }
 
   loadEventCounts(categories:Category[]): void {
     if (this.allCategories.length === 0){
-      console.log("souciiiis");
       return;
     }
 
@@ -51,10 +52,10 @@ export class CategoryListComponent {
     if (this.searchQuery) {
       this.categoriesFromSearch = this.categoryService.findByName(this.searchQuery);
       this.categoriesFromSearch.subscribe(categories => {
-        //this.loadEventCounts(categories);
+        this.categoriesResult = categories;
+        this.loadEventCounts(categories);
       });
     } else {
-      console.log("pas de recherches");
       this.categoriesFromSearch = undefined;
       this.categoryService.getAll().subscribe(categories =>{
         this.allCategories = categories;
