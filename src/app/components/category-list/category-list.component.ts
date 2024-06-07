@@ -20,17 +20,17 @@ export class CategoryListComponent {
   ngOnInit(): void {
     this.categoryService.getAll().subscribe(categories =>{
       this.allCategories = categories;
-      this.loadEventCounts();
+      this.loadEventCounts(categories);
     });
   }
 
-  loadEventCounts(): void {
+  loadEventCounts(categories:Category[]): void {
     if (this.allCategories.length === 0){
       console.log("souciiiis");
       return;
     }
 
-    const requests = this.allCategories.map(category =>
+    const requests = categories.map(category =>
       this.eventService.getEventsByCategoryId(category.categoryId).pipe(
         map(events => events.length), // Transform the array of events to its length
         catchError(() => of(0)) // Handle errors by returning 0
@@ -39,8 +39,8 @@ export class CategoryListComponent {
 
     forkJoin(requests).subscribe(results => {
       results.forEach((eventCount, index) => {
-        const categoryId = this.allCategories[index].categoryId;
-        this.categoryEventCounts.set(this.allCategories[index], eventCount);
+        const categoryId = categories[index].categoryId;
+        this.categoryEventCounts.set(categories[index], eventCount);
       });
     });
   }
@@ -51,11 +51,15 @@ export class CategoryListComponent {
     if (this.searchQuery) {
       this.categoriesFromSearch = this.categoryService.findByName(this.searchQuery);
       this.categoriesFromSearch.subscribe(categories => {
-        this.allCategories = categories;
-        this.loadEventCounts();
+        //this.loadEventCounts(categories);
       });
     } else {
-      this.categoriesFromSearch = of(this.allCategories); // Revenir à toutes les catégories si la recherche est vide
+      console.log("pas de recherches");
+      this.categoriesFromSearch = undefined;
+      this.categoryService.getAll().subscribe(categories =>{
+        this.allCategories = categories;
+        this.loadEventCounts(categories);
+      });
     }
   }
 
