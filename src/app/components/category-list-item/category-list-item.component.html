@@ -3,7 +3,10 @@
     <img src="{{category.url}}" class="card-img-top custom-img-size" alt="League of Legends">
     <div class="card-body ">
       <h5 class="card-title text-light">{{category.name}}</h5>
-      <p class="card-text text-light">138 évènements</p>
+      <p *ngIf="eventsCount > 0; else noEvents" class="card-text text-light">{{ eventsCount }} évènement(s)</p>
+      <ng-template #noEvents>
+        <p class="card-text text-light">Aucun évènement</p>
+      </ng-template>
     </div>
   </div>
 </div>

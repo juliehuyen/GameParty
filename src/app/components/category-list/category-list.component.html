@@ -34,7 +34,7 @@
   <div *ngIf="categoriesFromSearch | async as categoriesSearchResult; else showCategories">
     <div class="row" *ngIf="categoriesSearchResult && categoriesSearchResult.length > 0 else noCategories ">
       <div class="col mb-4" *ngFor="let category of categoriesSearchResult">
-        <app-category-list-item [category]="category"></app-category-list-item>
+        <app-category-list-item [category]="category" [eventsCount]="categoryEventCounts.get(category) ?? 0"></app-category-list-item>
       </div>
     </div>
   </div>
@@ -42,7 +42,7 @@
   <ng-template #showCategories>
     <div class="row" *ngIf="allCategories && allCategories.length > 0; else noCategories">
       <div class="col mb-4" *ngFor="let category of allCategories">
-        <app-category-list-item [category]="category"></app-category-list-item>
+        <app-category-list-item [category]="category" [eventsCount]="categoryEventCounts.get(category) ?? 0"></app-category-list-item>
       </div>
     </div>
   </ng-template>
