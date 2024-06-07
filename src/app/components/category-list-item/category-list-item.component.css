@@ -9,7 +9,12 @@
 }
 
 .card-title {
-  font-family: 'Rubik-Regular',sans-serif;
+  font-family: 'Rubik-Bold', sans-serif;
+  color: var(--antiflash);
+}
+
+.card-text {
+  font-family: 'Rubik-Regular', sans-serif;
   color: var(--antiflash);
 }
 
