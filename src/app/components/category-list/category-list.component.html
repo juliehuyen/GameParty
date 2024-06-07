@@ -1,6 +1,3 @@
-<head>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400&display=swap" rel="stylesheet">
-</head>
 <body>
 <div class="container-fluid">
   <div class="d-flex justify-content-between align-items-center mb-3">
@@ -20,28 +17,23 @@
     </div>
   </div>
 
-  <div class="input-group mb-4">
-    <span class="input-group-text">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="16" height="16" fill="currentColor">
-      <rect width="256" height="256" fill="none"/>
-      <circle cx="112" cy="112" r="80" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/>
-      <line x1="168.57" y1="168.57" x2="224" y2="224" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/>
-    </svg>
-  </span>
-    <input class="form-control border-custom" type="text" placeholder="Rechercher une catégorie" id="example-search-input" (input)="onSearchCategory($event)">
+
+  <div class="input-group flex-nowrap mb-4">
+    <span class="input-group-text" id="addon-wrapping"><i class="bi bi-search"></i></span>
+    <input type="text" class="form-control" placeholder="Rechercher une catégorie" aria-label="Username" aria-describedby="addon-wrapping" id="example-search-input" (input)="onSearchCategory($event)">
   </div>
 
   <div *ngIf="categoriesFromSearch | async as categoriesSearchResult; else showCategories">
-    <div class="row" *ngIf="categoriesSearchResult && categoriesSearchResult.length > 0 else noCategories ">
-      <div class="col mb-4" *ngFor="let category of categoriesSearchResult">
+    <div class="display-categories" *ngIf="categoriesSearchResult && categoriesSearchResult.length > 0 else noCategories ">
+      <div *ngFor="let category of categoriesSearchResult">
         <app-category-list-item [category]="category" [eventsCount]="categoryEventCounts.get(category) ?? 0"></app-category-list-item>
       </div>
     </div>
   </div>
 
   <ng-template #showCategories>
-    <div class="row" *ngIf="allCategories && allCategories.length > 0; else noCategories">
-      <div class="col mb-4" *ngFor="let category of allCategories">
+    <div class="display-categories" *ngIf="allCategories && allCategories.length > 0; else noCategories">
+      <div  *ngFor="let category of allCategories">
         <app-category-list-item [category]="category" [eventsCount]="categoryEventCounts.get(category) ?? 0"></app-category-list-item>
       </div>
     </div>

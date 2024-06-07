@@ -8,4 +8,18 @@
   height: auto;
 }
 
+.card-title {
+  font-family: 'Rubik-Bold', sans-serif;
+  color: var(--antiflash);
+}
+
+.card-text {
+  font-family: 'Rubik-Regular', sans-serif;
+  color: var(--antiflash);
+}
+
+.card-title:hover {
+  color: #BF94FF;
+}
+
 
