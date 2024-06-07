@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'Rubik-Regular';
+  src: url('assets/fonts/Rubik-Regular.ttf') format('truetype');
+}
+
+:root {
+  --antiflash: #EFEFF1;
+}
