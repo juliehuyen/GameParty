@@ -4,9 +4,12 @@
 <div class="col-md-2">
   <div class="card custom-card-size bg-dark border-0">
     <img src="{{category.url}}" class="card-img-top custom-img-size" alt="{{category.name}}">
-    <div class="card-body">
+    <div class="card-body ">
       <h5 class="card-title">{{category.name}}</h5>
-      <p class="card-text">138 évènements</p>
+      <p *ngIf="eventsCount > 0; else noEvents" class="card-text text-light">{{ eventsCount }} évènement(s)</p>
+      <ng-template #noEvents>
+        <p class="card-text">Aucun évènement</p>
+      </ng-template>
     </div>
   </div>
 </div>

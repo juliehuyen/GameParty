@@ -9,6 +9,7 @@ import { CategoryListItemComponent } from './components/category-list-item/categ
 import {CategoryService} from "./services/categoryService";
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import {EventService} from "./services/eventService";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import {HttpClientModule} from "@angular/common/http";
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [CategoryService],
+  providers: [CategoryService,EventService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
