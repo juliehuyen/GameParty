@@ -29,7 +29,7 @@ public class Event {
     @Column(name = "location", nullable = false, length = 255)
     private String location;
 
-    @JsonBackReference
+
     @ManyToOne
     @JoinColumn(name="category_id")
     private Category category;

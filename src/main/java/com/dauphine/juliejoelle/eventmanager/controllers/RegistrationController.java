@@ -59,10 +59,10 @@ public class RegistrationController {
     }
 
     @Operation(summary = "To get all users registered to a given event")
-    @GetMapping("/event/{eventId}")
+    @GetMapping("/event/eventId")
     public ResponseEntity<List<User>> getUsersRegisteredByEvent(
             @Parameter(description = "The event's id")
-            @PathVariable String eventId) {
+            @RequestParam String eventId) {
         //TODO
         List<User> users = registrationService.getAllUserRegisteredByEvent(eventId);
         return ResponseEntity.ok(users);
