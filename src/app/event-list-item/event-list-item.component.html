@@ -1,0 +1,58 @@
+<div class="pt-4 p-2" *ngIf="event">
+  <h3>{{event.title}}</h3>
+  <p>{{event.description}}</p>
+  <p>Type : {{event.type.name}}</p>
+  <p>Évènement créé le : {{event.createdAt|date : "short"}}</p>
+  <p>Date de l'évènement :{{event.eventDate |date : "short"}}</p>
+  <p>{{event.category.name}}</p>
+  <p *ngIf="users" data-bs-toggle="modal" data-bs-target="#registered-users-modal">Nombre de participants : {{users.length}}</p>
+  <div class="d-flex">
+    <button class="btn btn-custom-1 me-2" type="button" data-bs-toggle="modal" data-bs-target="#registration-modal">S'inscrire</button>
+  </div>
+</div>
+
+<!-- Modal registered users-->
+<div class="modal fade" id="registered-users-modal" tabindex="-1" aria-labelledby="registered-modal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content custom-modal-bg">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="registered-modal">Participant(s) :</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="users">
+          <div *ngFor="let user of users">
+            <p>{{user.username}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="registration-modal" tabindex="-1" aria-labelledby="registration" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content custom-modal-bg">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="registration">Inscription à l'évènement : {{event.title}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action=""
+        [formGroup]="newRegistration" (ngSubmit)="onSubmitRegistration()">
+          <div>
+            <label>Utilisateur :</label>
+            <input type="text" class="form-control" formControlName="username">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,17 +3,17 @@ import {environment} from "../environnement/environnement";
 import {HttpClient} from "@angular/common/http";
 import {catchError, Observable, of} from "rxjs";
 import {Category} from "../data/category";
+import {Event} from "../data/event";
 
 @Injectable()
 export class EventService {
   private eventsUrl = `${environment.apiUrl}v1/events`;
 
-
   constructor(private http: HttpClient) {
   }
 
-  getAll() : Observable<Category[]> {
-    return this.http.get<Category[]>(this.eventsUrl).pipe(catchError(this.handleError<Category[]>('getAll')));
+  getAll() : Observable<Event[]> {
+    return this.http.get<Event[]>(this.eventsUrl).pipe(catchError(this.handleError<Event[]>('getAll')));
   }
 
   getEventById(id:string): Observable<Category> {
@@ -24,14 +24,10 @@ export class EventService {
     return this.http.get<Event[]>(`${this.eventsUrl}/category/categoryId?categoryId=${categoryId}`).pipe();
   }
 
-  findByName(name: string): Observable<Category[]> {
-    return this.http.get<Category[]>(`${this.eventsUrl}/name?name=${name}`).pipe(catchError(this.handleError<Category[]>('getAll')));
-  }
-
-  update(category: Category): Observable<Category> {
-    return this.http.put<Category>(this.eventsUrl, category)
+  update(event: Event): Observable<Event> {
+    return this.http.put<Event>(this.eventsUrl, event)
       .pipe(
-        catchError(this.handleError<Category>('update', category))
+        catchError(this.handleError<Event>('update', event))
       )
   }
   protected handleError<T>(operation = 'operation', result?: T) {
@@ -41,7 +37,7 @@ export class EventService {
       return of(result as T);
     };
   }
-  delete(category: Category): Observable<boolean> {
-    return this.http.delete<boolean>(`${this.eventsUrl}/${category.categoryId}`);
+  delete(event: Event): Observable<boolean> {
+    return this.http.delete<boolean>(`${this.eventsUrl}/${event.eventId}`);
   }
 }
