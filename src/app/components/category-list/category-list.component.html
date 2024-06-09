@@ -10,9 +10,9 @@
               (click)="setActive('events')">Évènements</button>
     </div>
     <div class="d-flex ms-auto mt-4">
-      <select class="form-select" aria-label="Trier par">
-        <option selected>Trier par</option>
-        <option value="1">Évènements (décroissant)</option>
+      <select class="form-select" aria-label="Trier par" (change)="setSortOrder($event)">
+        <option value="desc" selected>Évènements (décroissant)</option>
+        <option value="asc">Évènements (croissant)</option>
       </select>
     </div>
   </div>
@@ -20,7 +20,7 @@
 
   <div class="input-group flex-nowrap mb-4">
     <span class="input-group-text" id="addon-wrapping"><i class="bi bi-search"></i></span>
-    <input type="text" class="form-control" placeholder="Rechercher une catégorie" aria-label="Username" aria-describedby="addon-wrapping" id="example-search-input" (input)="onSearchCategory($event)">
+    <input type="text" class="form-control" placeholder="Rechercher une catégorie" aria-label="Username" aria-describedby="addon-wrapping" id="search-category" (input)="onSearchCategory($event)">
   </div>
 
   <div *ngIf="categoriesFromSearch; else showCategories">

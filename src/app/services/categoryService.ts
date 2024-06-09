@@ -16,8 +16,8 @@ export class CategoryService {
     return this.http.get<Category[]>(this.categoriesUrl).pipe(catchError(this.handleError<Category[]>('getAll')));
   }
 
-  findByName(name: string): Observable<Category[]> {
-    return this.http.get<Category[]>(`${this.categoriesUrl}/name?name=${name}`).pipe(catchError(this.handleError<Category[]>('getAll')));
+  findByName(name: string, sorted:boolean): Observable<Category[]> {
+    return this.http.get<Category[]>(`${this.categoriesUrl}/name/sorted?name=${name}&sorted=${sorted}`).pipe(catchError(this.handleError<Category[]>('getAll')));
   }
 
   update(category: Category): Observable<Category> {
@@ -35,5 +35,9 @@ export class CategoryService {
   }
   delete(category: Category): Observable<boolean> {
     return this.http.delete<boolean>(`${this.categoriesUrl}/${category.categoryId}`);
+  }
+
+  getAllSorted(sorted : boolean): Observable<Category[]> {
+    return this.http.get<Category[]>(`${this.categoriesUrl}/sorted?sorted=${sorted}`).pipe(catchError(this.handleError<Category[]>('getAllSorted')));
   }
 }

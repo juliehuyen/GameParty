@@ -15,6 +15,7 @@ export class CategoryListComponent {
   categoriesResult : Category[] = [];
   searchQuery: string = '';
   categoryEventCounts: Map<Category, number> = new Map();
+  sortOrder: 'asc' | 'desc' = 'desc';
 
   constructor(private categoryService: CategoryService, private eventService: EventService) {}
 
@@ -22,6 +23,7 @@ export class CategoryListComponent {
     this.categoryService.getAll().subscribe(categories =>{
       this.allCategories = categories;
       this.loadEventCounts(categories);
+      this.sortCategories();
     });
 
   }
@@ -50,16 +52,13 @@ export class CategoryListComponent {
     const inputElement = event.target as HTMLInputElement;
     this.searchQuery = inputElement.value;
     if (this.searchQuery) {
-      this.categoriesFromSearch = this.categoryService.findByName(this.searchQuery);
-      this.categoriesFromSearch.subscribe(categories => {
-        this.categoriesResult = categories;
-        this.loadEventCounts(categories);
-      });
+      this.searchCategories();
     } else {
       this.categoriesFromSearch = undefined;
       this.categoryService.getAll().subscribe(categories =>{
         this.allCategories = categories;
         this.loadEventCounts(categories);
+        this.sortCategories();
       });
     }
   }
@@ -69,5 +68,38 @@ export class CategoryListComponent {
     this.activeButton = buttonName;
   }
 
+  sortCategories(): void {
+    if(this.sortOrder == 'asc'){
+      this.categoryService.getAllSorted(false).subscribe(categories =>{
+        this.allCategories = categories;
+        this.loadEventCounts(categories);
+      });
+    } else{
+      this.categoryService.getAllSorted(true).subscribe(categories =>{
+        this.allCategories = categories;
+        this.loadEventCounts(categories);
+      });
+    }
+  }
 
+  setSortOrder(order: Event): void {
+    const selectElement = order.target as HTMLSelectElement;
+    this.sortOrder = selectElement.value as 'asc' | 'desc';
+    this.sortCategories();
+    if (this.searchQuery) {
+      this.searchCategories();
+    }
+  }
+
+  private searchCategories() {
+    if (this.sortOrder == 'desc') {
+      this.categoriesFromSearch = this.categoryService.findByName(this.searchQuery, true);
+    } else {
+      this.categoriesFromSearch = this.categoryService.findByName(this.searchQuery, false);
+    }
+    this.categoriesFromSearch.subscribe(categories => {
+      this.categoriesResult = categories;
+      this.loadEventCounts(categories);
+    });
+  }
 }
