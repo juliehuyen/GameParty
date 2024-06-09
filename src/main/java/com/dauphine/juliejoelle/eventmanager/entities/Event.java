@@ -1,6 +1,7 @@
 package com.dauphine.juliejoelle.eventmanager.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -28,6 +29,7 @@ public class Event {
     @Column(name = "location", nullable = false, length = 255)
     private String location;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name="category_id")
     private Category category;

@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface CategoryService {
 
-    List<Category> getCategoriesByName(String name);
+    List<Category> getCategoriesByName(String name, boolean desc);
     List<Category> getAll();
     Category getCategoryById(String id) throws CategoryNotFoundByIdException;
+    List<Category> getCategoriesByEventsCountASC();
+    List<Category> getCategoriesByEventsCountDESC();
 }

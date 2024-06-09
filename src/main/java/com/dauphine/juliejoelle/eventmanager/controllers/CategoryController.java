@@ -6,10 +6,7 @@ import com.dauphine.juliejoelle.eventmanager.services.CategoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,12 +21,13 @@ public class CategoryController {
     }
 
     @Operation(summary = "To get all categories from a given string")
-    @GetMapping("/{name}")
+    @GetMapping("name/sorted")
     public ResponseEntity<List<Category>> getCategoriesByName(
             @Parameter(description = "Category's name")
-            @PathVariable String name){
-        //TODO
-        List<Category> categories = categoryService.getCategoriesByName(name);
+            @RequestParam String name,
+            @Parameter(description = "true = desc, false = asc")
+            @RequestParam boolean sorted){
+        List<Category> categories = categoryService.getCategoriesByName(name, sorted);
         return ResponseEntity.ok(categories);
     }
 
@@ -48,5 +46,19 @@ public class CategoryController {
             @PathVariable String id) throws CategoryNotFoundByIdException {
         Category category = categoryService.getCategoryById(id);
         return ResponseEntity.ok(category);
+    }
+
+    @Operation(summary = "To get sorted categories")
+    @GetMapping("/sorted")
+    public ResponseEntity<List<Category>> getSoredCategories(
+            @Parameter(description = "true = DESC, false = ASC")
+            @RequestParam boolean sorted) {
+        List<Category> categories;
+        if(sorted){
+             categories = categoryService.getCategoriesByEventsCountDESC();
+        } else{
+             categories = categoryService.getCategoriesByEventsCountASC();
+        }
+        return ResponseEntity.ok(categories);
     }
 }
