@@ -21,11 +21,13 @@ public class CategoryController {
     }
 
     @Operation(summary = "To get all categories from a given string")
-    @GetMapping("name")
+    @GetMapping("name/sorted")
     public ResponseEntity<List<Category>> getCategoriesByName(
             @Parameter(description = "Category's name")
-            @RequestParam String name){
-        List<Category> categories = categoryService.getCategoriesByName(name);
+            @RequestParam String name,
+            @Parameter(description = "true = desc, false = asc")
+            @RequestParam boolean sorted){
+        List<Category> categories = categoryService.getCategoriesByName(name, sorted);
         return ResponseEntity.ok(categories);
     }
 
@@ -44,5 +46,19 @@ public class CategoryController {
             @PathVariable String id) throws CategoryNotFoundByIdException {
         Category category = categoryService.getCategoryById(id);
         return ResponseEntity.ok(category);
+    }
+
+    @Operation(summary = "To get sorted categories")
+    @GetMapping("/sorted")
+    public ResponseEntity<List<Category>> getSoredCategories(
+            @Parameter(description = "true = DESC, false = ASC")
+            @RequestParam boolean sorted) {
+        List<Category> categories;
+        if(sorted){
+             categories = categoryService.getCategoriesByEventsCountDESC();
+        } else{
+             categories = categoryService.getCategoriesByEventsCountASC();
+        }
+        return ResponseEntity.ok(categories);
     }
 }
