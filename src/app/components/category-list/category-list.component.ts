@@ -23,7 +23,7 @@ export class CategoryListComponent {
     this.categoryService.getAll().subscribe(categories =>{
       this.allCategories = categories;
       this.loadEventCounts(categories);
-      //this.sortCategories();
+      this.sortCategories();
     });
 
   }
@@ -52,16 +52,13 @@ export class CategoryListComponent {
     const inputElement = event.target as HTMLInputElement;
     this.searchQuery = inputElement.value;
     if (this.searchQuery) {
-      this.categoriesFromSearch = this.categoryService.findByName(this.searchQuery);
-      this.categoriesFromSearch.subscribe(categories => {
-        this.categoriesResult = categories;
-        this.loadEventCounts(categories);
-      });
+      this.searchCategories();
     } else {
       this.categoriesFromSearch = undefined;
       this.categoryService.getAll().subscribe(categories =>{
         this.allCategories = categories;
         this.loadEventCounts(categories);
+        this.sortCategories();
       });
     }
   }
@@ -72,17 +69,16 @@ export class CategoryListComponent {
   }
 
   sortCategories(): void {
-    const sortedArray = Array.from(this.categoryEventCounts.entries()).sort((a, b) => {
-      return this.sortOrder === 'asc' ? a[1] - b[1] : b[1] - a[1];
-    });
-
-    this.categoryEventCounts = new Map(sortedArray);
-
-    // Mettre à jour categoriesResult ou allCategories selon le contexte
-    if (this.searchQuery) {
-      this.categoriesResult = sortedArray.map(([category]) => category);
-    } else {
-      this.allCategories = sortedArray.map(([category]) => category);
+    if(this.sortOrder == 'asc'){
+      this.categoryService.getAllSorted(false).subscribe(categories =>{
+        this.allCategories = categories;
+        this.loadEventCounts(categories);
+      });
+    } else{
+      this.categoryService.getAllSorted(true).subscribe(categories =>{
+        this.allCategories = categories;
+        this.loadEventCounts(categories);
+      });
     }
   }
 
@@ -90,6 +86,20 @@ export class CategoryListComponent {
     const selectElement = order.target as HTMLSelectElement;
     this.sortOrder = selectElement.value as 'asc' | 'desc';
     this.sortCategories();
+    if (this.searchQuery) {
+      this.searchCategories();
+    }
   }
 
+  private searchCategories() {
+    if (this.sortOrder == 'desc') {
+      this.categoriesFromSearch = this.categoryService.findByName(this.searchQuery, true);
+    } else {
+      this.categoriesFromSearch = this.categoryService.findByName(this.searchQuery, false);
+    }
+    this.categoriesFromSearch.subscribe(categories => {
+      this.categoriesResult = categories;
+      this.loadEventCounts(categories);
+    });
+  }
 }

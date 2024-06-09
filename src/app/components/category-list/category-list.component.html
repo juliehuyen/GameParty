@@ -20,7 +20,7 @@
 
   <div class="input-group flex-nowrap mb-4">
     <span class="input-group-text" id="addon-wrapping"><i class="bi bi-search"></i></span>
-    <input type="text" class="form-control" placeholder="Rechercher une catégorie" aria-label="Username" aria-describedby="addon-wrapping" id="example-search-input" (input)="onSearchCategory($event)">
+    <input type="text" class="form-control" placeholder="Rechercher une catégorie" aria-label="Username" aria-describedby="addon-wrapping" id="search-category" (input)="onSearchCategory($event)">
   </div>
 
   <div *ngIf="categoriesFromSearch; else showCategories">
