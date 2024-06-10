@@ -2,6 +2,7 @@ package com.dauphine.juliejoelle.eventmanager.services.impl;
 
 import com.dauphine.juliejoelle.eventmanager.dto.CreationUserRequest;
 import com.dauphine.juliejoelle.eventmanager.entities.User;
+import com.dauphine.juliejoelle.eventmanager.exceptions.UserAlreadyExistsException;
 import com.dauphine.juliejoelle.eventmanager.repositories.UserRepository;
 import com.dauphine.juliejoelle.eventmanager.services.UserService;
 
@@ -30,7 +31,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createUser(CreationUserRequest user) {
+    public User createUser(CreationUserRequest user) throws UserAlreadyExistsException {
+        if(userRepository.findUserByUsername(user.getUsername()) != null){
+            throw new UserAlreadyExistsException(user.getUsername());
+        }
         User u = new User(user.getUsername());
         return userRepository.save(u);
     }
@@ -42,5 +46,10 @@ public class UserServiceImpl implements UserService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public User findUserByName(String username) {
+        return userRepository.findUserByUsername(username);
     }
 }
