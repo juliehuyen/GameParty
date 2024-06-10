@@ -20,20 +20,25 @@ export class EventListItemComponent {
   registrationCreateInput! : RegistrationCreateInput;
   userCreateInput! : UserCreateInput;
   @ViewChild('registrationModal') registrationModal!: ElementRef;
+  @ViewChild('registeredUsersModal') registeredUsersModal!: ElementRef;
 
   constructor(private registrationService: RegistrationService, private formBuilder: FormBuilder, private userService: UserService) {}
 
   ngOnInit(){
-    this.registrationService.getUsersByEvent(this.event.eventId).subscribe(users =>{
-      this.users = users;
-    })
+    this.loadUsers(this.event.eventId);
   }
 
   ngAfterViewInit(){
     this.registrationModal.nativeElement.addEventListener('shown.bs.modal', () => {
       this.resetModal();
     })
+    this.registeredUsersModal.nativeElement.addEventListener('shown.bs.modal', () => {
+      this.users = [];
+      this.loadUsers(this.event.eventId);
+    });
   }
+
+
 
   protected readonly onsubmit = onsubmit;
   newRegistration =this.formBuilder.group({
@@ -45,7 +50,6 @@ export class EventListItemComponent {
   }
 
   onSubmitRegistration() {
-    console.log("registration");
     let username: string | null;
     if (this.newRegistration.valid) {
       username = this.newRegistration.controls.username.value;
@@ -80,7 +84,7 @@ export class EventListItemComponent {
   displayToast(valid : boolean){
     const Toast = Swal.mixin({
       toast: true,
-      position: "top-end",
+      position: "top",
       showConfirmButton: false,
       timer: 3000,
       timerProgressBar: true,
@@ -97,12 +101,19 @@ export class EventListItemComponent {
     } else{
       Toast.fire({
         icon: 'error',
-        title: 'Erreur lors de l\'\inscription'
+        title: 'L\'utilisateur est déjà inscrit à cet événement'
       })
     }
   }
 
   resetModal(){
     this.newRegistration.reset();
+  }
+
+  loadUsers(eventId: string){
+    console.log(eventId);
+    this.registrationService.getUsersByEvent(eventId).subscribe(users => {
+      this.users = users;
+    })
   }
 }
