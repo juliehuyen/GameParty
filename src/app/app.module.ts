@@ -13,6 +13,7 @@ import {EventService} from "./services/eventService";
 import { EventListComponent } from './event-list/event-list.component';
 import { EventListItemComponent } from './event-list-item/event-list-item.component';
 import {RegistrationService} from "./services/registrationService";
+import {UserService} from "./services/userService";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import {RegistrationService} from "./services/registrationService";
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [CategoryService,EventService,RegistrationService],
+  providers: [CategoryService,EventService,RegistrationService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

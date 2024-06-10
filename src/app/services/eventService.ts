@@ -3,13 +3,17 @@ import {environment} from "../environnement/environnement";
 import {HttpClient} from "@angular/common/http";
 import {catchError, Observable, of} from "rxjs";
 import {Category} from "../data/category";
-import {Event} from "../data/event";
+import {Event, EventCreateInput} from "../data/event";
 
 @Injectable()
 export class EventService {
   private eventsUrl = `${environment.apiUrl}v1/events`;
 
   constructor(private http: HttpClient) {
+  }
+
+  create(event: EventCreateInput): Observable<Category> {
+    return this.http.post<Category>(this.eventsUrl, event);
   }
 
   getAll() : Observable<Event[]> {

@@ -8,6 +8,7 @@ export interface Registration {
   registrationDate:Date;
 }
 
-export type RegistrationCreateInput = Omit<Registration, "registrationId"> & {
+export type RegistrationCreateInput = Omit<Registration, "registrationId" | 'event' | 'user' | 'registrationDate'> & {
 userId:string;
+eventId:string;
 };

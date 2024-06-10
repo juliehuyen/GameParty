@@ -27,14 +27,14 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
       </div>
     </div>
   </div>
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="registration-modal" tabindex="-1" aria-labelledby="registration" aria-hidden="true">
+<div class="modal fade" id="registration-modal" tabindex="-1" aria-labelledby="registration" aria-hidden="true" #registrationModal>
   <div class="modal-dialog">
     <div class="modal-content custom-modal-bg">
       <div class="modal-header">
@@ -42,16 +42,23 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action=""
+        <form class="needs-validation"
         [formGroup]="newRegistration" (ngSubmit)="onSubmitRegistration()">
           <div>
             <label>Utilisateur :</label>
-            <input type="text" class="form-control" formControlName="username">
+            <input id="username-input" type="text" class="form-control" formControlName="username"
+                   [class.is-invalid]="username.invalid && username.touched"
+                   [class.is-valid]="username.valid && username.touched">
+            <div *ngIf="username?.invalid && username.touched" class="invalid-feedback text-danger"
+            >
+              <div *ngIf="username?.errors?.['required']">Un nom d'utilisateur doit être fourni !</div>
+            </div>
+          </div>
+          <div class="mt-4">
+            <button id = "submit-registration-disabled" *ngIf="username?.invalid"  type="submit" class="btn btn-secondary" data-bs-dismiss="modal" disabled>Enregistrer</button>
+            <button id = "submit-registration-enabled" *ngIf="username?.valid"  type="submit" class="btn btn-secondary" data-bs-dismiss="modal" style="background-color: #9147FF;">Enregistrer</button>
           </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Enregistrer</button>
       </div>
     </div>
   </div>
