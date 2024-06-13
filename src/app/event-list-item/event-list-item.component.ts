@@ -6,6 +6,7 @@ import {RegistrationService} from "../services/registrationService";
 import {RegistrationCreateInput} from "../data/registration";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../services/userService";
+import * as bootstrap from 'bootstrap';
 
 
 @Component({
@@ -49,14 +50,34 @@ export class EventListItemComponent {
     return this.newRegistration.controls.username;
   }
 
-  onSubmitRegistration() {
+  onSubmitRegistration(eventId: string) {
     let username: string | null;
-    if (this.newRegistration.valid) {
+    let registered: boolean;
+    registered = false;
+    if (this.newRegistration.valid) { //si le formulaire est valide
       username = this.newRegistration.controls.username.value;
-      this.userService.findByName(username).subscribe(user => {
-        if(user != null){
-          this.displayToast(false);
-        } else{
+      this.userService.findByName(username).subscribe(user => { //recherche de l'utilisateur
+        if (user != null) {
+          //l'utilisateur existe déjà
+          this.registrationService.isUserRegistered(user.userId, eventId).subscribe(isRegistered => { //vérification de l'inscription de l'utilisateur
+            registered = isRegistered;
+            if (!registered) {
+              this.registrationCreateInput = {
+                userId: user.userId,
+                eventId: this.event.eventId,
+              }
+              this.registrationService.createRegistration(this.registrationCreateInput).subscribe(() => {
+                this.displayToast(true);
+                this.loadUsers(this.event.eventId);
+                this.resetModal();
+              })
+            } else {
+              this.displayToast(false);
+              this.resetModal();
+            }
+          })
+        } else {
+          //il faut créer l'utilisateur
           this.userCreateInput = {
             username: username ?? ''
           }
@@ -65,11 +86,10 @@ export class EventListItemComponent {
               userId: user.userId,
               eventId: this.event.eventId,
             }
-            this.registrationService.createRegistration(this.registrationCreateInput).subscribe(registration => {
+            this.registrationService.createRegistration(this.registrationCreateInput).subscribe(() => {
               this.displayToast(true);
-              this.registrationService.getUsersByEvent(this.event.eventId).subscribe(users => {
-                this.users = users;
-              })
+              this.loadUsers(this.event.eventId);
+              this.resetModal();
             })
           })
         }
@@ -111,9 +131,21 @@ export class EventListItemComponent {
   }
 
   loadUsers(eventId: string){
-    console.log(eventId);
     this.registrationService.getUsersByEvent(eventId).subscribe(users => {
       this.users = users;
     })
+  }
+  showRegisteredUsersModal(eventId : string){
+    this.loadUsers(eventId);
+    const modalElement = this.registeredUsersModal.nativeElement;
+    const modalInstance = new bootstrap.Modal(modalElement);
+    modalInstance.show();
+  }
+
+  showRegistrationModal(eventId:string) {
+    const modalElement = this.registrationModal.nativeElement;
+    const modalInstance = new bootstrap.Modal(modalElement);
+    modalInstance.show();
+
   }
 }

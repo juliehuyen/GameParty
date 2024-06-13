@@ -20,4 +20,8 @@ export class RegistrationService {
   createRegistration(registration : RegistrationCreateInput) : Observable<Registration> {
     return this.http.post<Registration>(this.registrationUrl, registration);
   }
+
+  isUserRegistered(username: string, eventId: string): Observable<boolean> {
+    return this.http.get<boolean>(`${this.registrationUrl}/event/${eventId}/user/${username}`).pipe();
+  }
 }

@@ -5,9 +5,9 @@
   <p>Évènement créé le : {{event.createdAt|date : "short"}}</p>
   <p>Date de l'évènement : {{event.eventDate |date : "short"}}</p>
   <p>{{event.category.name}}</p>
-  <p *ngIf="users" data-bs-toggle="modal" data-bs-target="#registered-users-modal">Nombre de participants : {{users.length}}</p>
+  <p (click)="showRegisteredUsersModal(event.eventId)">Nombre de participants : {{users.length}}</p>
   <div class="d-flex">
-    <button class="btn btn-custom-1 me-2" type="button" data-bs-toggle="modal" data-bs-target="#registration-modal">S'inscrire</button>
+    <button class="btn btn-custom-1 me-2" type="button" (click)="showRegistrationModal(event.eventId)">S'inscrire</button>
   </div>
 </div>
 
@@ -46,7 +46,7 @@
       </div>
       <div class="modal-body">
         <form class="needs-validation"
-        [formGroup]="newRegistration" (ngSubmit)="onSubmitRegistration()">
+        [formGroup]="newRegistration" (ngSubmit)="onSubmitRegistration(event.eventId)">
           <div>
             <label>Utilisateur :</label>
             <input id="username-input" type="text" class="form-control" formControlName="username"
