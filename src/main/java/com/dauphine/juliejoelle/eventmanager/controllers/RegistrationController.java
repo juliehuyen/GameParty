@@ -63,9 +63,21 @@ public class RegistrationController {
     public ResponseEntity<List<User>> getUsersRegisteredByEvent(
             @Parameter(description = "The event's id")
             @RequestParam String eventId) {
-        //TODO
+        //TODO exceptions
         List<User> users = registrationService.getAllUserRegisteredByEvent(eventId);
         return ResponseEntity.ok(users);
+    }
+
+    @Operation(summary = "To check if a user is registered to an event")
+    @GetMapping("/event/{eventId}/user/{userId}")
+    public ResponseEntity<Boolean> isUserRegisteredToEvent(
+            @Parameter(description = "The event's id")
+            @PathVariable String eventId,
+            @Parameter(description = "The user's id")
+            @PathVariable String userId) {
+        //TODO exceptions
+        boolean isRegistered = registrationService.isUserRegisteredToEvent(userId, eventId);
+        return ResponseEntity.ok(isRegistered);
     }
 
 }

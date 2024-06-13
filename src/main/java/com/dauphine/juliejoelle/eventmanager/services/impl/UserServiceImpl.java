@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(CreationUserRequest user) throws UserAlreadyExistsException {
-        if(userRepository.findUserByUsername(user.getUsername()) != null){
+        if(userRepository.findUserByUsernameIgnoreCase(user.getUsername()) != null){
             throw new UserAlreadyExistsException(user.getUsername());
         }
         User u = new User(user.getUsername());
@@ -50,6 +50,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findUserByName(String username) {
-        return userRepository.findUserByUsername(username);
+        return userRepository.findUserByUsernameIgnoreCase(username);
     }
 }

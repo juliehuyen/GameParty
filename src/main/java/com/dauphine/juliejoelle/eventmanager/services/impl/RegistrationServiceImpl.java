@@ -60,4 +60,10 @@ public class RegistrationServiceImpl implements RegistrationService {
         //TODO throw exceptions
         return registrationRepository.getAllUsersRegisteredByEvent(eventId);
     }
+
+    @Override
+    public boolean isUserRegisteredToEvent(String userId, String eventId) {
+        //TODO throw exceptions
+        return registrationRepository.isUserRegisteredToEvent(userId,eventId);
+    }
 }
