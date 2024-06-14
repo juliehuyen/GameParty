@@ -44,4 +44,12 @@ export class EventService {
   delete(event: Event): Observable<boolean> {
     return this.http.delete<boolean>(`${this.eventsUrl}/${event.eventId}`);
   }
+
+  getEventsPassed(): Observable<Event[]> {
+    return this.http.get<Event[]>(`${this.eventsUrl}/passed`).pipe(catchError(this.handleError<Event[]>('getEventsPassed')));
+  }
+
+  getEventsNotPassed(): Observable<Event[]> {
+    return this.http.get<Event[]>(`${this.eventsUrl}/notPassed`).pipe(catchError(this.handleError<Event[]>('getEventsNotPassed')));
+  }
 }

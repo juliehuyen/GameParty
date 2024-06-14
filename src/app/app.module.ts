@@ -14,6 +14,7 @@ import { EventListComponent } from './event-list/event-list.component';
 import { EventListItemComponent } from './event-list-item/event-list-item.component';
 import {RegistrationService} from "./services/registrationService";
 import {UserService} from "./services/userService";
+import { AddEventFormComponent } from './add-event-form/add-event-form.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {UserService} from "./services/userService";
     CategoryListItemComponent,
     EventListComponent,
     EventListItemComponent,
+    AddEventFormComponent,
   ],
   imports: [
     BrowserModule,

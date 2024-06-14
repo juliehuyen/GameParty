@@ -15,7 +15,7 @@ export class EventListComponent {
 
 
   ngOnInit(): void {
-    this.eventService.getAll().subscribe((events: Event[]) => {
+    this.eventService.getEventsNotPassed().subscribe((events: Event[]) => {
       this.events = events;
     })
   }
