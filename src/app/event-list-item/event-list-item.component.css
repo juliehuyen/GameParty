@@ -1,0 +1,15 @@
+.btn-custom-1 {
+  background-color: #9147FF;
+  color: var(--antiflash);
+  font-family: 'Rubik', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.custom-modal-bg {
+  background-color: #000000; /* Fond noir */
+  color: #ffffff; /* Texte blanc */
+}
