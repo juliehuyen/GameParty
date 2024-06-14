@@ -1,0 +1,36 @@
+<!--<div class="pt-4 p-2" *ngIf="event">-->
+<!--  <h3>{{event.title}}</h3>-->
+<!--  <p>{{event.description}}</p>-->
+<!--  <p>Type : {{event.type.name}}</p>-->
+<!--  <p>Évènement créé le : {{event.createdAt|date : "short"}}</p>-->
+<!--  <p>Date de l'évènement : {{event.eventDate |date : "short"}}</p>-->
+<!--  <p>{{event.category.name}}</p>-->
+<!--  <p>Nombre de participants : {{users.length}}</p>-->
+<!--  <div class="d-flex">-->
+<!--    <button class="btn btn-custom-1 me-2" type="button">Avis</button>-->
+<!--    <button class="btn btn-custom-1 me-2" type="button">Noter</button>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="container d-flex justify-content-center mt-4" *ngIf="event" >
+  <div class="card mb-3" style="width: 70%;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{event.category.url}}" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ event.title }}</h5>
+          <p class="card-text">Type : {{event.type.name}}</p>
+          <p class="card-text">{{event.description}}</p>
+          <p class="card-text"><small class="text-muted">Créé le : {{event.createdAt|date : "short"}}</small></p>
+          <p class="card-text"><small class="text-muted">Date de l'évènement : {{event.eventDate|date : "short"}}</small></p>
+          <p>Nombre de participants : {{users.length}}</p>
+          <div class="d-flex">
+            <button class="btn btn-custom-1 me-2" type="button">Détails</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -25,7 +25,7 @@
       </select>
       <div *ngIf="category?.invalid && category.touched" class="invalid-feedback text-danger"
       >
-        <div *ngIf="category?.errors?.['required']">Content is required</div>
+        <div *ngIf="category?.errors?.['required']">Une catégorie est requise</div>
       </div>
     </div>
     <div>
@@ -42,7 +42,7 @@
     </div>
     <div>
       <label>Description :</label>
-      <textarea class="form-control content-textarea" formControlName="content" rows="2" [class.is-invalid]="description.invalid && description.touched"
+      <textarea class="form-control content-textarea" formControlName="description" rows="2" [class.is-invalid]="description.invalid && description.touched"
                 [class.is-valid]="description.valid && description.touched"></textarea>
       <div *ngIf="description.invalid && description.touched" class="invalid-feedback text-danger"
       >

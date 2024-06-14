@@ -1,10 +1,10 @@
-import {Event} from "./event";
+import {GameEvent} from "./gameEvent";
 import {User} from "./User";
 
 export interface Registration {
   registrationId: string;
   user:User;
-  event:Event;
+  event:GameEvent;
   registrationDate:Date;
 }
 

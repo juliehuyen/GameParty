@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {EventService} from "../services/eventService";
-import {Event} from "../data/event"
+import {GameEvent} from "../data/gameEvent"
 
 @Component({
   selector: 'app-event-list',
@@ -8,14 +8,14 @@ import {Event} from "../data/event"
   styleUrl: './event-list.component.css'
 })
 export class EventListComponent {
-  events: Event[] = [];
+  events: GameEvent[] = [];
   activeButton: string = 'events';
 
   constructor(private eventService: EventService) {}
 
 
   ngOnInit(): void {
-    this.eventService.getEventsNotPassed().subscribe((events: Event[]) => {
+    this.eventService.getEventsNotPassed().subscribe((events: GameEvent[]) => {
       this.events = events;
     })
   }

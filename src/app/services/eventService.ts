@@ -3,7 +3,7 @@ import {environment} from "../environnement/environnement";
 import {HttpClient} from "@angular/common/http";
 import {catchError, Observable, of} from "rxjs";
 import {Category} from "../data/category";
-import {Event, EventCreateInput} from "../data/event";
+import {GameEvent, EventCreateInput} from "../data/gameEvent";
 
 @Injectable()
 export class EventService {
@@ -16,22 +16,22 @@ export class EventService {
     return this.http.post<Category>(this.eventsUrl, event);
   }
 
-  getAll() : Observable<Event[]> {
-    return this.http.get<Event[]>(this.eventsUrl).pipe(catchError(this.handleError<Event[]>('getAll')));
+  getAll() : Observable<GameEvent[]> {
+    return this.http.get<GameEvent[]>(this.eventsUrl).pipe(catchError(this.handleError<GameEvent[]>('getAll')));
   }
 
   getEventById(id:string): Observable<Category> {
     return this.http.get<Category>(`${this.eventsUrl}/${id}`).pipe(catchError(this.handleError<Category>('getEventById')));
   }
 
-  getEventsByCategoryId(categoryId:string):Observable<Event[]>{
-    return this.http.get<Event[]>(`${this.eventsUrl}/category/categoryId?categoryId=${categoryId}`).pipe();
+  getEventsByCategoryId(categoryId:string):Observable<GameEvent[]>{
+    return this.http.get<GameEvent[]>(`${this.eventsUrl}/category/categoryId?categoryId=${categoryId}`).pipe();
   }
 
-  update(event: Event): Observable<Event> {
-    return this.http.put<Event>(this.eventsUrl, event)
+  update(event: GameEvent): Observable<GameEvent> {
+    return this.http.put<GameEvent>(this.eventsUrl, event)
       .pipe(
-        catchError(this.handleError<Event>('update', event))
+        catchError(this.handleError<GameEvent>('update', event))
       )
   }
   protected handleError<T>(operation = 'operation', result?: T) {
@@ -41,15 +41,15 @@ export class EventService {
       return of(result as T);
     };
   }
-  delete(event: Event): Observable<boolean> {
+  delete(event: GameEvent): Observable<boolean> {
     return this.http.delete<boolean>(`${this.eventsUrl}/${event.eventId}`);
   }
 
-  getEventsPassed(): Observable<Event[]> {
-    return this.http.get<Event[]>(`${this.eventsUrl}/passed`).pipe(catchError(this.handleError<Event[]>('getEventsPassed')));
+  getEventsPassed(): Observable<GameEvent[]> {
+    return this.http.get<GameEvent[]>(`${this.eventsUrl}/passed`).pipe(catchError(this.handleError<GameEvent[]>('getEventsPassed')));
   }
 
-  getEventsNotPassed(): Observable<Event[]> {
-    return this.http.get<Event[]>(`${this.eventsUrl}/notPassed`).pipe(catchError(this.handleError<Event[]>('getEventsNotPassed')));
+  getEventsNotPassed(): Observable<GameEvent[]> {
+    return this.http.get<GameEvent[]>(`${this.eventsUrl}/notPassed`).pipe(catchError(this.handleError<GameEvent[]>('getEventsNotPassed')));
   }
 }

@@ -1,7 +1,7 @@
 import {Category} from "./category";
 import {Type} from "./type";
 
-export interface Event {
+export interface GameEvent {
   eventId: string;
   title:string;
   description:string;
@@ -12,7 +12,7 @@ export interface Event {
   type:Type;
 }
 
-export type EventCreateInput = Omit<Event,'eventId' | 'createdAt'>&{
+export type EventCreateInput = Omit<GameEvent,'eventId' | 'createdAt'>&{
   categoryId:string;
   typeId:string;
 }
