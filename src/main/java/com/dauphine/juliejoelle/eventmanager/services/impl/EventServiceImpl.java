@@ -58,4 +58,14 @@ public class EventServiceImpl implements EventService {
     public List<Event> getEventsByCategoryId(String categoryId) {
         return eventRepository.getEventsByCategory_CategoryId(categoryId);
     }
+
+    @Override
+    public List<Event> getEventsAlreadyPassed() {
+        return eventRepository.getEventsAlreadyPassed(new java.util.Date());
+    }
+
+    @Override
+    public List<Event> getEventsNotPassed() {
+        return eventRepository.getEventsNotPassed(new java.util.Date());
+    }
 }

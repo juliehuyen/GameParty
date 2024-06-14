@@ -15,4 +15,6 @@ public interface EventService {
     //update?
     void deleteEventById(String eventId) throws EventNotFoundByIdException;
     List<Event> getEventsByCategoryId(String categoryId);
+    List<Event> getEventsAlreadyPassed();
+    List<Event> getEventsNotPassed();
 }

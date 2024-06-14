@@ -6,6 +6,8 @@ import com.dauphine.juliejoelle.eventmanager.repositories.TypeRepository;
 import com.dauphine.juliejoelle.eventmanager.services.TypeService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TypeServiceImpl implements TypeService {
 
@@ -13,6 +15,11 @@ public class TypeServiceImpl implements TypeService {
 
     public TypeServiceImpl(TypeRepository typeRepository) {
         this.typeRepository = typeRepository;
+    }
+
+    @Override
+    public List<Type> getAllTypes() {
+        return typeRepository.findAll();
     }
 
     @Override
