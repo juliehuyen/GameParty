@@ -10,10 +10,12 @@ import {CategoryService} from "./services/categoryService";
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {EventService} from "./services/eventService";
-import { EventListComponent } from './event-list/event-list.component';
-import { EventListItemComponent } from './event-list-item/event-list-item.component';
+import { EventListComponent } from './components/event-list/event-list.component';
+import { EventListItemComponent } from './components/event-list-item/event-list-item.component';
 import {RegistrationService} from "./services/registrationService";
 import {UserService} from "./services/userService";
+import { AddEventFormComponent } from './components/add-event-form/add-event-form.component';
+import {TypeService} from "./services/typeService";
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import {UserService} from "./services/userService";
     CategoryListItemComponent,
     EventListComponent,
     EventListItemComponent,
+    AddEventFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,7 @@ import {UserService} from "./services/userService";
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [CategoryService,EventService,RegistrationService,UserService],
+  providers: [CategoryService,EventService,RegistrationService,UserService,TypeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

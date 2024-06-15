@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {EventService} from "../services/eventService";
-import {Event} from "../data/event"
+import {EventService} from "../../services/eventService";
+import {Event} from "../../data/event"
 
 @Component({
   selector: 'app-event-list',
@@ -15,7 +15,7 @@ export class EventListComponent {
 
 
   ngOnInit(): void {
-    this.eventService.getAll().subscribe((events: Event[]) => {
+    this.eventService.getEventsNotPassed().subscribe((events: Event[]) => {
       this.events = events;
     })
   }
