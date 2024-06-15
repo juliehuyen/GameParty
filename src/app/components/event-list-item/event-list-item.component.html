@@ -1,31 +1,20 @@
-<!--<div class="pt-4 p-2" *ngIf="event">-->
-<!--  <h3>{{event.title}}</h3>-->
-<!--  <p>{{event.description}}</p>-->
-<!--  <p>Type : {{event.type.name}}</p>-->
-<!--  <p>Évènement créé le : {{event.createdAt|date : "short"}}</p>-->
-<!--  <p>Date de l'évènement : {{event.eventDate |date : "short"}}</p>-->
-<!--  <p>{{event.category.name}}</p>-->
-<!--  <p [attr.data-bs-target]="'#registered-users-modal'+event.eventId" data-bs-toggle="modal">Nombre de participants : {{users.length}}</p>-->
-<!--  <div class="d-flex">-->
-<!--    <button class="btn btn-custom-1 me-2" type="button" [attr.data-bs-target]="'#registration-modal'+event.eventId" data-bs-toggle="modal">S'inscrire</button>-->
-<!--  </div>-->
-<!--</div>-->
-<div class="container d-flex justify-content-center" *ngIf="event" >
-  <div class="card mb-3" style="width: 70%;">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img src="{{event.category.url}}" class="img-fluid rounded-start" alt="...">
+
+<div class="container-fluid d-flex justify-content-center" *ngIf="event" >
+  <div class="card mb-3 custom-card-size event-card" style="width: 60%;">
+    <div class="row g-0 align-items-center">
+      <div class="col-md-3 event-image">
+        <img src="{{event.category.url}}" class="rounded" alt="{{event.category.name}}">
       </div>
-      <div class="col-md-8">
-        <div class="card-body">
+      <div class="col-md-9 event-details">
+        <div class="card-body d-flex flex-column">
           <h5 class="card-title">{{ event.title }}</h5>
           <p class="card-text">Type : {{event.type.name}}</p>
           <p class="card-text">{{event.description}}</p>
-          <p class="card-text"><small class="text-muted">Créé le : {{event.createdAt|date : "short"}}</small></p>
-          <p class="card-text"><small class="text-muted">Date de l'évènement : {{event.eventDate|date : "short"}}</small></p>
-          <p [attr.data-bs-target]="'#registered-users-modal'+event.eventId" data-bs-toggle="modal">Nombre de participants : {{users.length}}</p>
-          <div class="d-flex">
-            <button class="btn btn-custom-1 me-2" type="button" [attr.data-bs-target]="'#registration-modal'+event.eventId" data-bs-toggle="modal">S'inscrire</button>
+          <p class="card-text date-text">Créé le : {{event.createdAt|date : "short"}}</p>
+          <p class="card-text date-text">Date de l'évènement : {{event.eventDate|date : "short"}}</p>
+          <p class="card-text participants" [attr.data-bs-target]="'#registered-users-modal'+event.eventId" data-bs-toggle="modal">Nombre de participants : {{users.length}}</p>
+          <div class="mt-auto d-flex justify-content-end">
+            <button class="btn btn-custom-1" type="button" [attr.data-bs-target]="'#registration-modal'+event.eventId" data-bs-toggle="modal">S'inscrire</button>
           </div>
         </div>
       </div>
@@ -39,20 +28,19 @@
     <div class="modal-content custom-modal-bg">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="registered-modal">Participant(s) :</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div *ngIf="users && users.length > 0">
           <div *ngFor="let user of users">
-            <p>{{user.username}}</p>
+            <p class="modal-text">{{user.username}}</p>
           </div>
         </div>
         <div *ngIf="!users || users.length === 0">
-          <p>Aucun participant pour cet événement.</p>
+          <p class="modal-text">Aucun participant pour cet événement.</p>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-custom-1 " type="button" data-bs-dismiss="modal">Fermer</button>
+        </div>
       </div>
     </div>
   </div>
@@ -70,7 +58,7 @@
         <form class="needs-validation"
         [formGroup]="newRegistration" (ngSubmit)="onSubmitRegistration(event.eventId)">
           <div>
-            <label>Utilisateur :</label>
+            <label class="modal-text">Utilisateur :</label>
             <input id="username-input" type="text" class="form-control" formControlName="username"
                    [class.is-invalid]="username.invalid && username.touched"
                    [class.is-valid]="username.valid && username.touched">
@@ -80,8 +68,8 @@
             </div>
           </div>
           <div class="mt-4">
-            <button id = "submit-registration-disabled" *ngIf="username?.invalid"  type="submit" class="btn btn-secondary" data-bs-dismiss="modal" disabled>Enregistrer</button>
-            <button id = "submit-registration-enabled" *ngIf="username?.valid"  type="submit" class="btn btn-secondary" data-bs-dismiss="modal" style="background-color: #9147FF;" >Enregistrer</button>
+            <button id = "submit-registration-disabled" *ngIf="username?.invalid"  type="submit" class="btn btn-secondary modal-text" data-bs-dismiss="modal" disabled>Enregistrer</button>
+            <button id = "submit-registration-enabled" *ngIf="username?.valid"  type="submit" class="btn btn-secondary modal-text" data-bs-dismiss="modal" style="background-color: #9147FF;" >Enregistrer</button>
           </div>
         </form>
       </div>

@@ -7,9 +7,80 @@
   border: none;
   padding: 10px 20px;*
   border-radius: 5px;
+  width: 20%;
+  height: auto;
 }
 
 .custom-modal-bg {
   background-color: #000000; /* Fond noir */
   color: #ffffff; /* Texte blanc */
 }
+
+.card-title {
+  font-family: 'Rubik-Bold', sans-serif;
+  color: var(--antiflash);
+  font-size: 2.5rem;
+}
+
+.custom-card-size {
+  background-color: var(--night);
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: stretch;
+}
+
+.card-text {
+  font-family: 'Rubik-Regular', sans-serif;
+  color: var(--antiflash);
+  font-size: 1.2rem;
+}
+.date-text{
+  font-family: 'Rubik-Regular', sans-serif;
+  color: var(--taupegray);
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px 20px 20px;
+  height: 400px;
+}
+
+.card-body .btn-custom-1 {
+  align-self: flex-end;
+}
+
+.modal-text {
+  font-family: 'Rubik-Regular', sans-serif;
+  color: var(--antiflash);
+  font-size: 1.2rem;
+}
+
+.modal-title {
+  font-family: 'Rubik-Bold', sans-serif;
+  color: var(--antiflash);
+  font-size: 2.5rem;
+}
+
+.event-card {
+  margin-bottom: 20px;
+}
+
+.participants{
+  text-decoration: underline;
+}
+
+.participants:hover{
+  cursor: pointer;
+  color: var(--lavender);
+}
+
+.event-image {
+  padding-right: 20px;
+}
+
+.event-details {
+  padding-left: 20px;
+}
+
