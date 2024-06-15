@@ -1,1 +1,66 @@
-<p>event-feedback-details works!</p>
+  <div class="container d-flex justify-content-center mt-4" *ngIf="event" >
+    <div class="card mb-3" style="width: 100%;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="{{event.category.url}}" class="img-fluid rounded-start" alt="{{event.category.name}}">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{ event.title }}</h5>
+            <p class="card-text">Type : {{event.type.name}}</p>
+            <p class="card-text">{{event.description}}</p>
+            <p class="card-text"><small class="text-muted">Date de l'évènement : {{event.eventDate|date : "short"}}</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <h1 class="text-center">Avis</h1>
+    <button class="btn btn-custom-1 me-2" type="button" data-bs-target="#create-feedback-modal" data-bs-toggle="modal">Ajouter un avis</button>
+  </div>
+  <div *ngIf="feedbacks && feedbacks.length>0">
+    <app-event-feedback-details-item *ngFor="let feedback of feedbacks" [feedback]="feedback"></app-event-feedback-details-item>
+  </div>
+  <div *ngIf="feedbacks && feedbacks.length==0" class="d-flex justify-content-center">
+    <p>Aucun avis publié pour le moment...</p>
+  </div>
+
+  <!-- Modal create feedback -->
+  <div class="modal fade" id="create-feedback-modal" tabindex="-1" aria-labelledby="create-feedback-modal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content custom-modal-bg">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="registered-modal">Créer un avis :</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form class="needs-validation"
+                [formGroup]="newFeedback" (ngSubmit)="onSubmitFeedback()">
+            <div>
+              <label>Utilisateur :</label>
+              <input id="username-input" type="text" class="form-control" formControlName="username"
+                     [class.is-invalid]="username.invalid && username.touched"
+                     [class.is-valid]="username.valid && username.touched">
+              <div *ngIf="username?.invalid && username.touched" class="invalid-feedback text-danger"
+              >
+                <div *ngIf="username?.errors?.['required']">Un nom d'utilisateur doit être fourni !</div>
+              </div>
+            </div>
+            <div>
+              <label>Commentaire :</label>
+              <textarea id="comments-input" type="text" class="form-control" formControlName="comments"></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Note :</label>
+              <ngb-rating [(rate)]="rating" (rateChange)="onRatingChange($event)" [max]="5"></ngb-rating>
+            </div>
+            <div class="mt-4">
+              <button id = "submit-registration-disabled" *ngIf="username?.invalid"  type="submit" class="btn btn-secondary" data-bs-dismiss="modal" disabled>Enregistrer</button>
+              <button id = "submit-registration-enabled" *ngIf="username?.valid"  type="submit" class="btn btn-secondary" data-bs-dismiss="modal" style="background-color: #9147FF;">Enregistrer</button>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+

@@ -7,7 +7,7 @@ import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { CategoryListComponent } from './components/category-list/category-list.component';
 import { CategoryListItemComponent } from './components/category-list-item/category-list-item.component';
 import {CategoryService} from "./services/categoryService";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {EventService} from "./services/eventService";
 import { EventListComponent } from './components/event-list/event-list.component';
@@ -19,6 +19,10 @@ import { AddEventFormComponent } from './components/add-event-form/add-event-for
 import { EventFeedbackListComponent } from './components/event-feedback-list/event-feedback-list.component';
 import { EventFeedbackItemComponent } from './components/event-feedback-item/event-feedback-item.component';
 import { EventFeedbackDetailsComponent } from './components/event-feedback-details/event-feedback-details.component';
+import { EventFeedbackDetailsItemComponent } from './components/event-feedback-details-item/event-feedback-details-item.component';
+import {NgOptimizedImage} from "@angular/common";
+import {FeedbackService} from "./services/feedbackService";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [
@@ -32,14 +36,18 @@ import { EventFeedbackDetailsComponent } from './components/event-feedback-detai
     EventFeedbackListComponent,
     EventFeedbackItemComponent,
     EventFeedbackDetailsComponent,
+    EventFeedbackDetailsItemComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgOptimizedImage,
+    FormsModule,
+    NgbModule
   ],
-  providers: [CategoryService,EventService,RegistrationService,UserService,TypeService],
+  providers: [CategoryService,EventService,RegistrationService,UserService,TypeService,FeedbackService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
