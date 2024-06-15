@@ -7,7 +7,7 @@ import {Type} from "../../data/type";
 import {TypeService} from "../../services/typeService";
 import Swal from "sweetalert2";
 import {EventService} from "../../services/eventService";
-import {EventCreateInput} from "../../data/event";
+import {EventCreateInput} from "../../data/gameEvent";
 
 @Component({
   selector: 'app-add-event-form',

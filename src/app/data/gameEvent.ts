@@ -12,7 +12,7 @@ export interface GameEvent {
   type:Type;
 }
 
-export type EventCreateInput = Omit<Event,'eventId' |'category' | 'type' | 'createdAt'>&{
+export type EventCreateInput = Omit<GameEvent,'eventId' |'category' | 'type' | 'createdAt'>&{
   categoryId:string;
   typeId:string;
 }
