@@ -1,0 +1,6 @@
+<div class="container-fluid">
+  <div *ngIf="events && events.length>0"></div>
+  <div *ngFor="let event of events">
+    <app-event-feedback-item [event]="event"></app-event-feedback-item>
+  </div>
+</div>

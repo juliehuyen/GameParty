@@ -1,12 +1,11 @@
 import {Component, ElementRef, Input, ViewChild} from '@angular/core';
-import {Event} from "../../data/event";
-import {User, UserCreateInput} from "../../data/User";
+import {GameEvent} from "../data/gameEvent";
+import {User, UserCreateInput} from "../data/User";
 import Swal from 'sweetalert2';
 import {RegistrationService} from "../../services/registrationService";
 import {RegistrationCreateInput} from "../../data/registration";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {UserService} from "../../services/userService";
-import * as bootstrap from 'bootstrap';
+import {UserService} from "../services/userService";
 
 
 @Component({
@@ -16,7 +15,7 @@ import * as bootstrap from 'bootstrap';
 })
 export class EventListItemComponent {
   @Input()
-  event!:Event;
+  event!:GameEvent;
   users : User[] = [];
   registrationCreateInput! : RegistrationCreateInput;
   userCreateInput! : UserCreateInput;
@@ -134,18 +133,5 @@ export class EventListItemComponent {
     this.registrationService.getUsersByEvent(eventId).subscribe(users => {
       this.users = users;
     })
-  }
-  showRegisteredUsersModal(eventId : string){
-    this.loadUsers(eventId);
-    const modalElement = this.registeredUsersModal.nativeElement;
-    const modalInstance = new bootstrap.Modal(modalElement);
-    modalInstance.show();
-  }
-
-  showRegistrationModal(eventId:string) {
-    const modalElement = this.registrationModal.nativeElement;
-    const modalInstance = new bootstrap.Modal(modalElement);
-    modalInstance.show();
-
   }
 }

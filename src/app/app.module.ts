@@ -14,8 +14,11 @@ import { EventListComponent } from './components/event-list/event-list.component
 import { EventListItemComponent } from './components/event-list-item/event-list-item.component';
 import {RegistrationService} from "./services/registrationService";
 import {UserService} from "./services/userService";
-import { AddEventFormComponent } from './components/add-event-form/add-event-form.component';
 import {TypeService} from "./services/typeService";
+import { AddEventFormComponent } from './add-event-form/add-event-form.component';
+import { EventFeedbackListComponent } from './event-feedback-list/event-feedback-list.component';
+import { EventFeedbackItemComponent } from './event-feedback-item/event-feedback-item.component';
+import { EventFeedbackDetailsComponent } from './event-feedback-details/event-feedback-details.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,9 @@ import {TypeService} from "./services/typeService";
     EventListComponent,
     EventListItemComponent,
     AddEventFormComponent,
+    EventFeedbackListComponent,
+    EventFeedbackItemComponent,
+    EventFeedbackDetailsComponent,
   ],
   imports: [
     BrowserModule,

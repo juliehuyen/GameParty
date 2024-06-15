@@ -1,7 +1,7 @@
 import {Category} from "./category";
 import {Type} from "./type";
 
-export interface Event {
+export interface GameEvent {
   eventId: string;
   title:string;
   description:string;
