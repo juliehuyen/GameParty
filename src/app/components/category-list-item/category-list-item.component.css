@@ -6,6 +6,8 @@
 .custom-card-size {
   width: 252px;
   height: auto;
+  background-color: var(--night);
+  border-bottom: 20px solid transparent;
 }
 
 .card-title {
@@ -19,7 +21,14 @@
 }
 
 .card-title:hover {
-  color: #BF94FF;
+  color: var(--lavender);
 }
 
+.pointer {
+  cursor: pointer;
+}
 
+.number-events-text {
+  font-family: 'Rubik-Regular', sans-serif;
+  color: var(--taupegray);
+}

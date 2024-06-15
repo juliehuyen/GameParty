@@ -4,9 +4,8 @@ body {
 }
 
 .container-fluid {
-  padding-left: 50px;
-  padding-right: 50px;
-  min-height: 93.3vh;
+  padding-left: 2.60%;
+  padding-right: 2.60%;
 }
 
 .custom-button {
@@ -23,13 +22,13 @@ body {
   height: 2px;
   bottom: -3px;
   left: 0;
-  background-color: #BF94FF;
+  background-color: var(--lavender);
   transform-origin: bottom right;
   transition: transform 0.25s ease-out;
 }
 
 .custom-button:hover {
-  color: #BF94FF;
+  color: var(--lavender);
 }
 
 .custom-button:hover::after,
@@ -40,7 +39,7 @@ body {
 }
 
 .custom-button.active {
-  color: #BF94FF;
+  color: var(--lavender);
 }
 
 .input-group {
@@ -48,21 +47,21 @@ body {
 }
 
 .input-group-text {
-  background-color:#2D2D34;
-  color:#8F8F91;
-  border: 1px solid #8F8F91;
+  background-color: var(--raisinblack);
+  color: var(--taupegray);
+  border: 1px solid var(--taupegray);
   border-right: transparent;
 }
 
 .text-custom {
   font-family: 'Rubik-Regular', sans-serif;
-  color: #8F8F91;
+  color: var(--taupegray);
 }
 
 .form-control {
-  background-color: #2D2D34;
-  color: #8F8F91;
-  border: 1px solid #8F8F91;
+  background-color: var(--raisinblack);
+  color: var(--taupegray);
+  border: 1px solid var(--taupegray);
   border-left: transparent;
   border-radius: 0.25rem;
   font-family: 'Rubik-Regular', sans-serif;
@@ -74,15 +73,45 @@ body {
 }
 
 .form-control::placeholder {
-  color: #8F8F91;
+  color: var(--taupegray);
 }
 
 .display-categories {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 0.625%;
   justify-content: center;
 }
 
+.custom-select {
+  background-color: var(--eerieblack);
+  color: var(--antiflash);
+  border: 1px solid var(--taupegray);
+  border-radius: 0.25rem;
+  font-family: 'Rubik-Regular', sans-serif;
+  outline: none !important;
+}
 
+.custom-select:focus {
+  outline: none !important;
+}
 
+.custom-select option {
+  background-color: var(--eerieblack);
+  color: var(--antiflash);
+  outline: none !important;
+}
+
+.custom-select option:checked {
+  background-color: var(--veronica);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.d-flex.align-items-center {
+  white-space: nowrap;
+}
+
+.filter-by-text {
+  font-family: 'Rubik-Bold', sans-serif;
+  color: var(--antiflash);
+}

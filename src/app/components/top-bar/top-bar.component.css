@@ -1,19 +1,19 @@
 .navbar-custom {
-  background-color: #18181B;
+  background-color: var(--eerieblack);
 
 }
 
 .navbar-brand-custom {
   color: var(--antiflash);
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Rubik-Bold', sans-serif;
   font-weight: 700;
   font-size: 25px;
 }
 
 .btn-custom-1 {
-  background-color: #2D2D34;
+  background-color: var(--raisinblack);
   color: var(--antiflash);
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Rubik-Bold', sans-serif;
   font-weight: 700;
   font-size: 15px;
   border: none;
@@ -22,14 +22,14 @@
 }
 
 .btn-custom-1:active {
-  background-color: #373740;
+  background-color: var(--jet);
   color: var(--antiflash);
 }
 
 .btn-custom-2 {
-  background-color: #9147FF;
+  background-color: var(--veronica);
   color: var(--antiflash);
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Rubik-Bold', sans-serif;
   font-weight: 700;
   font-size: 15px;
   border: none;
@@ -38,7 +38,7 @@
 }
 
 .btn-custom-2:active {
-  background-color: #772CE8;
+  background-color: var(--blueviolet);
   color: var(--antiflash);
 }
 
