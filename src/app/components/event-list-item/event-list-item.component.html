@@ -8,8 +8,9 @@
       <div class="col-md-9 event-details">
         <div class="card-body d-flex flex-column">
           <h5 class="card-title">{{ event.title }}</h5>
-          <p class="card-text">Type : {{event.type.name}}</p>
+          <p class="card-text date-text">Type : {{event.type.name}}</p>
           <p class="card-text">{{event.description}}</p>
+          <p class="card-text date-text">Lieu : {{event.location}}</p>
           <p class="card-text date-text">Créé le : {{event.createdAt|date : "short"}}</p>
           <p class="card-text date-text">Date de l'évènement : {{event.eventDate|date : "short"}}</p>
           <p class="card-text participants" [attr.data-bs-target]="'#registered-users-modal'+event.eventId" data-bs-toggle="modal">Nombre de participants : {{users.length}}</p>

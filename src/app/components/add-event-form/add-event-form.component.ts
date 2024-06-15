@@ -11,6 +11,7 @@ import {EventCreateInput} from "../../data/gameEvent";
 import {ModalService} from "../../services/modalService";
 import * as bootstrap from 'bootstrap';
 import {timeout} from "rxjs";
+import {dateNotBeforeTodayValidator} from "../../validators/custom-validators";
 
 @Component({
   selector: 'app-add-event-form',
@@ -51,7 +52,7 @@ export class AddEventFormComponent {
     title: ['', {validators: [Validators.required, Validators.minLength(5), Validators.maxLength(150)]}],
     category: ['', Validators.required],
     description: ['', {validators: [Validators.required, Validators.maxLength(2500)]}],
-    eventDate: ['', Validators.required],
+    eventDate: ['', [Validators.required, dateNotBeforeTodayValidator()]],
     type: ['', Validators.required],
     location: ['', Validators.required]
    })
@@ -75,6 +76,7 @@ export class AddEventFormComponent {
     return this.addEvent.controls['location'];
   }
   onSubmit() {
+    console.log(this.minDate);
     if (this.addEvent.valid) {
       this.eventCreateInput = {
         title: this.addEvent.value.title ?? '',

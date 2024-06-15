@@ -148,6 +148,7 @@
                    [class.is-valid]="eventDate.valid && eventDate.touched">
             <div *ngIf="eventDate?.invalid && eventDate.touched" class="invalid-feedback text-danger">
               <div *ngIf="eventDate?.errors?.['required']">Une date est requise</div>
+              <div *ngIf="eventDate?.errors?.['dateNotBeforeToday']">Veuillez choisir une date valide</div>
             </div>
           </div>
           <div class="d-flex justify-content-center mt-4">
