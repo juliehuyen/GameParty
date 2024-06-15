@@ -5,7 +5,7 @@
   <div class="card custom-card-size bg-dark border-0">
     <img src="{{category.url}}" class="card-img-top custom-img-size" alt="{{category.name}}">
     <div class="card-body">
-      <h5 class="card-title" [routerLink]="['/event-list', category.categoryId]">
+      <h5 class="card-title" [routerLink]="['/event-list', category.categoryId]" style="cursor: pointer;">
         {{category.name}}</h5>
       <p *ngIf="eventsCount > 0; else noEvents" class="card-text text-light">{{ eventsCount }} évènement(s)</p>
       <ng-template #noEvents>
