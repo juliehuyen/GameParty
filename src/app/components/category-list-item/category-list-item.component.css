@@ -27,3 +27,8 @@
 .pointer {
   cursor: pointer;
 }
+
+.number-events-text {
+  font-family: 'Rubik-Regular', sans-serif;
+  color: var(--taupegray);
+}

@@ -9,14 +9,14 @@
         {{category.name}}</h5>
       <p *ngIf="eventsCount > 0; else noEvents" class="card-text text-light">
         <ng-container *ngIf="eventsCount === 1; else multipleEvents">
-          {{ eventsCount }} évènement
+          <span class="number-events-text">{{ eventsCount }} évènement</span>
         </ng-container>
         <ng-template #multipleEvents>
-          {{ eventsCount }} évènements
+          <span class="number-events-text">{{ eventsCount }} évènements</span>
         </ng-template>
       </p>
       <ng-template #noEvents>
-        <p class="card-text">Aucun évènement</p>
+        <span class="number-events-text">{{ eventsCount }} Aucun évènement</span>
       </ng-template>
     </div>
   </div>
