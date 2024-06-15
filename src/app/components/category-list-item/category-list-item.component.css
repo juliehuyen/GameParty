@@ -7,6 +7,8 @@
   width: 252px;
   height: auto;
   background-color: var(--night);
+  border-left: transparent;
+  border-right: transparent;
   border-bottom: 20px solid transparent;
 }
 
