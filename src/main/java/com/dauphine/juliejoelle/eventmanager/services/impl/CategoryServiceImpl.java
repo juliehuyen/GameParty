@@ -28,7 +28,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> getAll() {
-        return categoryRepository.findAll();
+        return categoryRepository.findCategoriesByNameASC();
     }
 
     @Override
@@ -46,5 +46,6 @@ public class CategoryServiceImpl implements CategoryService {
     public List<Category> getCategoriesByEventsNotPassedCountDESC() {
         return categoryRepository.getCategoriesByEventsNotPassedCountDESC(new java.util.Date());
     }
+
 
 }

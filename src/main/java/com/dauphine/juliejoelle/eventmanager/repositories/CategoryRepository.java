@@ -33,5 +33,7 @@ public interface CategoryRepository extends JpaRepository<Category,String> {
     List<Category> getCategoriesByEventsNotPassedCountASC(Date date);
     @Query("SELECT c FROM Category c LEFT JOIN c.events e ON e.eventDate > :date GROUP BY c.categoryId ORDER BY COUNT(e) DESC")
     List<Category> getCategoriesByEventsNotPassedCountDESC(Date date);
+    @Query("SELECT c FROM Category c ORDER BY c.name ASC")
+    List<Category> findCategoriesByNameASC();
 
 }
