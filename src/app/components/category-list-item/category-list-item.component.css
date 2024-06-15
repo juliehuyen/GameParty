@@ -19,7 +19,7 @@
 }
 
 .card-title:hover {
-  color: #BF94FF;
+  color: var(--lavender);
 }
 
 .pointer {
