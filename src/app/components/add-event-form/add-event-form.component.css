@@ -1,0 +1,63 @@
+html,
+body {
+  height: 100%;
+  background-color: var(--night);
+}
+
+.container {
+  margin-top: 2%;
+  background-color: var(--eerieblack);
+  color: var(--antiflash);
+}
+
+.title-text {
+  font-family: 'Rubik-Bold', sans-serif;
+  font-size: 2rem;
+  color: var(--antiflash);
+  display: block;
+  text-align: center;
+}
+
+.subtitle-text {
+  font-family: 'Rubik-Regular', sans-serif;
+  font-size: 1.5rem;
+  color: var(--taupegray);
+  display: block;
+  text-align: center;
+}
+
+.label-custom {
+  font-family: 'Rubik-Medium', sans-serif;
+  color: var(--antiflash);
+}
+
+.form-control {
+  background-color: var(--raisinblack);
+  color: var(--antiflash);
+  font-family: Rubik-Regular, sans-serif;
+  border: 1px solid var(--antiflash);
+}
+
+.form-control:focus {
+  background-color: var(--jet);
+  color: var(--antiflash);
+  border: 1px solid var(--antiflash);
+}
+
+.form-control {
+  width: 50%;
+}
+
+.btn-success {
+  background-color: var(--veronica);
+  color: var(--antiflash);
+  font-family: 'Rubik-Bold', sans-serif;
+  border: none;
+}
+
+.btn-outline-danger {
+  background-color: var(--raisinblack);
+  color: var(--antiflash);
+  font-family: 'Rubik-Bold', sans-serif;
+  border: 1px solid var(--antiflash);
+}
