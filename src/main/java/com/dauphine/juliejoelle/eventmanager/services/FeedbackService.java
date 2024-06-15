@@ -15,4 +15,5 @@ public interface FeedbackService {
     void deleteFeedbackById(String feedId) throws FeedbackNotFoundByIdException;
 
     List<Feedback> getFeedbacksByEvent(String eventId);
+    Feedback getFeedbackByUserAndEvent(String userId, String eventId);
 }

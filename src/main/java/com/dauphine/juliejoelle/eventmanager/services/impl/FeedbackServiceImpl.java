@@ -57,4 +57,10 @@ public class FeedbackServiceImpl implements FeedbackService {
         //TODO throw exceptions
         return feedbackRepository.findFeedbacksByEvent_EventId(eventId);
     }
+
+    @Override
+    public Feedback getFeedbackByUserAndEvent(String userId, String eventId) {
+        //TODO throw exceptions
+        return feedbackRepository.findFeedbackByUser_UserIdAndEvent_EventId(userId,eventId);
+    }
 }

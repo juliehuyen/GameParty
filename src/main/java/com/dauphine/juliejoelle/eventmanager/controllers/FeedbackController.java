@@ -61,12 +61,24 @@ public class FeedbackController {
     }
 
     @Operation(summary = "To get all feedbacks from an event")
-    @GetMapping("/event/{eventId}")
+    @GetMapping("/event/eventId")
     public ResponseEntity<List<Feedback>> getFeedbacksByEventId(
             @Parameter(description = "Event's id")
-            @PathVariable String eventId){
+            @RequestParam String eventId){
         //TODO
         List<Feedback> feedbacks = feedbackService.getFeedbacksByEvent(eventId);
         return ResponseEntity.ok(feedbacks);
+    }
+
+    @Operation(summary = "To get a feedback by its user and event")
+    @GetMapping("/user/{userId}/event/{eventId}")
+    public ResponseEntity<Feedback> getFeedbackByUserAndEvent(
+            @Parameter(description = "User's id")
+            @PathVariable String userId,
+            @Parameter(description = "Event's id")
+            @PathVariable String eventId){
+        //TODO
+        Feedback feedback = feedbackService.getFeedbackByUserAndEvent(userId, eventId);
+        return ResponseEntity.ok(feedback);
     }
 }
