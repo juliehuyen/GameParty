@@ -55,11 +55,6 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Event> getEventsByCategoryId(String categoryId) {
-        return eventRepository.getEventsByCategory_CategoryId(categoryId);
-    }
-
-    @Override
     public List<Event> getEventsAlreadyPassed() {
         return eventRepository.getEventsAlreadyPassed(new java.util.Date());
     }
@@ -67,5 +62,20 @@ public class EventServiceImpl implements EventService {
     @Override
     public List<Event> getEventsNotPassed() {
         return eventRepository.getEventsNotPassed(new java.util.Date());
+    }
+
+    @Override
+    public List<Event> getEventsAlreadyPassedByCategoryId(String categoryId) {
+        return eventRepository.getEventsAlreadyPassedByCategory_CategoryId(categoryId, new java.util.Date());
+    }
+
+    @Override
+    public List<Event> getEventsNotPassedByCategoryId(String categoryId) {
+        return eventRepository.getEventsNotPassedByCategory_CategoryId(categoryId, new java.util.Date());
+    }
+
+    @Override
+    public List<Event> getEventsByCategoryId(String categoryId) {
+        return eventRepository.getEventsByCategory_CategoryId(categoryId);
     }
 }
