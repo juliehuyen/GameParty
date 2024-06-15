@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
 import {FormBuilder, Validators} from "@angular/forms";
-import {CategoryService} from "../services/categoryService";
-import {Category} from "../data/category";
-import {Type} from "../data/type";
+import {CategoryService} from "../../services/categoryService";
+import {Category} from "../../data/category";
+import {Type} from "../../data/type";
 
 class EventCreateInput {
 }
