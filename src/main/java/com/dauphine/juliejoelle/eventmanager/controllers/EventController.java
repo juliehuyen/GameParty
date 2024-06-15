@@ -60,12 +60,30 @@ public class EventController {
         return ResponseEntity.ok().build();
     }
 
-    @Operation(summary = "The number of events given a category")
+    @Operation(summary = "The list of events given a category")
     @GetMapping("/category/categoryId")
     public ResponseEntity<List<Event>> getEventsByCategoryId(
             @Parameter(description = "Category's id")
             @RequestParam String categoryId) {
         List<Event> events = eventService.getEventsByCategoryId(categoryId);
+        return ResponseEntity.ok(events);
+    }
+
+    @Operation(summary = "The list of passed events given a category")
+    @GetMapping("/passed/category/categoryId")
+    public ResponseEntity<List<Event>> getEventsAlreadyPassedByCategoryId(
+            @Parameter(description = "Category's id")
+            @RequestParam String categoryId) {
+        List<Event> events = eventService.getEventsAlreadyPassedByCategoryId(categoryId);
+        return ResponseEntity.ok(events);
+    }
+
+    @Operation(summary = "The list of unpassed events given a category")
+    @GetMapping("/notPassed/category/categoryId")
+    public ResponseEntity<List<Event>> getEventsNotPassedByCategoryId(
+            @Parameter(description = "Category's id")
+            @RequestParam String categoryId) {
+        List<Event> events = eventService.getEventsNotPassedByCategoryId(categoryId);
         return ResponseEntity.ok(events);
     }
 

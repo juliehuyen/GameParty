@@ -55,9 +55,9 @@ public class CategoryController {
             @RequestParam boolean sorted) {
         List<Category> categories;
         if(sorted){
-             categories = categoryService.getCategoriesByEventsCountDESC();
+             categories = categoryService.getCategoriesByEventsNotPassedCountDESC();
         } else{
-             categories = categoryService.getCategoriesByEventsCountASC();
+             categories = categoryService.getCategoriesByEventsNotPassedCountASC();
         }
         return ResponseEntity.ok(categories);
     }

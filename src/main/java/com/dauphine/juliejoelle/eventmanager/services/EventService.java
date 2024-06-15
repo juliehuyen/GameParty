@@ -14,7 +14,9 @@ public interface EventService {
     Event createEvent(CreationEventRequest eventRequest) throws CategoryNotFoundByIdException, TypeNotFoundByIdException;
     //update?
     void deleteEventById(String eventId) throws EventNotFoundByIdException;
-    List<Event> getEventsByCategoryId(String categoryId);
     List<Event> getEventsAlreadyPassed();
     List<Event> getEventsNotPassed();
+    List<Event> getEventsAlreadyPassedByCategoryId(String categoryId);
+    List<Event> getEventsNotPassedByCategoryId(String categoryId);
+    List<Event> getEventsByCategoryId(String categoryId);
 }
