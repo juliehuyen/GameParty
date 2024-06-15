@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
 import {FormBuilder, Validators} from "@angular/forms";
 import {CategoryService} from "../../services/categoryService";
@@ -8,6 +8,9 @@ import {TypeService} from "../../services/typeService";
 import Swal from "sweetalert2";
 import {EventService} from "../../services/eventService";
 import {EventCreateInput} from "../../data/gameEvent";
+import {ModalService} from "../../services/modalService";
+import * as bootstrap from 'bootstrap';
+import {timeout} from "rxjs";
 
 @Component({
   selector: 'app-add-event-form',
@@ -19,10 +22,29 @@ export class AddEventFormComponent {
   types: Type[] = [];
   minDate: string = new Date().toISOString().split('T')[0];
   eventCreateInput! : EventCreateInput;
-  constructor(private formBuilder: FormBuilder, private typeService: TypeService, private categoryService: CategoryService, private eventService: EventService, private router : Router) { }
+  @ViewChild('addEventModal') addEventModal!: ElementRef;
+
+  constructor(private formBuilder: FormBuilder, private typeService: TypeService, private categoryService: CategoryService, private eventService: EventService, private router : Router, private modalService : ModalService) {
+    this.modalService.openModal$.subscribe(() => {
+      this.openModal();
+    });
+  }
   ngOnInit() {
     this.categoryService.getAll().subscribe(categories => this.categories = categories);
     this.typeService.getAll().subscribe(types => this.types = types);
+  }
+
+  openModal() {
+    const modalElement = this.addEventModal.nativeElement;
+    const modalInstance = new bootstrap.Modal(modalElement);
+    modalInstance.show();
+  }
+
+  closeModal() {
+    this.addEvent.reset();
+    const modalElement = this.addEventModal.nativeElement;
+    const modalInstance = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
+    modalInstance.hide();
   }
 
   addEvent= this.formBuilder.group({
@@ -65,18 +87,16 @@ export class AddEventFormComponent {
       this.eventService
         .create(this.eventCreateInput)
         .subscribe(() => {
-          this.router.navigate(['/event-list']);
+          this.closeModal();
+          this.displayToast(true);
+          setTimeout(() => {
+            this.router.navigate(['/']);
+          }, 1500);
       })
-      this.displayToast(true);
     }
     else{
       this.displayToast(false);
     }
-  }
-
-
-  onClose() {
-    this.router.navigate(['/']);
   }
 
   displayToast(valid : boolean){
