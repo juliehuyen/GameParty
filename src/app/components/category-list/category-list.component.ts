@@ -34,7 +34,7 @@ export class CategoryListComponent {
     }
 
     const requests = categories.map(category =>
-      this.eventService.getEventsByCategoryId(category.categoryId).pipe(
+      this.eventService.getEventsNotPassedByCategory(category.categoryId).pipe(
         map(events => events.length), // Transform the array of events to its length
         catchError(() => of(0)) // Handle errors by returning 0
       )

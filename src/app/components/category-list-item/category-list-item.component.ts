@@ -12,4 +12,5 @@ export class CategoryListItemComponent {
   category!:Category;
   @Input()
   eventsCount:number = 0;
+
 }

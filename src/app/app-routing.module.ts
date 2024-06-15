@@ -8,6 +8,7 @@ import {EventFeedbackListComponent} from "./components/event-feedback-list/event
 const routes: Routes = [
   { path: '', component: CategoryListComponent },
   { path: 'event-list', component: EventListComponent },
+  { path: 'event-list/:categoryId', component: EventListComponent},
   { path: 'add-event', component: AddEventFormComponent },
   { path: 'event-feedback-list', component: EventFeedbackListComponent },
 ];
