@@ -27,7 +27,7 @@
           <p class="card-text"><small class="text-muted">Date de l'évènement : {{event.eventDate|date : "short"}}</small></p>
           <p>Nombre de participants : {{users.length}}</p>
           <div class="d-flex">
-            <button class="btn btn-custom-1 me-2" type="button">Détails</button>
+            <button class="btn btn-custom-1 me-2" type="button" [routerLink]="['/event-feedback-details',event.eventId]">Détails</button>
           </div>
         </div>
       </div>

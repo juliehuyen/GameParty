@@ -1,0 +1,17 @@
+<div *ngIf="feedback">
+  <div class="container d-flex justify-content-center mt-4">
+    <div class="card mb-3" style="width: 100%;">
+      <div class="row g-0">
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Avis de l'utilisateur : {{ feedback.user.username }}</h5>
+            <p class="card-text">Commentaires : {{feedback.comments}}</p>
+            <div class="star-rating">
+              <i *ngFor="let star of stars" class="fa" [class.fa-star]="star" [class.fa-star-o]="!star"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

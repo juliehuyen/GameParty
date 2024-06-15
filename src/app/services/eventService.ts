@@ -19,8 +19,8 @@ export class EventService {
     return this.http.get<GameEvent[]>(this.eventsUrl).pipe(catchError(this.handleError<GameEvent[]>('getAll')));
   }
 
-  getEventById(id:string): Observable<Event> {
-    return this.http.get<Event>(`${this.eventsUrl}/${id}`).pipe(catchError(this.handleError<Event>('getEventById')));
+  getEventById(id: string | null): Observable<GameEvent> {
+    return this.http.get<GameEvent>(`${this.eventsUrl}/${id}`).pipe(catchError(this.handleError<GameEvent>('getEventById')));
   }
 
   getEventsByCategoryId(categoryId:string):Observable<GameEvent[]>{
