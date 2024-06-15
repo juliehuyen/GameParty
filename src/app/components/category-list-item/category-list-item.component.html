@@ -2,12 +2,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400&display=swap" rel="stylesheet">
 </head>
 <div class="col-md-2">
-  <div class="card custom-card-size bg-dark border-0">
+  <div class="card custom-card-size">
     <img src="{{category.url}}" class="card-img-top custom-img-size" alt="{{category.name}}">
     <div class="card-body">
       <h5 class="card-title" [routerLink]="['/event-list', category.categoryId]" style="cursor: pointer;">
         {{category.name}}</h5>
-      <p *ngIf="eventsCount > 0; else noEvents" class="card-text text-light">{{ eventsCount }} évènement(s)</p>
+      <p *ngIf="eventsCount > 0; else noEvents" class="card-text text-light">
+        <ng-container *ngIf="eventsCount === 1; else multipleEvents">
+          {{ eventsCount }} évènement
+        </ng-container>
+        <ng-template #multipleEvents>
+          {{ eventsCount }} évènements
+        </ng-template>
+      </p>
       <ng-template #noEvents>
         <p class="card-text">Aucun évènement</p>
       </ng-template>

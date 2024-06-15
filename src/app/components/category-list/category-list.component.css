@@ -4,9 +4,8 @@ body {
 }
 
 .container-fluid {
-  padding-left: 50px;
-  padding-right: 50px;
-  min-height: 93.3vh;
+  padding-left: 2.60%;
+  padding-right: 2.60%;
 }
 
 .custom-button {
@@ -80,7 +79,7 @@ body {
 .display-categories {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 0.625%;
   justify-content: center;
 }
 

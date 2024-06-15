@@ -6,6 +6,8 @@
 .custom-card-size {
   width: 252px;
   height: auto;
+  background-color: var(--night);
+  border-bottom: 20px solid transparent;
 }
 
 .card-title {
