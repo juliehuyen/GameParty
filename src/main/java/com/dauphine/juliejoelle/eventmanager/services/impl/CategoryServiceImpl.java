@@ -6,6 +6,7 @@ import com.dauphine.juliejoelle.eventmanager.repositories.CategoryRepository;
 import com.dauphine.juliejoelle.eventmanager.services.CategoryService;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -20,9 +21,9 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<Category> getCategoriesByName(String name, boolean desc) {
         if(desc){
-            return categoryRepository.getCategoriesByNameByEventsCountDESC(name);
+            return categoryRepository.getCategoriesByNameByEventsCountDESC(name, new Date());
         }
-        return categoryRepository.getCategoriesByNameByEventsCountASC(name);
+        return categoryRepository.getCategoriesByNameByEventsCountASC(name, new Date());
     }
 
     @Override
@@ -37,12 +38,13 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<Category> getCategoriesByEventsCountASC() {
-        return categoryRepository.getCategoriesByEventsCountASC();
+    public List<Category> getCategoriesByEventsNotPassedCountASC() {
+        return categoryRepository.getCategoriesByEventsNotPassedCountASC(new java.util.Date());
     }
 
     @Override
-    public List<Category> getCategoriesByEventsCountDESC() {
-        return categoryRepository.getCategoriesByEventsCountDESC();
+    public List<Category> getCategoriesByEventsNotPassedCountDESC() {
+        return categoryRepository.getCategoriesByEventsNotPassedCountDESC(new java.util.Date());
     }
+
 }
