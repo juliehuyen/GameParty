@@ -11,9 +11,9 @@
              [class.is-valid]="title.valid && title.touched">
       <div *ngIf="title?.invalid && title.touched" class="invalid-feedback text-danger"
       >
-        <div *ngIf="title?.errors?.['required']">Title is required</div>
-        <div *ngIf="title?.errors?.['minlength']">Title should be 5 characters or more</div>
-        <div *ngIf="title?.errors?.['maxlength']">Title should be 150 characters or less</div>
+        <div *ngIf="title?.errors?.['required']">Un titre est requis</div>
+        <div *ngIf="title?.errors?.['minlength']">Un titre doit contenir 5 caractères ou plus</div>
+        <div *ngIf="title?.errors?.['maxlength']">Un titre doit contenir 150 caractères ou moins</div>
       </div>
     </div>
     <div>
@@ -25,34 +25,53 @@
       </select>
       <div *ngIf="category?.invalid && category.touched" class="invalid-feedback text-danger"
       >
-        <div *ngIf="category?.errors?.['required']">Content is required</div>
+        <div *ngIf="category?.errors?.['required']">Une catégorie est requise</div>
       </div>
     </div>
     <div>
       <label>Type :</label>
-      <select name="category" id="type" class="form-control" formControlName="type" [class.is-invalid]="type.invalid && type.touched"
+      <select name="type" id="type" class="form-control" formControlName="type" [class.is-invalid]="type.invalid && type.touched"
               [class.is-valid]="type.valid && type.touched">
         <option value="" disabled selected></option>
-        <option *ngFor="let type of types" [value]="type.typeId" >{{type.name}}</option>
+        <option *ngFor="let type of types" [value]="type.id" >{{type.name}}</option>
       </select>
-      <div *ngIf="category?.invalid && category.touched" class="invalid-feedback text-danger"
+      <div *ngIf="type?.invalid && type.touched" class="invalid-feedback text-danger"
       >
-        <div *ngIf="category?.errors?.['required']">Un type d'évènement est requis</div>
+        <div *ngIf="type?.errors?.['required']">Un type d'évènement est requis</div>
       </div>
     </div>
     <div>
       <label>Description :</label>
-      <textarea class="form-control content-textarea" formControlName="content" rows="2" [class.is-invalid]="description.invalid && description.touched"
+      <textarea class="form-control content-textarea" formControlName="description" rows="2" [class.is-invalid]="description.invalid && description.touched"
                 [class.is-valid]="description.valid && description.touched"></textarea>
-      <div *ngIf="description.invalid && description.touched" class="invalid-feedback text-danger"
-      >
+      <div *ngIf="description?.invalid && description.touched" class="invalid-feedback text-danger">
         <div *ngIf="description?.errors?.['required']">Une description est requise</div>
-        <div *ngIf="description?.errors?.['maxlength']">Title should be 2500 characters or less</div>
+        <div *ngIf="description?.errors?.['maxlength']">Une description doit avoir 2500 caractères ou moins</div>
       </div>
     </div>
+    <div>
+      <label>Adresse :</label>
+      <input type="text" class="form-control" formControlName="location"
+             [class.is-invalid]="location.invalid && location.touched"
+             [class.is-valid]="location.valid && location.touched">
+      <div *ngIf="location?.invalid && location.touched" class="invalid-feedback text-danger"
+      >
+        <div *ngIf="location?.errors?.['required']">Une adresse est requise</div>
+      </div>
+    </div>
+    <div>
+      <label>Date de l'évènement :</label>
+      <input type="date" class="form-control" formControlName="eventDate"
+             [min]="minDate"
+             [class.is-invalid]="eventDate.invalid && eventDate.touched"
+             [class.is-valid]="eventDate.valid && eventDate.touched">
+      <div *ngIf="eventDate?.invalid && eventDate.touched" class="invalid-feedback text-danger">
+        <div *ngIf="eventDate?.errors?.['required']">Une date est requise</div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end">
+      <button type="button" class="btn btn-outline-danger" style="margin-right: 10px;" (click)="onClose()">Retour</button>
+      <button type="submit" class="btn btn-success">Créer l'évènement</button>
+    </div>
   </form>
-  <div class="d-flex justify-content-end">
-    <button type="button" class="btn btn-outline-danger" style="margin-right: 10px;" (click)="onClose()">Retour</button>
-    <button type="button" class="btn btn-success" (click)="onSubmit()">Créer l'évènement</button>
-  </div>
 </div>

@@ -12,16 +12,16 @@ export class EventService {
   constructor(private http: HttpClient) {
   }
 
-  create(event: EventCreateInput): Observable<Category> {
-    return this.http.post<Category>(this.eventsUrl, event);
+  create(event: EventCreateInput): Observable<Event> {
+    return this.http.post<Event>(this.eventsUrl, event);
   }
 
   getAll() : Observable<Event[]> {
     return this.http.get<Event[]>(this.eventsUrl).pipe(catchError(this.handleError<Event[]>('getAll')));
   }
 
-  getEventById(id:string): Observable<Category> {
-    return this.http.get<Category>(`${this.eventsUrl}/${id}`).pipe(catchError(this.handleError<Category>('getEventById')));
+  getEventById(id:string): Observable<Event> {
+    return this.http.get<Event>(`${this.eventsUrl}/${id}`).pipe(catchError(this.handleError<Event>('getEventById')));
   }
 
   getEventsByCategoryId(categoryId:string):Observable<Event[]>{
