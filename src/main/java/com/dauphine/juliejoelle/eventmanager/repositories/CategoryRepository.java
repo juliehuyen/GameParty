@@ -13,7 +13,7 @@ public interface CategoryRepository extends JpaRepository<Category,String> {
     SELECT DISTINCT c, count(e) as EventsCount
     FROM Category c
     LEFT JOIN c.events e
-    ON LOWER(c.name) LIKE LOWER(CONCAT('%', :name, '%')) AND e.eventDate > :date
+    WHERE LOWER(c.name) LIKE LOWER(CONCAT('%', :name, '%')) AND e.eventDate > :date
     GROUP BY c
     ORDER BY EventsCount ASC
     """)
@@ -23,7 +23,7 @@ public interface CategoryRepository extends JpaRepository<Category,String> {
     SELECT DISTINCT c, count(e) as EventsCount
     FROM Category c
     LEFT JOIN c.events e
-    ON LOWER(c.name) LIKE LOWER(CONCAT('%', :name, '%')) AND e.eventDate > :date
+    WHERE LOWER(c.name) LIKE LOWER(CONCAT('%', :name, '%')) AND e.eventDate > :date
     GROUP BY c
     ORDER BY EventsCount DESC
     """)
