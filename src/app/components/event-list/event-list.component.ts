@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {EventService} from "../services/eventService";
-import {GameEvent} from "../data/gameEvent"
+import {GameEvent} from "../../data/gameEvent";
+import {EventService} from "../../services/eventService";
 
 @Component({
   selector: 'app-event-list',

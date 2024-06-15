@@ -1,11 +1,11 @@
 import {Component, ElementRef, Input, ViewChild} from '@angular/core';
-import {GameEvent} from "../data/gameEvent";
-import {User, UserCreateInput} from "../data/User";
 import Swal from 'sweetalert2';
 import {RegistrationService} from "../../services/registrationService";
 import {RegistrationCreateInput} from "../../data/registration";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {UserService} from "../services/userService";
+import {User, UserCreateInput} from "../../data/User";
+import {GameEvent} from "../../data/gameEvent";
+import {UserService} from "../../services/userService";
 
 
 @Component({

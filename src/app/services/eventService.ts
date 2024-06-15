@@ -2,7 +2,6 @@ import {Injectable} from "@angular/core";
 import {environment} from "../environnement/environnement";
 import {HttpClient} from "@angular/common/http";
 import {catchError, Observable, of} from "rxjs";
-import {Category} from "../data/category";
 import {GameEvent, EventCreateInput} from "../data/gameEvent";
 
 @Injectable()

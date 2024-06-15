@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {GameEvent} from "../data/gameEvent";
+import {GameEvent} from "../../data/gameEvent";
 
 @Component({
   selector: 'app-event-feedback-details',

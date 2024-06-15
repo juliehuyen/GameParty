@@ -16,9 +16,9 @@ import {RegistrationService} from "./services/registrationService";
 import {UserService} from "./services/userService";
 import {TypeService} from "./services/typeService";
 import { AddEventFormComponent } from './components/add-event-form/add-event-form.component';
-import { EventFeedbackListComponent } from './event-feedback-list/event-feedback-list.component';
-import { EventFeedbackItemComponent } from './event-feedback-item/event-feedback-item.component';
-import { EventFeedbackDetailsComponent } from './event-feedback-details/event-feedback-details.component';
+import { EventFeedbackListComponent } from './components/event-feedback-list/event-feedback-list.component';
+import { EventFeedbackItemComponent } from './components/event-feedback-item/event-feedback-item.component';
+import { EventFeedbackDetailsComponent } from './components/event-feedback-details/event-feedback-details.component';
 
 @NgModule({
   declarations: [

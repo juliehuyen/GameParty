@@ -3,7 +3,6 @@ import {environment} from "../environnement/environnement";
 import {HttpClient} from "@angular/common/http";
 import {catchError, Observable, of} from "rxjs";
 import {Type} from "../data/type";
-import {Event} from "../data/event";
 
 @Injectable()
 export class TypeService {
