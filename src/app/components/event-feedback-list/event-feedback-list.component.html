@@ -1,7 +1,29 @@
 <body>
-<div class="container-fluid w-100">
-  <div *ngIf="events && events.length>0"></div>
-  <div *ngFor="let event of events">
+<div class="container-fluid">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="d-flex mt-2">
+      <button class="btn btn-link custom-button text-decoration-none me-3"
+              [ngClass]="{'active': activeButton === 'categories'}"
+              (click)="setActive('categories')" [routerLink]="['/']">Catégories</button>
+      <button class="btn btn-link custom-button text-decoration-none"
+              [ngClass]="{'active': activeButton === 'events'}"
+              (click)="setActive('events')" [routerLink]="['/event-list']">Évènements</button>
+    </div>
+    <div class="d-flex justify-content-center flex-grow-1 mt-3 title-custom">
+      Evènements passés
+    </div>
+    <div class="d-flex align-items-center ms-auto mt-4">
+      <span class="filter-by-text me-3">Trier par</span>
+      <select class="form-select custom-select" aria-label="Trier par" (change)="setSortOrder($event)">
+        <option value="part-desc" selected>Nombre de participants décroissant</option>
+        <option value="part-asc">Nombre de participants croissant</option>
+        <option value="date-asc">Date croissante</option>
+        <option value="date-desc">Date décroissante</option>
+      </select>
+    </div>
+  </div>
+  <div *ngIf="allEvents && allEvents.length>0"></div>
+  <div *ngFor="let event of allEvents">
     <app-event-feedback-item [event]="event"></app-event-feedback-item>
   </div>
 </div>
