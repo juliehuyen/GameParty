@@ -12,8 +12,10 @@
     <div class="d-flex align-items-center ms-auto mt-4">
       <span class="filter-by-text me-3">Trier par</span>
       <select class="form-select custom-select" aria-label="Trier par" (change)="setSortOrder($event)">
-        <option value="asc" selected>Date croissante</option>
-        <option value="desc">Date décroissante</option>
+        <option value="part-desc" selected>Nombre de participants décroissant</option>
+        <option value="part-asc">Nombre de participants croissant</option>
+        <option value="date-asc">Date croissante</option>
+        <option value="date-desc">Date décroissante</option>
       </select>
     </div>
   </div>
