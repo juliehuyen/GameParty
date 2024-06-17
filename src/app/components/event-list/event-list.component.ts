@@ -67,4 +67,7 @@ export class EventListComponent {
       });
     }
   }
+  scrollToTop(): void {
+    window.scrollTo(0, 0);
+  }
 }

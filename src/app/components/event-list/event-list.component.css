@@ -97,3 +97,15 @@ body {
 .d-flex.align-items-center {
   white-space: nowrap;
 }
+
+.btn-custom-1 {
+  background-color: var(--veronica);
+  color: var(--antiflash);
+  font-family: 'Rubik-Regular', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}

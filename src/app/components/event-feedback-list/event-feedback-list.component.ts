@@ -52,4 +52,8 @@ export class EventFeedbackListComponent {
       });
     }
   }
+
+  scrollToTop() {
+    window.scrollTo(0, 0);
+  }
 }
