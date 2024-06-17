@@ -61,7 +61,7 @@ public class EventController {
     }
 
     @Operation(summary = "The list of events given a category")
-    @GetMapping("/category/categoryId")
+    @GetMapping("/categories/categoryId")
     public ResponseEntity<List<Event>> getEventsByCategoryId(
             @Parameter(description = "Category's id")
             @RequestParam String categoryId) {
@@ -70,7 +70,7 @@ public class EventController {
     }
 
     @Operation(summary = "The list of passed events given a category")
-    @GetMapping("/passed/category/categoryId")
+    @GetMapping("/passed/categories/categoryId")
     public ResponseEntity<List<Event>> getEventsAlreadyPassedByCategoryId(
             @Parameter(description = "Category's id")
             @RequestParam String categoryId) {
@@ -79,7 +79,7 @@ public class EventController {
     }
 
     @Operation(summary = "The list of unpassed events given a category")
-    @GetMapping("/notPassed/category/categoryId")
+    @GetMapping("/notPassed/categories/categoryId")
     public ResponseEntity<List<Event>> getEventsNotPassedByCategoryId(
             @Parameter(description = "Category's id")
             @RequestParam String categoryId) {

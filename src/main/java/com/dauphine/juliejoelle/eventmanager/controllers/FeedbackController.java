@@ -62,7 +62,7 @@ public class FeedbackController {
     }
 
     @Operation(summary = "To get all feedbacks from an event")
-    @GetMapping("/event/eventId")
+    @GetMapping("/events/eventId")
     public ResponseEntity<List<Feedback>> getFeedbacksByEventId(
             @Parameter(description = "Event's id")
             @RequestParam String eventId) throws EventNotFoundByIdException {
@@ -71,7 +71,7 @@ public class FeedbackController {
     }
 
     @Operation(summary = "To get a feedback by its user and event")
-    @GetMapping("/user/{userId}/event/{eventId}")
+    @GetMapping("/users/{userId}/events/{eventId}")
     public ResponseEntity<Feedback> getFeedbackByUserAndEvent(
             @Parameter(description = "User's id")
             @PathVariable String userId,

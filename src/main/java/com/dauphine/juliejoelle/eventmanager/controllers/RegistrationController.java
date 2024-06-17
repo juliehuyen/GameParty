@@ -60,7 +60,7 @@ public class RegistrationController {
     }
 
     @Operation(summary = "To get all users registered to a given event")
-    @GetMapping("/event/eventId")
+    @GetMapping("/events/eventId")
     public ResponseEntity<List<User>> getUsersRegisteredByEvent(
             @Parameter(description = "The event's id")
             @RequestParam String eventId) throws EventNotFoundByIdException {
@@ -69,7 +69,7 @@ public class RegistrationController {
     }
 
     @Operation(summary = "To check if a user is registered to an event")
-    @GetMapping("/event/{eventId}/user/{userId}")
+    @GetMapping("/events/{eventId}/users/{userId}")
     public ResponseEntity<Boolean> isUserRegisteredToEvent(
             @Parameter(description = "The event's id")
             @PathVariable String eventId,
