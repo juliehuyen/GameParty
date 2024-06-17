@@ -1,3 +1,23 @@
 .star-rating .fa {
-  color: #ffcc00;
+  color: var(--lavender);
+}
+
+.card{
+  background-color: var(--eerieblack);
+}
+
+.card-title {
+  font-family: 'Rubik-Bold', sans-serif;
+  color: var(--antiflash);
+  font-size: 1.5rem;
+}
+
+.card-text {
+  font-family: 'Rubik-Regular', sans-serif;
+  color: var(--taupegray);
+  font-size: 1.2rem;
+}
+
+.container-fluid{
+  width: 100%;
 }

@@ -1,0 +1,19 @@
+.container-fluid {
+  background-color: var(--eerieblack);
+}
+
+.text-center{
+  color: var(--antiflash);
+  font-family: 'Rubik-Regular', sans-serif;
+  font-size: 8rem;
+}
+
+.error-image{
+  max-width: 100%;
+  height: 100%;
+  width: 40%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+

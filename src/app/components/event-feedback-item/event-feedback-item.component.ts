@@ -1,8 +1,8 @@
-import {Component, Input, input} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {GameEvent} from "../../data/gameEvent";
 import {User} from "../../data/User";
 import {RegistrationService} from "../../services/registrationService";
-import {FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder} from "@angular/forms";
 import {UserService} from "../../services/userService";
 @Component({
   selector: 'app-event-feedback-item',

@@ -3,12 +3,13 @@ import {environment} from "../environnement/environnement";
 import {HttpClient} from "@angular/common/http";
 import {catchError, Observable, of} from "rxjs";
 import {Type} from "../data/type";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class TypeService {
   private typesUrl = `${environment.apiUrl}v1/types`;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router ) {
   }
 
   getAll() {
@@ -19,6 +20,7 @@ export class TypeService {
     return (error: any): Observable<T> => {
       console.error(`${operation} failed: ${error.message}`, error); // log to console
 // Let the app keep running by returning an empty result.
+      this.router.navigate(['/error']);
       return of(result as T);
     };
   }

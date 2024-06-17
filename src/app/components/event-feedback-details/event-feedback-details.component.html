@@ -1,30 +1,32 @@
   <div class="container d-flex justify-content-center mt-4" *ngIf="event" >
-    <div class="card mb-3" style="width: 100%;">
+    <div class="card mb-3 custom-card-size" style="width: 100%;">
       <div class="row g-0">
-        <div class="col-md-4">
+        <div class="col-md-3">
           <img src="{{event.category.url}}" class="img-fluid rounded-start" alt="{{event.category.name}}">
         </div>
-        <div class="col-md-8">
+        <div class="col-md-9">
           <div class="card-body">
             <h5 class="card-title">{{ event.title }}</h5>
             <p class="card-text">Type : {{event.type.name}}</p>
             <p class="card-text">{{event.description}}</p>
-            <p class="card-text"><small class="text-muted">Date de l'évènement : {{event.eventDate|date : "short"}}</small></p>
+            <p class="card-text date-text">Lieu : {{event.location}}</p>
+            <p class="card-text date-text">Date de l'évènement : {{event.eventDate|date : "dd/MM/YYYY"}}</p>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="d-flex justify-content-center">
+  <div class="d-flex justify-content-center avis">
     <h1 class="text-center">Avis</h1>
-    <button class="btn btn-custom-1 me-2" type="button" data-bs-target="#create-feedback-modal" data-bs-toggle="modal">Ajouter un avis</button>
+    <button class="btn btn-custom-1 me-2 mb-4" type="button" data-bs-target="#create-feedback-modal" data-bs-toggle="modal">Ajouter un avis</button>
+    <div *ngIf="feedbacks && feedbacks.length>0">
+      <app-event-feedback-details-item *ngFor="let feedback of feedbacks" [feedback]="feedback"></app-event-feedback-details-item>
+    </div>
+    <div *ngIf="feedbacks && feedbacks.length==0" class="d-flex justify-content-center mt-4">
+      <h3>Aucun avis publié pour le moment...</h3>
+    </div>
   </div>
-  <div *ngIf="feedbacks && feedbacks.length>0">
-    <app-event-feedback-details-item *ngFor="let feedback of feedbacks" [feedback]="feedback"></app-event-feedback-details-item>
-  </div>
-  <div *ngIf="feedbacks && feedbacks.length==0" class="d-flex justify-content-center">
-    <p>Aucun avis publié pour le moment...</p>
-  </div>
+
 
   <!-- Modal create feedback -->
   <div class="modal fade" id="create-feedback-modal" tabindex="-1" aria-labelledby="create-feedback-modal" aria-hidden="true">
@@ -38,21 +40,21 @@
           <form class="needs-validation"
                 [formGroup]="newFeedback" (ngSubmit)="onSubmitFeedback()">
             <div>
-              <label>Utilisateur :</label>
+              <label class="modal-text">Utilisateur :</label>
               <input id="username-input" type="text" class="form-control" formControlName="username"
                      [class.is-invalid]="username.invalid && username.touched"
                      [class.is-valid]="username.valid && username.touched">
               <div *ngIf="username?.invalid && username.touched" class="invalid-feedback text-danger"
               >
-                <div *ngIf="username?.errors?.['required']">Un nom d'utilisateur doit être fourni !</div>
+                <div *ngIf="username?.errors?.['required']" >Un nom d'utilisateur doit être fourni !</div>
               </div>
             </div>
             <div>
-              <label>Commentaire :</label>
+              <label class="modal-text">Commentaire :</label>
               <textarea id="comments-input" type="text" class="form-control" formControlName="comments"></textarea>
             </div>
             <div class="mb-3">
-              <label class="form-label">Note :</label>
+              <label class="form-label modal-text">Note :</label>
               <ngb-rating [(rate)]="rating" (rateChange)="onRatingChange($event)" [max]="5"></ngb-rating>
             </div>
             <div class="mt-4">
@@ -63,4 +65,4 @@
       </div>
     </div>
   </div>
-
+  </div>

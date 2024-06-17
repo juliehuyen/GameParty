@@ -1,4 +1,4 @@
-import {Component, numberAttribute} from '@angular/core';
+import {Component} from '@angular/core';
 import {CategoryService} from "../../services/categoryService";
 import {Category} from "../../data/category";
 import {catchError, forkJoin, map, Observable, of} from "rxjs";
