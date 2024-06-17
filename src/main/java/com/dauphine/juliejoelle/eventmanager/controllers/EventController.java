@@ -90,14 +90,16 @@ public class EventController {
     @Operation(summary = "To get all events that have already passed")
     @GetMapping("/passed")
     public ResponseEntity<List<Event>> getEventsAlreadyPassed() {
-        List<Event> events = eventService.getEventsAlreadyPassed();
+//        List<Event> events = eventService.getEventsAlreadyPassed();
+        List<Event> events = eventService.getEventsPassedSortedByParticipantsCountDESC();
         return ResponseEntity.ok(events);
     }
 
     @Operation(summary = "To get all events that have not passed yet")
     @GetMapping("/notPassed")
     public ResponseEntity<List<Event>> getEventsNotPassed() {
-        List<Event> events = eventService.getEventsNotPassed();
+//        List<Event> events = eventService.getEventsNotPassed();
+        List<Event> events = eventService.getEventsNotPassedSortedByParticipantsCountDESC();
         return ResponseEntity.ok(events);
     }
 
