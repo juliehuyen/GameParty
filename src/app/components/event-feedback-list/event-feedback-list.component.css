@@ -74,3 +74,9 @@ body {
 .d-flex.align-items-center {
   white-space: nowrap;
 }
+
+.title-custom {
+  font-family: 'Rubik-Bold', sans-serif;
+  color: var(--antiflash);
+  font-size: 3rem;
+}

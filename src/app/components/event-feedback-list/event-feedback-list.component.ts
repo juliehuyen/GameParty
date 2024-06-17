@@ -9,7 +9,7 @@ import {EventService} from "../../services/eventService";
 })
 export class EventFeedbackListComponent {
   allEvents: GameEvent[] = [];
-  activeButton: string = 'events';
+  activeButton: string = '';
   sortOrder: 'date-asc' | 'date-desc' | 'part-asc' | 'part-desc' = 'part-desc';
 
   constructor(private eventService: EventService) {}
@@ -29,6 +29,7 @@ export class EventFeedbackListComponent {
     this.sortOrder = selectElement.value as 'date-asc' | 'date-desc' | 'part-asc' | 'part-desc';
     this.sortEvents();
   }
+
   sortEvents(): void {
     if (this.sortOrder === 'date-asc') {
       this.eventService.getEventsNotPassedSortedByDate(true).subscribe((events: GameEvent[]) => {
