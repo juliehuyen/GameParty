@@ -129,4 +129,32 @@ public class EventController {
         return ResponseEntity.ok(events);
     }
 
+    @Operation(summary = "To get all events that have passed sorted by date")
+    @GetMapping("/passed/sorted-by-date")
+    public ResponseEntity<List<Event>> getEventsPassedSortedByDate(
+            @Parameter(description = "true = ASC, false = DESC")
+            @RequestParam boolean sorted) {
+        List<Event> events;
+        if (sorted) {
+            events = eventService.getEventsPassedSortedByDateASC();
+        } else {
+            events = eventService.getEventsPassedSortedByDateDESC();
+        }
+        return ResponseEntity.ok(events);
+    }
+
+    @Operation(summary = "To get all events that have passed sorted by participants count")
+    @GetMapping("/passed/sorted-by-participants")
+    public ResponseEntity<List<Event>> getEventsPassedSortedByParticipantsCount(
+            @Parameter(description = "true = DESC, false = ASC")
+            @RequestParam boolean sorted) {
+        List<Event> events;
+        if (sorted) {
+            events = eventService.getEventsPassedSortedByParticipantsCountDESC();
+        } else {
+            events = eventService.getEventsPassedSortedByParticipantsCountASC();
+        }
+        return ResponseEntity.ok(events);
+    }
+
 }

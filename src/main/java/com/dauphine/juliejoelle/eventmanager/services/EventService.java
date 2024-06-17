@@ -23,4 +23,8 @@ public interface EventService {
     List<Event> getEventsNotPassedSortedByDateASC();
     List<Event> getEventsNotPassedSortedByParticipantsCountDESC();
     List<Event> getEventsNotPassedSortedByParticipantsCountASC();
+    List<Event> getEventsPassedSortedByDateDESC();
+    List<Event> getEventsPassedSortedByDateASC();
+    List<Event> getEventsPassedSortedByParticipantsCountDESC();
+    List<Event> getEventsPassedSortedByParticipantsCountASC();
 }

@@ -100,4 +100,24 @@ public class EventServiceImpl implements EventService {
         return eventRepository.getEventsNotPassedSortedByParticipantsCountASC(new Date());
     }
 
+    @Override
+    public List<Event> getEventsPassedSortedByDateDESC() {
+        return eventRepository.getEventsPassedSortedByDateDESC(new Date());
+    }
+
+    @Override
+    public List<Event> getEventsPassedSortedByDateASC() {
+        return eventRepository.getEventsPassedSortedByDateASC(new Date());
+    }
+
+    @Override
+    public List<Event> getEventsPassedSortedByParticipantsCountDESC() {
+        return eventRepository.getEventsPassedSortedByParticipantsCountDESC(new Date());
+    }
+
+    @Override
+    public List<Event> getEventsPassedSortedByParticipantsCountASC() {
+        return eventRepository.getEventsPassedSortedByParticipantsCountASC(new Date());
+    }
+
 }
