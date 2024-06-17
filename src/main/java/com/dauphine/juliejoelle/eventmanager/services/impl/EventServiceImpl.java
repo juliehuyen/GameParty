@@ -13,6 +13,7 @@ import com.dauphine.juliejoelle.eventmanager.services.EventService;
 import com.dauphine.juliejoelle.eventmanager.services.TypeService;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -78,4 +79,15 @@ public class EventServiceImpl implements EventService {
     public List<Event> getEventsByCategoryId(String categoryId) {
         return eventRepository.getEventsByCategory_CategoryId(categoryId);
     }
+
+    @Override
+    public List<Event> getEventsNotPassedSortedByDateDESC() {
+        return eventRepository.getEventsNotPassedSortedByDateDESC(new Date());
+    }
+
+    @Override
+    public List<Event> getEventsNotPassedSortedByDateASC() {
+        return eventRepository.getEventsNotPassedSortedByDateASC(new Date());
+    }
+
 }

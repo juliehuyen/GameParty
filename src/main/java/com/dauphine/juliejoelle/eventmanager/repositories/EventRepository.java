@@ -19,4 +19,8 @@ public interface EventRepository extends JpaRepository<Event, String> {
     List<Event> getEventsNotPassedByCategory_CategoryId(String categoryId, Date date);
     @Query("SELECT e FROM Event e WHERE e.eventDate <= :date AND e.category.categoryId = :categoryId")
     List<Event> getEventsAlreadyPassedByCategory_CategoryId(String categoryId, Date date);
+    @Query("SELECT e FROM Event e WHERE e.eventDate > :date ORDER BY e.eventDate DESC")
+    List<Event> getEventsNotPassedSortedByDateDESC(Date date);
+    @Query("SELECT e FROM Event e WHERE e.eventDate > :date ORDER BY e.eventDate ASC")
+    List<Event> getEventsNotPassedSortedByDateASC(Date date);
 }

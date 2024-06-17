@@ -101,4 +101,18 @@ public class EventController {
         return ResponseEntity.ok(events);
     }
 
+    @Operation(summary = "To get all events that have not passed yet sorted by date in descending order")
+    @GetMapping("/notPassed/sorted-by-date")
+    public ResponseEntity<List<Event>> getEventsNotPassedSortedByDate(
+            @Parameter(description = "true = ASC, false = DESC")
+            @RequestParam boolean sorted) {
+        List<Event> events;
+        if (sorted) {
+            events = eventService.getEventsNotPassedSortedByDateASC();
+        } else {
+            events = eventService.getEventsNotPassedSortedByDateDESC();
+        }
+        return ResponseEntity.ok(events);
+    }
+
 }
