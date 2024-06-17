@@ -25,7 +25,7 @@ export class EventService {
   }
 
   getEventsByCategoryId(categoryId:string):Observable<GameEvent[]>{
-    return this.http.get<GameEvent[]>(`${this.eventsUrl}/category/categoryId?categoryId=${categoryId}`).pipe(catchError(this.handleError<GameEvent[]>('getEventsByCategoryId')));
+    return this.http.get<GameEvent[]>(`${this.eventsUrl}/categories/categoryId?categoryId=${categoryId}`).pipe(catchError(this.handleError<GameEvent[]>('getEventsByCategoryId')));
   }
 
   update(event: GameEvent): Observable<GameEvent> {
@@ -56,7 +56,7 @@ export class EventService {
   }
 
   getEventsNotPassedByCategory(categoryId: string): Observable<GameEvent[]> {
-    return this.http.get<GameEvent[]>(`${this.eventsUrl}/notPassed/category/categoryId?categoryId=${categoryId}`).pipe(catchError(this.handleError<GameEvent[]>('getEventsNotPassedByCategory')));
+    return this.http.get<GameEvent[]>(`${this.eventsUrl}/notPassed/categories/categoryId?categoryId=${categoryId}`).pipe(catchError(this.handleError<GameEvent[]>('getEventsNotPassedByCategory')));
   }
 
   getEventsNotPassedSortedByDate(sorted: boolean): Observable<GameEvent[]> {

@@ -14,7 +14,7 @@ export class RegistrationService {
   }
 
   getUsersByEvent(eventId : string) : Observable<User[]> {
-    return this.http.get<User[]>(`${this.registrationUrl}/event/eventId?eventId=${eventId}`).pipe(catchError(this.handleError<User[]>('getUsersByEvent')));
+    return this.http.get<User[]>(`${this.registrationUrl}/events/eventId?eventId=${eventId}`).pipe(catchError(this.handleError<User[]>('getUsersByEvent')));
   }
 
   createRegistration(registration : RegistrationCreateInput) : Observable<Registration> {
@@ -22,7 +22,7 @@ export class RegistrationService {
   }
 
   isUserRegistered(username: string, eventId: string): Observable<boolean> {
-    return this.http.get<boolean>(`${this.registrationUrl}/event/${eventId}/user/${username}`).pipe(catchError(this.handleError<boolean>('isUserRegistered')));
+    return this.http.get<boolean>(`${this.registrationUrl}/events/${eventId}/users/${username}`).pipe(catchError(this.handleError<boolean>('isUserRegistered')));
   }
 
   protected handleError<T>(operation = 'operation', result?: T) {

@@ -13,7 +13,7 @@ export class FeedbackService  {
   }
 
   getFeedbacksByEventId(eventId: string | null): Observable<Feedback[]> {
-    return this.http.get<Feedback[]>(`${this.feedbacksUrl}/event/eventId?eventId=${eventId}`).pipe(catchError(this.handleError<Feedback[]>('getFeedbacksByEventId')));
+    return this.http.get<Feedback[]>(`${this.feedbacksUrl}/events/eventId?eventId=${eventId}`).pipe(catchError(this.handleError<Feedback[]>('getFeedbacksByEventId')));
   }
 
   createFeedback(feedbackCreateInput: FeedbackCreateInput): Observable<Feedback> {
@@ -21,7 +21,7 @@ export class FeedbackService  {
   }
 
   getFeedbackByUserIdAndEventId(userId: string, eventId: string | null | undefined): Observable<Feedback> {
-    return this.http.get<Feedback>(`${this.feedbacksUrl}/user/${userId}/event/${eventId}`).pipe(catchError(this.handleError<Feedback>('getFeedbackByUserIdAndEventId')));
+    return this.http.get<Feedback>(`${this.feedbacksUrl}/users/${userId}/events/${eventId}`).pipe(catchError(this.handleError<Feedback>('getFeedbackByUserIdAndEventId')));
   }
 
   protected handleError<T>(operation = 'operation', result?: T) {
