@@ -32,22 +32,22 @@ export class EventFeedbackListComponent {
 
   sortEvents(): void {
     if (this.sortOrder === 'date-asc') {
-      this.eventService.getEventsNotPassedSortedByDate(true).subscribe((events: GameEvent[]) => {
+      this.eventService.getEventsPassedSortedByDate(true).subscribe((events: GameEvent[]) => {
         this.allEvents = events;
       });
     }
     if (this.sortOrder === 'date-desc') {
-      this.eventService.getEventsNotPassedSortedByDate(false).subscribe((events: GameEvent[]) => {
+      this.eventService.getEventsPassedSortedByDate(false).subscribe((events: GameEvent[]) => {
         this.allEvents = events;
       });
     }
     if (this.sortOrder === 'part-asc') {
-      this.eventService.getEventsNotPassedSortedByParticipantsCount(false).subscribe((events: GameEvent[]) => {
+      this.eventService.getEventsPassedSortedByParticipantsCount(false).subscribe((events: GameEvent[]) => {
         this.allEvents = events;
       });
     }
     if (this.sortOrder === 'part-desc') {
-      this.eventService.getEventsNotPassedSortedByParticipantsCount(true).subscribe((events: GameEvent[]) => {
+      this.eventService.getEventsPassedSortedByParticipantsCount(true).subscribe((events: GameEvent[]) => {
         this.allEvents = events;
       });
     }
