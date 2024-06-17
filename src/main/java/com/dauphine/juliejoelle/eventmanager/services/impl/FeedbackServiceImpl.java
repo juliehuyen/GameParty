@@ -6,6 +6,7 @@ import com.dauphine.juliejoelle.eventmanager.entities.Feedback;
 import com.dauphine.juliejoelle.eventmanager.entities.User;
 import com.dauphine.juliejoelle.eventmanager.exceptions.EventNotFoundByIdException;
 import com.dauphine.juliejoelle.eventmanager.exceptions.FeedbackNotFoundByIdException;
+import com.dauphine.juliejoelle.eventmanager.exceptions.UserNotFoundByIdException;
 import com.dauphine.juliejoelle.eventmanager.repositories.FeedbackRepository;
 import com.dauphine.juliejoelle.eventmanager.services.EventService;
 import com.dauphine.juliejoelle.eventmanager.services.FeedbackService;
@@ -38,8 +39,7 @@ public class FeedbackServiceImpl implements FeedbackService {
     }
 
     @Override
-    public Feedback createFeedback(CreationFeedbackRequest feed) throws EventNotFoundByIdException {
-        //TODO throw exceptions
+    public Feedback createFeedback(CreationFeedbackRequest feed) throws EventNotFoundByIdException, UserNotFoundByIdException {
         User user = userService.getUserById(feed.getUserId());
         Event event = eventService.getEventById(feed.getEventId());
         Feedback feedback = new Feedback(user,event,feed.getRating(),feed.getComments());
@@ -53,14 +53,15 @@ public class FeedbackServiceImpl implements FeedbackService {
     }
 
     @Override
-    public List<Feedback> getFeedbacksByEvent(String eventId) {
-        //TODO throw exceptions
+    public List<Feedback> getFeedbacksByEvent(String eventId) throws EventNotFoundByIdException {
+        eventService.getEventById(eventId);
         return feedbackRepository.findFeedbacksByEvent_EventId(eventId);
     }
 
     @Override
-    public Feedback getFeedbackByUserAndEvent(String userId, String eventId) {
-        //TODO throw exceptions
+    public Feedback getFeedbackByUserAndEvent(String userId, String eventId) throws UserNotFoundByIdException, EventNotFoundByIdException {
+        userService.getUserById(userId);
+        eventService.getEventById(eventId);
         return feedbackRepository.findFeedbackByUser_UserIdAndEvent_EventId(userId,eventId);
     }
 }

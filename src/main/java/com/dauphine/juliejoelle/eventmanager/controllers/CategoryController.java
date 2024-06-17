@@ -34,7 +34,6 @@ public class CategoryController {
     @Operation(summary = "To get all categories")
     @GetMapping
     public ResponseEntity<List<Category>> getAllCategories(){
-        //TODO
         List<Category> categories = categoryService.getAll();
         return ResponseEntity.ok(categories);
     }

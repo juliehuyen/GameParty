@@ -5,6 +5,7 @@ import com.dauphine.juliejoelle.eventmanager.entities.Registration;
 import com.dauphine.juliejoelle.eventmanager.entities.User;
 import com.dauphine.juliejoelle.eventmanager.exceptions.EventNotFoundByIdException;
 import com.dauphine.juliejoelle.eventmanager.exceptions.RegistrationNotFoundByIdException;
+import com.dauphine.juliejoelle.eventmanager.exceptions.UserNotFoundByIdException;
 import com.dauphine.juliejoelle.eventmanager.services.RegistrationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -42,7 +43,7 @@ public class RegistrationController {
     @PostMapping("")
     public ResponseEntity<Registration> createRegistration(
             @Parameter (description = "The registration to create")
-            @RequestBody CreationRegistrationRequest registration) throws EventNotFoundByIdException {
+            @RequestBody CreationRegistrationRequest registration) throws EventNotFoundByIdException, UserNotFoundByIdException {
         Registration registration1 = registrationService.createRegistration(registration);
         return ResponseEntity.created(URI.create("/v1/registrations/" + registration1.getRegistrationId()))
                 .body(registration1);
@@ -62,8 +63,7 @@ public class RegistrationController {
     @GetMapping("/event/eventId")
     public ResponseEntity<List<User>> getUsersRegisteredByEvent(
             @Parameter(description = "The event's id")
-            @RequestParam String eventId) {
-        //TODO exceptions
+            @RequestParam String eventId) throws EventNotFoundByIdException {
         List<User> users = registrationService.getAllUserRegisteredByEvent(eventId);
         return ResponseEntity.ok(users);
     }
@@ -74,8 +74,7 @@ public class RegistrationController {
             @Parameter(description = "The event's id")
             @PathVariable String eventId,
             @Parameter(description = "The user's id")
-            @PathVariable String userId) {
-        //TODO exceptions
+            @PathVariable String userId) throws EventNotFoundByIdException, UserNotFoundByIdException {
         boolean isRegistered = registrationService.isUserRegisteredToEvent(userId, eventId);
         return ResponseEntity.ok(isRegistered);
     }

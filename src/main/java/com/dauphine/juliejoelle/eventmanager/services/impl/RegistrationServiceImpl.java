@@ -6,6 +6,7 @@ import com.dauphine.juliejoelle.eventmanager.entities.Registration;
 import com.dauphine.juliejoelle.eventmanager.entities.User;
 import com.dauphine.juliejoelle.eventmanager.exceptions.EventNotFoundByIdException;
 import com.dauphine.juliejoelle.eventmanager.exceptions.RegistrationNotFoundByIdException;
+import com.dauphine.juliejoelle.eventmanager.exceptions.UserNotFoundByIdException;
 import com.dauphine.juliejoelle.eventmanager.repositories.RegistrationRepository;
 import com.dauphine.juliejoelle.eventmanager.services.EventService;
 import com.dauphine.juliejoelle.eventmanager.services.RegistrationService;
@@ -37,8 +38,7 @@ public class RegistrationServiceImpl implements RegistrationService {
     }
 
     @Override
-    public Registration createRegistration(CreationRegistrationRequest reg) throws EventNotFoundByIdException {
-        //TODO throw exceptions
+    public Registration createRegistration(CreationRegistrationRequest reg) throws EventNotFoundByIdException, UserNotFoundByIdException {
         User user = userService.getUserById(reg.getUserId());
         Event event = eventService.getEventById(reg.getEventId());
         Registration registration = new Registration(user,event);
@@ -56,14 +56,15 @@ public class RegistrationServiceImpl implements RegistrationService {
     }
 
     @Override
-    public List<User> getAllUserRegisteredByEvent(String eventId) {
-        //TODO throw exceptions
+    public List<User> getAllUserRegisteredByEvent(String eventId) throws EventNotFoundByIdException {
+        eventService.getEventById(eventId);
         return registrationRepository.getAllUsersRegisteredByEvent(eventId);
     }
 
     @Override
-    public boolean isUserRegisteredToEvent(String userId, String eventId) {
-        //TODO throw exceptions
+    public boolean isUserRegisteredToEvent(String userId, String eventId) throws UserNotFoundByIdException, EventNotFoundByIdException {
+        eventService.getEventById(eventId);
+        userService.getUserById(userId);
         return registrationRepository.isUserRegisteredToEvent(userId,eventId);
     }
 }

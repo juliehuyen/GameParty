@@ -3,6 +3,7 @@ package com.dauphine.juliejoelle.eventmanager.controllers;
 import com.dauphine.juliejoelle.eventmanager.dto.CreationUserRequest;
 import com.dauphine.juliejoelle.eventmanager.entities.User;
 import com.dauphine.juliejoelle.eventmanager.exceptions.UserAlreadyExistsException;
+import com.dauphine.juliejoelle.eventmanager.exceptions.UserNotFoundByIdException;
 import com.dauphine.juliejoelle.eventmanager.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -31,7 +32,7 @@ public class UserController {
     @GetMapping("/{userId}")
     public ResponseEntity<User> getUserById(
     @Parameter (description = "User's id")
-    @PathVariable String userId) {
+    @PathVariable String userId) throws UserNotFoundByIdException {
         User user = userService.getUserById(userId);
         return ResponseEntity.ok(user);
     }

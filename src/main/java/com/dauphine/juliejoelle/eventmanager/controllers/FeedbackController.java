@@ -4,6 +4,7 @@ import com.dauphine.juliejoelle.eventmanager.dto.CreationFeedbackRequest;
 import com.dauphine.juliejoelle.eventmanager.entities.Feedback;
 import com.dauphine.juliejoelle.eventmanager.exceptions.EventNotFoundByIdException;
 import com.dauphine.juliejoelle.eventmanager.exceptions.FeedbackNotFoundByIdException;
+import com.dauphine.juliejoelle.eventmanager.exceptions.UserNotFoundByIdException;
 import com.dauphine.juliejoelle.eventmanager.services.FeedbackService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -41,7 +42,7 @@ public class FeedbackController {
     @PostMapping("")
     public ResponseEntity<Feedback> createFeedback(
             @Parameter(description = "The feedback to create")
-            @RequestBody CreationFeedbackRequest feedback) throws EventNotFoundByIdException {
+            @RequestBody CreationFeedbackRequest feedback) throws EventNotFoundByIdException, UserNotFoundByIdException {
         Feedback FB = feedbackService.createFeedback(feedback);
         return ResponseEntity
                 .created(URI.create("/v1/feedbacks/" +FB.getFeedbackId() ))
@@ -64,8 +65,7 @@ public class FeedbackController {
     @GetMapping("/event/eventId")
     public ResponseEntity<List<Feedback>> getFeedbacksByEventId(
             @Parameter(description = "Event's id")
-            @RequestParam String eventId){
-        //TODO
+            @RequestParam String eventId) throws EventNotFoundByIdException {
         List<Feedback> feedbacks = feedbackService.getFeedbacksByEvent(eventId);
         return ResponseEntity.ok(feedbacks);
     }
@@ -76,8 +76,7 @@ public class FeedbackController {
             @Parameter(description = "User's id")
             @PathVariable String userId,
             @Parameter(description = "Event's id")
-            @PathVariable String eventId){
-        //TODO
+            @PathVariable String eventId) throws EventNotFoundByIdException, UserNotFoundByIdException {
         Feedback feedback = feedbackService.getFeedbackByUserAndEvent(userId, eventId);
         return ResponseEntity.ok(feedback);
     }

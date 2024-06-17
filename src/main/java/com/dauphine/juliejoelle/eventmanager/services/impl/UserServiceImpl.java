@@ -3,6 +3,7 @@ package com.dauphine.juliejoelle.eventmanager.services.impl;
 import com.dauphine.juliejoelle.eventmanager.dto.CreationUserRequest;
 import com.dauphine.juliejoelle.eventmanager.entities.User;
 import com.dauphine.juliejoelle.eventmanager.exceptions.UserAlreadyExistsException;
+import com.dauphine.juliejoelle.eventmanager.exceptions.UserNotFoundByIdException;
 import com.dauphine.juliejoelle.eventmanager.repositories.UserRepository;
 import com.dauphine.juliejoelle.eventmanager.services.UserService;
 
@@ -26,8 +27,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserById(String userId) {
-        return userRepository.findById(userId).orElse(null);
+    public User getUserById(String userId) throws UserNotFoundByIdException {
+        return userRepository.findById(userId).orElseThrow(() -> new UserNotFoundByIdException(userId));
     }
 
     @Override
