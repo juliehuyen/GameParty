@@ -2,3 +2,75 @@ body {
   background-color: var(--night);
   color: var(--antiflash);
 }
+
+.container-fluid {
+  padding-left: 2.60%;
+  padding-right: 2.60%;
+}
+
+.custom-button {
+  position: relative;
+  color: var(--antiflash);
+  font-weight: bold;
+}
+
+.custom-button::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background-color: var(--lavender);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.custom-button:hover {
+  color: var(--lavender);
+}
+
+.custom-button:hover::after,
+.custom-button:focus::after,
+.custom-button.active::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.custom-button.active {
+  color: var(--lavender);
+}
+
+.filter-by-text {
+  font-family: 'Rubik-Bold', sans-serif;
+  color: var(--antiflash);
+}
+
+.custom-select {
+  background-color: var(--eerieblack);
+  color: var(--antiflash);
+  border: 1px solid var(--taupegray);
+  border-radius: 0.25rem;
+  font-family: 'Rubik-Regular', sans-serif;
+  outline: none !important;
+}
+
+.custom-select:focus {
+  outline: none !important;
+}
+
+.custom-select option {
+  background-color: var(--eerieblack);
+  color: var(--antiflash);
+  outline: none !important;
+}
+
+.custom-select option:checked {
+  background-color: var(--veronica);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.d-flex.align-items-center {
+  white-space: nowrap;
+}

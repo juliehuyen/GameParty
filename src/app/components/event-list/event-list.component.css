@@ -58,24 +58,6 @@ body {
   color: var(--taupegray);
 }
 
-.form-control {
-  background-color: var(--raisinblack);
-  color: var(--taupegray);
-  border: 1px solid var(--taupegray);
-  border-left: transparent;
-  border-radius: 0.25rem;
-  font-family: 'Rubik-Regular', sans-serif;
-}
-
-.form-control:focus {
-  color: var(--antiflash);
-  box-shadow: none;
-}
-
-.form-control::placeholder {
-  color: var(--taupegray);
-}
-
 .display-categories {
   display: flex;
   flex-wrap: wrap;
