@@ -9,9 +9,16 @@
               [ngClass]="{'active': activeButton === 'events'}"
               (click)="setActive('events')" [routerLink]="['/event-list']">Évènements</button>
     </div>
+    <div class="d-flex align-items-center ms-auto mt-4">
+      <span class="filter-by-text me-3">Trier par</span>
+      <select class="form-select custom-select" aria-label="Trier par" (change)="setSortOrder($event)">
+        <option value="asc" selected>Date croissante</option>
+        <option value="desc">Date décroissante</option>
+      </select>
+    </div>
   </div>
-  <div *ngIf="events && events.length>0; else noEvents"></div>
-  <div *ngFor="let event of events">
+  <div *ngIf="allEvents && allEvents.length>0; else noEvents"></div>
+  <div *ngFor="let event of allEvents">
     <app-event-list-item [event]="event"></app-event-list-item>
   </div>
   <ng-template #noEvents>

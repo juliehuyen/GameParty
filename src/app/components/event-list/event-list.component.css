@@ -84,5 +84,32 @@ body {
   justify-content: center;
 }
 
+.filter-by-text {
+  font-family: 'Rubik-Bold', sans-serif;
+  color: var(--antiflash);
+}
 
+.custom-select {
+  background-color: var(--eerieblack);
+  color: var(--antiflash);
+  border: 1px solid var(--taupegray);
+  border-radius: 0.25rem;
+  font-family: 'Rubik-Regular', sans-serif;
+  outline: none !important;
+}
+
+.custom-select:focus {
+  outline: none !important;
+}
+
+.custom-select option {
+  background-color: var(--eerieblack);
+  color: var(--antiflash);
+  outline: none !important;
+}
+
+.custom-select option:checked {
+  background-color: var(--veronica);
+  -webkit-tap-highlight-color: transparent;
+}
 

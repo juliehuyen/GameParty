@@ -9,18 +9,11 @@ import {ActivatedRoute} from "@angular/router";
   styleUrl: './event-list.component.css'
 })
 export class EventListComponent {
-  events: GameEvent[] = [];
+  allEvents: GameEvent[] = [];
   activeButton: string = 'events';
   categoryId: string | null = '';
+  sortOrder: 'asc' | 'desc' = 'desc';
 
-  // constructor(private eventService: EventService) {}
-  //
-  //
-  // ngOnInit(): void {
-  //   this.eventService.getEventsNotPassed().subscribe((events: GameEvent[]) => {
-  //     this.events = events;
-  //   })
-  // }
   constructor(private eventService: EventService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
@@ -37,13 +30,31 @@ export class EventListComponent {
   private loadEvents() {
     if (this.categoryId && this.categoryId !== '') {
       this.eventService.getEventsNotPassedByCategory(this.categoryId).subscribe((events: GameEvent[]) => {
-        this.events = events;
+        this.allEvents = events;
       });
     } else {
       this.eventService.getEventsNotPassed().subscribe((events: GameEvent[]) => {
-        this.events = events;
+        this.allEvents = events;
       });
     }
   }
 
+  setSortOrder(order: Event): void {
+    const selectElement = order.target as HTMLSelectElement;
+    this.sortOrder = selectElement.value as 'asc' | 'desc';
+    this.sortEvents();
+  }
+
+  sortEvents(): void {
+    if (this.sortOrder === 'asc') {
+      this.eventService.getEventsNotPassedSortedByDate(true).subscribe((events: GameEvent[]) => {
+        this.allEvents = events;
+      });
+    }
+    if (this.sortOrder === 'desc') {
+      this.eventService.getEventsNotPassedSortedByDate(false).subscribe((events: GameEvent[]) => {
+        this.allEvents = events;
+      });
+    }
+  }
 }
