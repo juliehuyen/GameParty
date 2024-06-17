@@ -10,7 +10,6 @@ import {EventService} from "../../services/eventService";
 import {EventCreateInput} from "../../data/gameEvent";
 import {ModalService} from "../../services/modalService";
 import * as bootstrap from 'bootstrap';
-import {timeout} from "rxjs";
 import {dateNotBeforeTodayValidator} from "../../validators/custom-validators";
 
 @Component({

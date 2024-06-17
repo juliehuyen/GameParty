@@ -9,11 +9,11 @@
           <h5 class="card-title">{{ event.title }}</h5>
           <p class="card-text">Type : {{event.type.name}}</p>
           <p class="card-text">{{event.description}}</p>
-          <p class="card-text date-text">Créé le : {{event.createdAt|date : "short"}}</p>
-          <p class="card-text date-text">Date de l'évènement : {{event.eventDate|date : "short"}}</p>
-          <p class="card-text">Nombre de participants : {{users.length}}</p>
-          <div class="d-flex">
-            <button class="btn btn-custom-1 me-2" type="button" [routerLink]="['/event-feedback-details',event.eventId]">Détails</button>
+          <p class="card-text date-text">Créé le : {{event.createdAt|date : "dd/MM/YYYY"}}</p>
+          <p class="card-text date-text">Date de l'évènement : {{event.eventDate|date : "dd/MM/YYYY"}}</p>
+          <div class="d-flex justify-content-between">
+            <p class="card-text">Nombre de participants : {{users.length}}</p>
+            <button class="btn btn-primary btn-custom-1 me-2" type="button" [routerLink]="['/event-feedback-details',event.eventId]">Détails</button>
           </div>
         </div>
       </div>

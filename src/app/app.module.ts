@@ -23,6 +23,7 @@ import { EventFeedbackDetailsItemComponent } from './components/event-feedback-d
 import {NgOptimizedImage} from "@angular/common";
 import {FeedbackService} from "./services/feedbackService";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     EventFeedbackItemComponent,
     EventFeedbackDetailsComponent,
     EventFeedbackDetailsItemComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

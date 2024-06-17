@@ -1,10 +1,10 @@
-import {Component, ElementRef, Input, ViewChild} from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {GameEvent} from "../../data/gameEvent";
 import {ActivatedRoute, Router} from "@angular/router";
 import {EventService} from "../../services/eventService";
 import {Feedback, FeedbackCreateInput} from "../../data/feedback";
 import {FeedbackService} from "../../services/feedbackService";
-import {Form, FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder, Validators} from "@angular/forms";
 import {UserService} from "../../services/userService";
 import {User, UserCreateInput} from "../../data/User";
 import Swal from "sweetalert2";
