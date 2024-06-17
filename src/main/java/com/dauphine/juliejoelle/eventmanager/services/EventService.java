@@ -19,4 +19,12 @@ public interface EventService {
     List<Event> getEventsAlreadyPassedByCategoryId(String categoryId);
     List<Event> getEventsNotPassedByCategoryId(String categoryId);
     List<Event> getEventsByCategoryId(String categoryId);
+    List<Event> getEventsNotPassedSortedByDateDESC();
+    List<Event> getEventsNotPassedSortedByDateASC();
+    List<Event> getEventsNotPassedSortedByParticipantsCountDESC();
+    List<Event> getEventsNotPassedSortedByParticipantsCountASC();
+    List<Event> getEventsPassedSortedByDateDESC();
+    List<Event> getEventsPassedSortedByDateASC();
+    List<Event> getEventsPassedSortedByParticipantsCountDESC();
+    List<Event> getEventsPassedSortedByParticipantsCountASC();
 }

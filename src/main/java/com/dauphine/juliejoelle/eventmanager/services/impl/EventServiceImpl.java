@@ -13,6 +13,7 @@ import com.dauphine.juliejoelle.eventmanager.services.EventService;
 import com.dauphine.juliejoelle.eventmanager.services.TypeService;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -78,4 +79,45 @@ public class EventServiceImpl implements EventService {
     public List<Event> getEventsByCategoryId(String categoryId) {
         return eventRepository.getEventsByCategory_CategoryId(categoryId);
     }
+
+    @Override
+    public List<Event> getEventsNotPassedSortedByDateDESC() {
+        return eventRepository.getEventsNotPassedSortedByDateDESC(new Date());
+    }
+
+    @Override
+    public List<Event> getEventsNotPassedSortedByDateASC() {
+        return eventRepository.getEventsNotPassedSortedByDateASC(new Date());
+    }
+
+    @Override
+    public List<Event> getEventsNotPassedSortedByParticipantsCountDESC() {
+        return eventRepository.getEventsNotPassedSortedByParticipantsCountDESC(new Date());
+    }
+
+    @Override
+    public List<Event> getEventsNotPassedSortedByParticipantsCountASC() {
+        return eventRepository.getEventsNotPassedSortedByParticipantsCountASC(new Date());
+    }
+
+    @Override
+    public List<Event> getEventsPassedSortedByDateDESC() {
+        return eventRepository.getEventsPassedSortedByDateDESC(new Date());
+    }
+
+    @Override
+    public List<Event> getEventsPassedSortedByDateASC() {
+        return eventRepository.getEventsPassedSortedByDateASC(new Date());
+    }
+
+    @Override
+    public List<Event> getEventsPassedSortedByParticipantsCountDESC() {
+        return eventRepository.getEventsPassedSortedByParticipantsCountDESC(new Date());
+    }
+
+    @Override
+    public List<Event> getEventsPassedSortedByParticipantsCountASC() {
+        return eventRepository.getEventsPassedSortedByParticipantsCountASC(new Date());
+    }
+
 }

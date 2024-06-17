@@ -90,14 +90,72 @@ public class EventController {
     @Operation(summary = "To get all events that have already passed")
     @GetMapping("/passed")
     public ResponseEntity<List<Event>> getEventsAlreadyPassed() {
-        List<Event> events = eventService.getEventsAlreadyPassed();
+//        List<Event> events = eventService.getEventsAlreadyPassed();
+        List<Event> events = eventService.getEventsPassedSortedByParticipantsCountDESC();
         return ResponseEntity.ok(events);
     }
 
     @Operation(summary = "To get all events that have not passed yet")
     @GetMapping("/notPassed")
     public ResponseEntity<List<Event>> getEventsNotPassed() {
-        List<Event> events = eventService.getEventsNotPassed();
+//        List<Event> events = eventService.getEventsNotPassed();
+        List<Event> events = eventService.getEventsNotPassedSortedByParticipantsCountDESC();
+        return ResponseEntity.ok(events);
+    }
+
+    @Operation(summary = "To get all events that have not passed yet sorted by date")
+    @GetMapping("/notPassed/sorted-by-date")
+    public ResponseEntity<List<Event>> getEventsNotPassedSortedByDate(
+            @Parameter(description = "true = ASC, false = DESC")
+            @RequestParam boolean sorted) {
+        List<Event> events;
+        if (sorted) {
+            events = eventService.getEventsNotPassedSortedByDateASC();
+        } else {
+            events = eventService.getEventsNotPassedSortedByDateDESC();
+        }
+        return ResponseEntity.ok(events);
+    }
+
+    @Operation(summary = "To get all events that have not passed yet sorted by participants count")
+    @GetMapping("/notPassed/sorted-by-participants")
+    public ResponseEntity<List<Event>> getEventsNotPassedSortedByParticipantsCount(
+            @Parameter(description = "true = DESC, false = ASC")
+            @RequestParam boolean sorted) {
+        List<Event> events;
+        if (sorted) {
+            events = eventService.getEventsNotPassedSortedByParticipantsCountDESC();
+        } else {
+            events = eventService.getEventsNotPassedSortedByParticipantsCountASC();
+        }
+        return ResponseEntity.ok(events);
+    }
+
+    @Operation(summary = "To get all events that have passed sorted by date")
+    @GetMapping("/passed/sorted-by-date")
+    public ResponseEntity<List<Event>> getEventsPassedSortedByDate(
+            @Parameter(description = "true = ASC, false = DESC")
+            @RequestParam boolean sorted) {
+        List<Event> events;
+        if (sorted) {
+            events = eventService.getEventsPassedSortedByDateASC();
+        } else {
+            events = eventService.getEventsPassedSortedByDateDESC();
+        }
+        return ResponseEntity.ok(events);
+    }
+
+    @Operation(summary = "To get all events that have passed sorted by participants count")
+    @GetMapping("/passed/sorted-by-participants")
+    public ResponseEntity<List<Event>> getEventsPassedSortedByParticipantsCount(
+            @Parameter(description = "true = DESC, false = ASC")
+            @RequestParam boolean sorted) {
+        List<Event> events;
+        if (sorted) {
+            events = eventService.getEventsPassedSortedByParticipantsCountDESC();
+        } else {
+            events = eventService.getEventsPassedSortedByParticipantsCountASC();
+        }
         return ResponseEntity.ok(events);
     }
 
