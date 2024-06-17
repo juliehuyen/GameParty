@@ -27,3 +27,8 @@
   --veronica: #9147FF;
   --lavender: #BF94FF;
 }
+
+body {
+  background-color: var(--night);
+  color: var(--antiflash);
+}
