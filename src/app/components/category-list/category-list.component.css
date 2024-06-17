@@ -2,8 +2,6 @@
 body {
   background-color: var(--night);
   color: var(--antiflash);
-  height: 100%;
-
 }
 
 .container-fluid {
