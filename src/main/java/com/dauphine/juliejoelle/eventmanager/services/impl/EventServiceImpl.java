@@ -90,4 +90,14 @@ public class EventServiceImpl implements EventService {
         return eventRepository.getEventsNotPassedSortedByDateASC(new Date());
     }
 
+    @Override
+    public List<Event> getEventsNotPassedSortedByParticipantsCountDESC() {
+        return eventRepository.getEventsNotPassedSortedByParticipantsCountDESC(new Date());
+    }
+
+    @Override
+    public List<Event> getEventsNotPassedSortedByParticipantsCountASC() {
+        return eventRepository.getEventsNotPassedSortedByParticipantsCountASC(new Date());
+    }
+
 }

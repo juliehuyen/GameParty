@@ -23,4 +23,22 @@ public interface EventRepository extends JpaRepository<Event, String> {
     List<Event> getEventsNotPassedSortedByDateDESC(Date date);
     @Query("SELECT e FROM Event e WHERE e.eventDate > :date ORDER BY e.eventDate ASC")
     List<Event> getEventsNotPassedSortedByDateASC(Date date);
+    @Query("""
+    SELECT e, COUNT(r) as ParticipantsCount
+    FROM Event e
+    LEFT JOIN Registration r ON e.eventId = r.event.eventId
+    WHERE e.eventDate > :date
+    GROUP BY e.eventId
+    ORDER BY ParticipantsCount DESC
+    """)
+    List<Event> getEventsNotPassedSortedByParticipantsCountDESC(Date date);
+    @Query("""
+    SELECT e, COUNT(r) as ParticipantsCount
+    FROM Event e
+    LEFT JOIN Registration r ON e.eventId = r.event.eventId
+    WHERE e.eventDate > :date
+    GROUP BY e.eventId
+    ORDER BY ParticipantsCount ASC
+    """)
+    List<Event> getEventsNotPassedSortedByParticipantsCountASC(Date date);
 }

@@ -21,4 +21,6 @@ public interface EventService {
     List<Event> getEventsByCategoryId(String categoryId);
     List<Event> getEventsNotPassedSortedByDateDESC();
     List<Event> getEventsNotPassedSortedByDateASC();
+    List<Event> getEventsNotPassedSortedByParticipantsCountDESC();
+    List<Event> getEventsNotPassedSortedByParticipantsCountASC();
 }
