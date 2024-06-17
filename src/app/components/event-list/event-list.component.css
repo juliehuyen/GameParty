@@ -112,3 +112,6 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
+.d-flex.align-items-center {
+  white-space: nowrap;
+}
