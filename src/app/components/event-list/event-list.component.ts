@@ -19,24 +19,13 @@ export class EventListComponent {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.categoryId = params.get('categoryId');
-      this.loadEvents();
+      this.sortEvents();
+      // this.loadEvents();
     });
   }
 
   setActive(buttonName: string) {
     this.activeButton = buttonName;
-  }
-
-  private loadEvents() {
-    if (this.categoryId && this.categoryId !== '') {
-      this.eventService.getEventsNotPassedByCategory(this.categoryId).subscribe((events: GameEvent[]) => {
-        this.allEvents = events;
-      });
-    } else {
-      this.eventService.getEventsNotPassed().subscribe((events: GameEvent[]) => {
-        this.allEvents = events;
-      });
-    }
   }
 
   setSortOrder(order: Event): void {
@@ -46,27 +35,53 @@ export class EventListComponent {
   }
 
   sortEvents(): void {
-    if (this.sortOrder === 'date-asc') {
-      this.eventService.getEventsNotPassedSortedByDate(true).subscribe((events: GameEvent[]) => {
-        this.allEvents = events;
-      });
+    if (this.categoryId == '' || this.categoryId == null) {
+      if (this.sortOrder === 'date-asc') {
+        this.eventService.getEventsNotPassedSortedByDate(true).subscribe((events: GameEvent[]) => {
+          this.allEvents = events;
+        });
+      }
+      if (this.sortOrder === 'date-desc') {
+        this.eventService.getEventsNotPassedSortedByDate(false).subscribe((events: GameEvent[]) => {
+          this.allEvents = events;
+        });
+      }
+      if (this.sortOrder === 'part-asc') {
+        this.eventService.getEventsNotPassedSortedByParticipantsCount(false).subscribe((events: GameEvent[]) => {
+          this.allEvents = events;
+        });
+      }
+      if (this.sortOrder === 'part-desc') {
+        this.eventService.getEventsNotPassedSortedByParticipantsCount(true).subscribe((events: GameEvent[]) => {
+          this.allEvents = events;
+        });
+      }
     }
-    if (this.sortOrder === 'date-desc') {
-      this.eventService.getEventsNotPassedSortedByDate(false).subscribe((events: GameEvent[]) => {
-        this.allEvents = events;
-      });
+    else {
+      if (this.sortOrder === 'date-asc') {
+        this.eventService.getEventsNotPassedSortedByDateByCategoryId(true, this.categoryId).subscribe((events: GameEvent[]) => {
+          this.allEvents = events;
+        });
+      }
+      if (this.sortOrder === 'date-desc') {
+        this.eventService.getEventsNotPassedSortedByDateByCategoryId(false, this.categoryId).subscribe((events: GameEvent[]) => {
+          this.allEvents = events;
+        });
+      }
+      if (this.sortOrder === 'part-asc') {
+        this.eventService.getEventsNotPassedSortedByParticipantsCountByCategoryId(false, this.categoryId).subscribe((events: GameEvent[]) => {
+          this.allEvents = events;
+        });
+      }
+      if (this.sortOrder === 'part-desc') {
+        this.eventService.getEventsNotPassedSortedByParticipantsCountByCategoryId(true, this.categoryId).subscribe((events: GameEvent[]) => {
+          this.allEvents = events;
+        });
+      }
     }
-    if (this.sortOrder === 'part-asc') {
-      this.eventService.getEventsNotPassedSortedByParticipantsCount(false).subscribe((events: GameEvent[]) => {
-        this.allEvents = events;
-      });
-    }
-    if (this.sortOrder === 'part-desc') {
-      this.eventService.getEventsNotPassedSortedByParticipantsCount(true).subscribe((events: GameEvent[]) => {
-        this.allEvents = events;
-      });
-    }
+
   }
+
   scrollToTop(): void {
     window.scrollTo(0, 0);
   }
