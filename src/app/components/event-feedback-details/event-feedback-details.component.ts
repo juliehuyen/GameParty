@@ -28,6 +28,10 @@ export class EventFeedbackDetailsComponent {
   constructor(private route: ActivatedRoute, private eventService : EventService, private feedbackService : FeedbackService, private formBuilder : FormBuilder, private userService : UserService, private router : Router) {}
 
   ngOnInit(): void {
+    this.loadFeedbacks();
+  }
+
+  private loadFeedbacks() {
     this.eventId = this.route.snapshot.paramMap.get('eventId');
     this.eventService.getEventById(this.eventId).subscribe(
       event => {
@@ -39,6 +43,7 @@ export class EventFeedbackDetailsComponent {
         );
       });
   }
+
   newFeedback = this.formBuilder.group({
     rating: [this.rating, [Validators.required, Validators.min(1)]],
     username: ['', Validators.required],
@@ -85,9 +90,7 @@ export class EventFeedbackDetailsComponent {
         }
         this.feedbackService.createFeedback(this.feedbackCreateInput).subscribe(feedback => {
           this.displayToast(true, user);
-          setTimeout(() => {
-            location.reload();
-          }, 2000);
+          this.loadFeedbacks();
         });
       } else {
         this.displayToast(false, user);
