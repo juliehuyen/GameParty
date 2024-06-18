@@ -21,8 +21,32 @@ public interface EventRepository extends JpaRepository<Event, String> {
     List<Event> getEventsAlreadyPassedByCategory_CategoryId(String categoryId, Date date);
     @Query("SELECT e FROM Event e WHERE e.eventDate > :date ORDER BY e.eventDate DESC")
     List<Event> getEventsNotPassedSortedByDateDESC(Date date);
+    @Query("SELECT e FROM Event e WHERE e.eventDate > :date AND e.category.categoryId = :categoryId ORDER BY e.eventDate ASC")
+    List<Event> getEventsNotPassedSortedByDateASCByCategory_CategoryId(String categoryId, Date date);
+    @Query("SELECT e FROM Event e WHERE e.eventDate > :date AND e.category.categoryId = :categoryId ORDER BY e.eventDate DESC")
+    List<Event> getEventsNotPassedSortedByDateDESCByCategory_CategoryId(String categoryId, Date date);
     @Query("SELECT e FROM Event e WHERE e.eventDate > :date ORDER BY e.eventDate ASC")
     List<Event> getEventsNotPassedSortedByDateASC(Date date);
+    @Query("""
+    SELECT e, COUNT(r) as ParticipantsCount
+    FROM Event e
+    LEFT JOIN Registration r ON e.eventId = r.event.eventId
+    WHERE e.eventDate > :date
+    AND e.category.categoryId = :categoryId
+    GROUP BY e.eventId
+    ORDER BY ParticipantsCount DESC
+    """)
+    List<Event> getEventsNotPassedSortedByParticipantsCountDESCByCategory_CategoryId(String categoryId, Date date);
+    @Query("""
+    SELECT e, COUNT(r) as ParticipantsCount
+    FROM Event e
+    LEFT JOIN Registration r ON e.eventId = r.event.eventId
+    WHERE e.eventDate > :date
+    AND e.category.categoryId = :categoryId
+    GROUP BY e.eventId
+    ORDER BY ParticipantsCount ASC
+    """)
+    List<Event> getEventsNotPassedSortedByParticipantsCountASCByCategory_CategoryId(String categoryId, Date date);
     @Query("""
     SELECT e, COUNT(r) as ParticipantsCount
     FROM Event e

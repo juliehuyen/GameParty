@@ -27,4 +27,8 @@ public interface EventService {
     List<Event> getEventsPassedSortedByDateASC();
     List<Event> getEventsPassedSortedByParticipantsCountDESC();
     List<Event> getEventsPassedSortedByParticipantsCountASC();
+    List<Event> getEventsNotPassedSortedByDateDESCByCategoryId(String categoryId) throws CategoryNotFoundByIdException;
+    List<Event> getEventsNotPassedSortedByDateASCByCategoryId(String categoryId) throws CategoryNotFoundByIdException;
+    List<Event> getEventsNotPassedSortedByParticipantsCountDESCByCategoryId(String categoryId) throws CategoryNotFoundByIdException;
+    List<Event> getEventsNotPassedSortedByParticipantsCountASCByCategoryId(String categoryId) throws CategoryNotFoundByIdException;
 }

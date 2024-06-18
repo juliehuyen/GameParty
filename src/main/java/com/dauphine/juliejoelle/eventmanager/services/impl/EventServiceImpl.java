@@ -120,4 +120,28 @@ public class EventServiceImpl implements EventService {
         return eventRepository.getEventsPassedSortedByParticipantsCountASC(new Date());
     }
 
+    @Override
+    public List<Event> getEventsNotPassedSortedByDateDESCByCategoryId(String categoryId) throws CategoryNotFoundByIdException {
+        categoryService.getCategoryById(categoryId);
+        return eventRepository.getEventsNotPassedSortedByDateDESCByCategory_CategoryId(categoryId, new Date());
+    }
+
+    @Override
+    public List<Event> getEventsNotPassedSortedByDateASCByCategoryId(String categoryId) throws CategoryNotFoundByIdException {
+        categoryService.getCategoryById(categoryId);
+        return eventRepository.getEventsNotPassedSortedByDateASCByCategory_CategoryId(categoryId, new Date());
+    }
+
+    @Override
+    public List<Event> getEventsNotPassedSortedByParticipantsCountDESCByCategoryId(String categoryId) throws CategoryNotFoundByIdException {
+        categoryService.getCategoryById(categoryId);
+        return eventRepository.getEventsNotPassedSortedByParticipantsCountDESCByCategory_CategoryId(categoryId, new Date());
+    }
+
+    @Override
+    public List<Event> getEventsNotPassedSortedByParticipantsCountASCByCategoryId(String categoryId) throws CategoryNotFoundByIdException {
+        categoryService.getCategoryById(categoryId);
+        return eventRepository.getEventsNotPassedSortedByParticipantsCountASCByCategory_CategoryId(categoryId, new Date());
+    }
+
 }

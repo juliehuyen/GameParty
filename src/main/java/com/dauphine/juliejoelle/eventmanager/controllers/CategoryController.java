@@ -49,7 +49,7 @@ public class CategoryController {
 
     @Operation(summary = "To get sorted categories")
     @GetMapping("/sorted")
-    public ResponseEntity<List<Category>> getSoredCategories(
+    public ResponseEntity<List<Category>> getSortedCategories(
             @Parameter(description = "true = DESC, false = ASC")
             @RequestParam boolean sorted) {
         List<Category> categories;

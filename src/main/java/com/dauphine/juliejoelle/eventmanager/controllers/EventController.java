@@ -90,16 +90,14 @@ public class EventController {
     @Operation(summary = "To get all events that have already passed")
     @GetMapping("/passed")
     public ResponseEntity<List<Event>> getEventsAlreadyPassed() {
-//        List<Event> events = eventService.getEventsAlreadyPassed();
-        List<Event> events = eventService.getEventsPassedSortedByParticipantsCountDESC();
+        List<Event> events = eventService.getEventsAlreadyPassed();
         return ResponseEntity.ok(events);
     }
 
     @Operation(summary = "To get all events that have not passed yet")
     @GetMapping("/notPassed")
     public ResponseEntity<List<Event>> getEventsNotPassed() {
-//        List<Event> events = eventService.getEventsNotPassed();
-        List<Event> events = eventService.getEventsNotPassedSortedByParticipantsCountDESC();
+        List<Event> events = eventService.getEventsNotPassed();
         return ResponseEntity.ok(events);
     }
 
@@ -159,4 +157,35 @@ public class EventController {
         return ResponseEntity.ok(events);
     }
 
+    @Operation(summary = "To get all events that have not passed yet sorted by date given a category")
+    @GetMapping("/notPassed/sorted-by-date/categories/categoryId")
+    public ResponseEntity<List<Event>> getEventsNotPassedSortedByDateByCategoryId(
+            @Parameter(description = "true = DESC, false = ASC")
+            @RequestParam boolean sorted,
+            @Parameter(description = "Category's id")
+            @RequestParam String categoryId) throws CategoryNotFoundByIdException {
+        List<Event> events;
+        if (sorted) {
+            events = eventService.getEventsNotPassedSortedByDateDESCByCategoryId(categoryId);
+        } else {
+            events = eventService.getEventsNotPassedSortedByDateASCByCategoryId(categoryId);
+        }
+        return ResponseEntity.ok(events);
+    }
+
+    @Operation(summary = "To get all events that have not passed yet sorted by participants count given a category")
+    @GetMapping("/notPassed/sorted-by-participants/categories/categoryId")
+    public ResponseEntity<List<Event>> getEventsNotPassedSortedByParticipantsCountByCategoryId(
+            @Parameter(description = "true = DESC, false = ASC")
+            @RequestParam boolean sorted,
+            @Parameter(description = "Category's id")
+            @RequestParam String categoryId) throws CategoryNotFoundByIdException {
+        List<Event> events;
+        if (sorted) {
+            events = eventService.getEventsNotPassedSortedByParticipantsCountDESCByCategoryId(categoryId);
+        } else {
+            events = eventService.getEventsNotPassedSortedByParticipantsCountASCByCategoryId(categoryId);
+        }
+        return ResponseEntity.ok(events);
+    }
 }
