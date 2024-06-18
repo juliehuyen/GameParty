@@ -58,13 +58,6 @@ body {
   color: var(--taupegray);
 }
 
-.display-categories {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-}
-
 .filter-by-text {
   font-family: 'Rubik-Bold', sans-serif;
   color: var(--antiflash);
