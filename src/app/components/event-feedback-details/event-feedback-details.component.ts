@@ -23,6 +23,7 @@ export class EventFeedbackDetailsComponent {
   feedbackCreateInput!: FeedbackCreateInput | undefined;
   userCreateInput!: UserCreateInput | undefined;
   @ViewChild('createFeedbackModal') createFeedbackModal!: ElementRef;
+  loading: boolean = true;
 
 
   constructor(private route: ActivatedRoute, private eventService : EventService, private feedbackService : FeedbackService, private formBuilder : FormBuilder, private userService : UserService, private router : Router) {}
@@ -32,6 +33,7 @@ export class EventFeedbackDetailsComponent {
   }
 
   private loadFeedbacks() {
+    this.loading = true;
     this.eventId = this.route.snapshot.paramMap.get('eventId');
     this.eventService.getEventById(this.eventId).subscribe(
       event => {
@@ -39,6 +41,7 @@ export class EventFeedbackDetailsComponent {
         this.feedbackService.getFeedbacksByEventId(this.event.eventId).subscribe(
           feedbacks => {
             this.feedbacks = feedbacks;
+            this.loading = false;
           }
         );
       });
@@ -82,16 +85,29 @@ export class EventFeedbackDetailsComponent {
   private createFeedbackCall(user: User) {
     this.feedbackService.getFeedbackByUserIdAndEventId(user.userId, this.eventId).subscribe(feedback => {
       if (feedback == null) {
-        this.feedbackCreateInput = {
-          rating: this.rating,
-          userId: user.userId,
-          comments: this.newFeedback.controls.comments.value ?? '',
-          eventId: this.eventId ?? ''
-        }
-        this.feedbackService.create(this.feedbackCreateInput).subscribe(feedback => {
-          this.displayToast(true, user);
-          this.loadFeedbacks();
+        this.eventService.getEventById(this.eventId).subscribe(event =>{
+          const currentDate = new Date();
+          if(event.eventDate < currentDate){
+            this.feedbackCreateInput = {
+              rating: this.rating,
+              userId: user.userId,
+              comments: this.newFeedback.controls.comments.value ?? '',
+              eventId: this.eventId ?? ''
+            }
+            if (this.feedbackCreateInput) {
+              this.feedbackService.create(this.feedbackCreateInput).subscribe(feedback => {
+                this.displayToast(true, user);
+                this.loadFeedbacks();
+              });
+            }
+          } else{
+            Swal.fire({
+              icon : "error",
+              title: "L'évènement n'est pas encore passé, impossible d'y ajouter un avis !"
+            });
+          }
         });
+
       } else {
         this.displayToast(false, user);
         this.resetFormAndModal();

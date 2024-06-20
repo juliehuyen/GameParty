@@ -10,7 +10,7 @@ import BaseService from "./baseService";
 export class EventService extends BaseService<GameEvent, EventCreateInput>{
   private eventsUrl = `${environment.apiUrl}v1/events`;
 
-  getEventById(id: string | null): Observable<GameEvent> {
+  getEventById(id: string | null | undefined): Observable<GameEvent> {
     return this.http.get<GameEvent>(`${this.eventsUrl}/${id}`).pipe(catchError(this.handleError<GameEvent>('getEventById')));
   }
 
