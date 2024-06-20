@@ -13,6 +13,7 @@ export class EventListComponent {
   activeButton: string = 'events';
   categoryId: string | null = '';
   sortOrder: 'date-asc' | 'date-desc' | 'part-asc' | 'part-desc' = 'part-desc';
+  loading: boolean = true;
 
   constructor(private eventService: EventService, private route: ActivatedRoute) {}
 
@@ -35,25 +36,30 @@ export class EventListComponent {
   }
 
   sortEvents(): void {
+    this.loading = true;
     if (this.categoryId == '' || this.categoryId == null) {
       if (this.sortOrder === 'date-asc') {
         this.eventService.getEventsNotPassedSortedByDate(true).subscribe((events: GameEvent[]) => {
           this.allEvents = events;
+          this.loading = false;
         });
       }
       if (this.sortOrder === 'date-desc') {
         this.eventService.getEventsNotPassedSortedByDate(false).subscribe((events: GameEvent[]) => {
           this.allEvents = events;
+          this.loading = false;
         });
       }
       if (this.sortOrder === 'part-asc') {
         this.eventService.getEventsNotPassedSortedByParticipantsCount(false).subscribe((events: GameEvent[]) => {
           this.allEvents = events;
+          this.loading = false;
         });
       }
       if (this.sortOrder === 'part-desc') {
         this.eventService.getEventsNotPassedSortedByParticipantsCount(true).subscribe((events: GameEvent[]) => {
           this.allEvents = events;
+          this.loading = false;
         });
       }
     }
@@ -61,21 +67,25 @@ export class EventListComponent {
       if (this.sortOrder === 'date-asc') {
         this.eventService.getEventsNotPassedSortedByDateByCategoryId(true, this.categoryId).subscribe((events: GameEvent[]) => {
           this.allEvents = events;
+          this.loading = false;
         });
       }
       if (this.sortOrder === 'date-desc') {
         this.eventService.getEventsNotPassedSortedByDateByCategoryId(false, this.categoryId).subscribe((events: GameEvent[]) => {
           this.allEvents = events;
+          this.loading = false;
         });
       }
       if (this.sortOrder === 'part-asc') {
         this.eventService.getEventsNotPassedSortedByParticipantsCountByCategoryId(false, this.categoryId).subscribe((events: GameEvent[]) => {
           this.allEvents = events;
+          this.loading = false;
         });
       }
       if (this.sortOrder === 'part-desc') {
         this.eventService.getEventsNotPassedSortedByParticipantsCountByCategoryId(true, this.categoryId).subscribe((events: GameEvent[]) => {
           this.allEvents = events;
+          this.loading = false;
         });
       }
     }
