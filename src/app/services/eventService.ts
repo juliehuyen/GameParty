@@ -4,21 +4,11 @@ import {HttpClient} from "@angular/common/http";
 import {catchError, Observable, of} from "rxjs";
 import {GameEvent, EventCreateInput} from "../data/gameEvent";
 import {Router} from "@angular/router";
+import BaseService from "./baseService";
 
 @Injectable()
-export class EventService {
+export class EventService extends BaseService<GameEvent, EventCreateInput>{
   private eventsUrl = `${environment.apiUrl}v1/events`;
-
-  constructor(private http: HttpClient, private router: Router) {
-  }
-
-  create(event: EventCreateInput): Observable<Event> {
-    return this.http.post<Event>(this.eventsUrl, event);
-  }
-
-  getAll() : Observable<GameEvent[]> {
-    return this.http.get<GameEvent[]>(this.eventsUrl).pipe(catchError(this.handleError<GameEvent[]>('getAll')));
-  }
 
   getEventById(id: string | null): Observable<GameEvent> {
     return this.http.get<GameEvent>(`${this.eventsUrl}/${id}`).pipe(catchError(this.handleError<GameEvent>('getEventById')));
@@ -33,18 +23,6 @@ export class EventService {
       .pipe(
         catchError(this.handleError<GameEvent>('update', event))
       )
-  }
-  protected handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(`${operation} failed: ${error.message}`, error); // log to console
-// Let the app keep running by returning an empty result.
-      this.router.navigate(['/error']);
-      return of(result as T);
-    };
-  }
-  delete(event: GameEvent): Observable<boolean> {
-    return this.http.delete<boolean>(`${this.eventsUrl}/${event.eventId}`)
-      .pipe(catchError(this.handleError<boolean>('delete', false)));
   }
 
   getEventsPassed(): Observable<GameEvent[]> {
@@ -81,5 +59,9 @@ export class EventService {
 
   getEventsNotPassedSortedByParticipantsCountByCategoryId(sorted: boolean, categoryId: string): Observable<GameEvent[]> {
     return this.http.get<GameEvent[]>(`${this.eventsUrl}/notPassed/sorted-by-participants/categories/categoryId?sorted=${sorted}&categoryId=${categoryId}`).pipe(catchError(this.handleError<GameEvent[]>('getEventsNotPassedSortedByParticipantsCount')));
+  }
+
+  getEndpointUrl(): string {
+    return "v1/events";
   }
 }
