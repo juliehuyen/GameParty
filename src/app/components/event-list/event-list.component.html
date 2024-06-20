@@ -14,17 +14,22 @@
       <select class="form-select custom-select" aria-label="Trier par" (change)="setSortOrder($event)">
         <option value="part-desc" selected>Nombre de participants décroissant</option>
         <option value="part-asc">Nombre de participants croissant</option>
-        <option value="date-asc">Date la plus lointaine</option>
+        <option value="date-asc">Date la plus loin</option>
         <option value="date-desc">Date la plus proche</option>
       </select>
     </div>
   </div>
-  <div *ngIf="allEvents && allEvents.length>0; else noEvents"></div>
+  <div *ngIf="loading" class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Chargement...</span>
+    </div>
+  </div>
+  <div *ngIf="allEvents && allEvents.length>0 && !loading; else noEvents"></div>
   <div *ngFor="let event of allEvents">
     <app-event-list-item [event]="event"></app-event-list-item>
   </div>
   <ng-template #noEvents>
-    <div class="text-center">
+    <div class="text-center" *ngIf="!loading">
       <h1 class="text-light display-1">Aucun évènement pour le moment.</h1>
       <h2 class="text-light">Revenez plus tard, ou créez un nouvel évènement !</h2>
     </div>

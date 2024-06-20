@@ -88,7 +88,7 @@ export class EventFeedbackDetailsComponent {
           comments: this.newFeedback.controls.comments.value ?? '',
           eventId: this.eventId ?? ''
         }
-        this.feedbackService.createFeedback(this.feedbackCreateInput).subscribe(feedback => {
+        this.feedbackService.create(this.feedbackCreateInput).subscribe(feedback => {
           this.displayToast(true, user);
           this.loadFeedbacks();
         });

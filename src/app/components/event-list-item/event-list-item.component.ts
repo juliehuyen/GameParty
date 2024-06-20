@@ -65,7 +65,7 @@ export class EventListItemComponent {
                 userId: user.userId,
                 eventId: this.event.eventId,
               }
-              this.registrationService.createRegistration(this.registrationCreateInput).subscribe(() => {
+              this.registrationService.create(this.registrationCreateInput).subscribe(() => {
                 this.displayToast(true);
                 this.loadUsers(this.event.eventId);
                 this.resetModal();
@@ -85,7 +85,7 @@ export class EventListItemComponent {
               userId: user.userId,
               eventId: this.event.eventId,
             }
-            this.registrationService.createRegistration(this.registrationCreateInput).subscribe(() => {
+            this.registrationService.create(this.registrationCreateInput).subscribe(() => {
               this.displayToast(true);
               this.loadUsers(this.event.eventId);
               this.resetModal();

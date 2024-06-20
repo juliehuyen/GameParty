@@ -1,27 +1,13 @@
 import {Injectable} from "@angular/core";
 import {environment} from "../environnement/environnement";
-import {HttpClient} from "@angular/common/http";
-import {catchError, Observable, of} from "rxjs";
-import {Type} from "../data/type";
-import {Router} from "@angular/router";
+import {Type, TypeCreateInput} from "../data/type";
+import BaseService from "./baseService";
 
 @Injectable()
-export class TypeService {
+export class TypeService extends BaseService<Type, TypeCreateInput>{
   private typesUrl = `${environment.apiUrl}v1/types`;
 
-  constructor(private http: HttpClient, private router: Router ) {
-  }
-
-  getAll() {
-    return this.http.get<Type[]>(this.typesUrl).pipe(catchError(this.handleError<Type[]>('getAll')));
-  }
-
-  protected handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(`${operation} failed: ${error.message}`, error); // log to console
-// Let the app keep running by returning an empty result.
-      this.router.navigate(['/error']);
-      return of(result as T);
-    };
+  getEndpointUrl(): string {
+    return "v1/types";
   }
 }

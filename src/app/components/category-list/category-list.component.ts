@@ -16,6 +16,7 @@ export class CategoryListComponent {
   searchQuery: string = '';
   categoryEventCounts: Map<Category, number> = new Map();
   sortOrder: 'asc' | 'desc' = 'desc';
+  loading: boolean = true;
 
   constructor(private categoryService: CategoryService, private eventService: EventService) {}
 
@@ -69,15 +70,18 @@ export class CategoryListComponent {
   }
 
   sortCategories(): void {
+    this.loading = true;
     if(this.sortOrder == 'asc'){
       this.categoryService.getAllSorted(false).subscribe(categories =>{
         this.allCategories = categories;
         this.loadEventCounts(categories);
+        this.loading = false;
       });
     } else{
       this.categoryService.getAllSorted(true).subscribe(categories =>{
         this.allCategories = categories;
         this.loadEventCounts(categories);
+        this.loading = false;
       });
     }
   }
