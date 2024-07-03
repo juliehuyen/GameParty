@@ -17,7 +17,7 @@ export class EventFeedbackListComponent {
 
   ngOnInit(): void {
     this.loading = true;
-    this.eventService.getEventsPassed().subscribe((events: GameEvent[]) => {
+    this.eventService.getEventsPassedSortedByParticipantsCount(true).subscribe((events: GameEvent[]) => {
       this.allEvents = events;
       this.loading = false;
     })
