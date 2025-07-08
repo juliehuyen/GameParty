@@ -1,0 +1,23 @@
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400&display=swap" rel="stylesheet">
+</head>
+<div class="col-md-2">
+  <div class="card custom-card-size">
+    <img src="{{category.url}}" class="card-img-top custom-img-size" alt="{{category.name}}">
+    <div class="card-body">
+      <h5 class="card-title" [routerLink]="['/event-list', category.categoryId]" style="cursor: pointer;">
+        {{category.name}}</h5>
+      <p *ngIf="eventsCount > 0; else noEvents" class="card-text text-light">
+        <ng-container *ngIf="eventsCount === 1; else multipleEvents">
+          <span class="number-events-text">{{ eventsCount }} évènement</span>
+        </ng-container>
+        <ng-template #multipleEvents>
+          <span class="number-events-text">{{ eventsCount }} évènements</span>
+        </ng-template>
+      </p>
+      <ng-template #noEvents>
+        <span class="number-events-text">Aucun évènement</span>
+      </ng-template>
+    </div>
+  </div>
+</div>

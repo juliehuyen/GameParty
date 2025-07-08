@@ -1,0 +1,61 @@
+<body>
+<div class="container-fluid">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="d-flex mt-2">
+      <button class="btn btn-link custom-button text-decoration-none me-3"
+              [ngClass]="{'active': activeButton === 'categories'}"
+              (click)="setActive('categories')" [routerLink]="['/']">Catégories</button>
+      <button class="btn btn-link custom-button text-decoration-none"
+              [ngClass]="{'active': activeButton === 'events'}"
+              (click)="setActive('events')" [routerLink]="['/event-list']">Évènements</button>
+    </div>
+    <div class="d-flex align-items-center ms-auto mt-4">
+      <span class="filter-by-text me-3">Trier par</span>
+      <select class="form-select custom-select" aria-label="Trier par" (change)="setSortOrder($event)">
+        <option value="desc" selected>Nombre décroissant d'évènements</option>
+        <option value="asc">Nombre croissant d'évènements</option>
+      </select>
+    </div>
+  </div>
+
+
+  <div class="input-group flex-nowrap mb-4">
+    <span class="input-group-text" id="addon-wrapping"><i class="bi bi-search"></i></span>
+    <input type="text" class="form-control" placeholder="Rechercher une catégorie" aria-label="Username" aria-describedby="addon-wrapping" id="search-category" (input)="onSearchCategory($event)">
+  </div>
+
+  <div *ngIf="loading" class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Chargement...</span>
+    </div>
+  </div>
+
+  <div *ngIf="categoriesFromSearch && !loading; else showCategories">
+    <div class="display-categories" *ngIf="categoriesResult && categoriesResult.length > 0 else noCategories ">
+      <div *ngFor="let category of categoriesResult">
+        <app-category-list-item [category]="category" [eventsCount]="categoryEventCounts.get(category) ?? 0"></app-category-list-item>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #showCategories>
+    <div class="display-categories" *ngIf="allCategories && allCategories.length > 0 && !loading; else noCategories">
+      <div  *ngFor="let category of allCategories">
+        <app-category-list-item [category]="category" [eventsCount]="categoryEventCounts.get(category) ?? 0"></app-category-list-item>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #noCategories>
+    <div class="text-center" *ngIf="!loading">
+      <img class="img-fluid" src="https://cdn.pixabay.com/photo/2021/07/21/12/49/error-6482984_1280.png" alt="Aucun résultat trouvé" style="max-width: 600px; margin-bottom: 20px;">
+      <h1 class="text-light display-1">Aucun résultat trouvé pour "{{ searchQuery }}"</h1>
+      <h2 class="text-light">Assurez-vous que tous les mots sont orthographiés correctement ou essayez différents mots-clés.</h2>
+    </div>
+
+  </ng-template>
+
+
+</div>
+
+</body>

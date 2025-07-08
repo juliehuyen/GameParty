@@ -1,0 +1,35 @@
+.btn-custom-1 {
+  background-color: var(--veronica);
+  color: var(--antiflash);
+  font-family: 'Rubik-Regular', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  width: 20%;
+}
+.card-title {
+  font-family: 'Rubik-Bold', sans-serif;
+  color: var(--antiflash);
+  font-size: 2.5rem;
+}
+
+.custom-card-size {
+  background-color: var(--night);
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: stretch;
+}
+.card-text {
+  font-family: 'Rubik-Regular', sans-serif;
+  color: var(--antiflash);
+  font-size: 1.2rem;
+}
+.date-text{
+  font-family: 'Rubik-Regular', sans-serif;
+  color: var(--taupegray);
+}
+
+

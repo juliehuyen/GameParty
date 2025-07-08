@@ -1,0 +1,17 @@
+<div *ngIf="feedback">
+  <div class="container-fluid d-flex justify-content-center mb-4">
+    <div class="card" style="width: 250%;">
+      <div class="row g-0">
+        <div class="col">
+          <div class="card-body">
+            <h5 class="card-title">{{ feedback.user.username }}</h5>
+            <p class="card-text">{{feedback.comments}}</p>
+            <div class="star-rating text-center">
+              <i *ngFor="let star of stars" class="fa" [class.fa-star]="star" [class.fa-star-o]="!star"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

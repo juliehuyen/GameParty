@@ -1,0 +1,44 @@
+.navbar-custom {
+  background-color: var(--eerieblack);
+
+}
+
+.navbar-brand-custom {
+  color: var(--antiflash);
+  font-family: 'Rubik-Bold', sans-serif;
+  font-weight: 700;
+  font-size: 25px;
+}
+
+.btn-custom-1 {
+  background-color: var(--raisinblack);
+  color: var(--antiflash);
+  font-family: 'Rubik-Bold', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.btn-custom-1:active {
+  background-color: var(--jet);
+  color: var(--antiflash);
+}
+
+.btn-custom-2 {
+  background-color: var(--veronica);
+  color: var(--antiflash);
+  font-family: 'Rubik-Bold', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.btn-custom-2:active {
+  background-color: var(--blueviolet);
+  color: var(--antiflash);
+}
+

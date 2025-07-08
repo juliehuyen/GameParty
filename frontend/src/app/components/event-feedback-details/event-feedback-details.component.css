@@ -1,0 +1,75 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--night);
+  color: var(--antiflash);
+}
+
+.custom-card-size {
+  background-color: var(--eerieblack);
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: stretch;
+}
+.card-text {
+  font-family: 'Rubik-Regular', sans-serif;
+  color: var(--antiflash);
+  font-size: 1.2rem;
+}
+.card-title {
+  font-family: 'Rubik-Bold', sans-serif;
+  color: var(--antiflash);
+  font-size: 2.5rem;
+}
+.date-text{
+  font-family: 'Rubik-Regular', sans-serif;
+  color: var(--taupegray);
+}
+.avis{
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.avis h1{
+  font-family: 'Rubik-Bold', sans-serif;
+  color: var(--antiflash);
+  font-size: 4rem;
+}
+
+.avis button{
+  background-color: var(--veronica);
+  color: var(--antiflash);
+  font-family: 'Rubik-Regular', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  width: 10%;
+}
+.btn{
+  font-family: 'Rubik-Regular', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+}
+.custom-modal-bg {
+  background-color: var(--eerieblack); /* Fond noir */
+  color: var(--antiflash) /* Texte blanc */
+}
+.modal-text {
+  font-family: 'Rubik-Regular', sans-serif;
+  color: var(--antiflash);
+  font-size: 1.2rem;
+}
+h3 {
+  font-family: 'Rubik-Regular', sans-serif;
+  color: var(--antiflash);
+  font-size: 2rem;
+}
+.modal-title {
+  font-family: 'Rubik-Bold', sans-serif;
+  color: var(--antiflash);
+  font-size: 2.5rem;
+}

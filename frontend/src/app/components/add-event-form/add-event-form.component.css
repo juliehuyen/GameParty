@@ -1,0 +1,55 @@
+
+.modal-title {
+  font-family: 'Rubik-Bold', sans-serif;
+  font-size: 2rem;
+  color: var(--antiflash);
+  display: block;
+  text-align: center;
+}
+
+.label-custom {
+  font-family: 'Rubik-Medium', sans-serif;
+  color: var(--antiflash);
+}
+
+.form-control {
+  background-color: var(--raisinblack);
+  color: var(--antiflash);
+  font-family: Rubik-Regular, sans-serif;
+  border: 1px solid var(--antiflash);
+  width: 80%;
+  align-content: center;
+}
+
+.form-control:focus {
+  background-color: var(--jet);
+  color: var(--antiflash);
+  border: 1px solid var(--antiflash);
+}
+
+.btn-success {
+  background-color: var(--veronica);
+  color: var(--antiflash);
+  font-family: 'Rubik-Bold', sans-serif;
+  border: none;
+}
+
+.btn-outline-danger {
+  background-color: var(--raisinblack);
+  color: var(--antiflash);
+  font-family: 'Rubik-Bold', sans-serif;
+  border: 1px solid var(--antiflash);
+}
+
+.modal-content{
+  padding-left: 2%;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--night);
+  color: var(--antiflash);
+}
+
+.form-control{
+  background-color: var(--eerieblack);
+}

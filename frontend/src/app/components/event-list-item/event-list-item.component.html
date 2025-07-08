@@ -1,0 +1,79 @@
+<div class="container d-flex justify-content-center" *ngIf="event" >
+  <div class="card mb-3 custom-card-size event-card" style="width: 70%;">
+    <div class="row g-0 align-items-center">
+      <div class="col-md-4 event-image">
+        <img src="{{event.category.url}}" class="img-fluid rounded-start" alt="{{event.category.name}}">
+      </div>
+      <div class="col-md-8 event-details">
+        <div class="card-body">
+          <h5 class="card-title">{{ event.title }}</h5>
+          <p class="card-text date-text">Type : {{event.type.name}}</p>
+          <p class="card-text">{{event.description}}</p>
+          <p class="card-text date-text">Lieu : {{event.location}}</p>
+          <p class="card-text date-text">Date de l'évènement : {{event.eventDate|date : "dd/MM/YYYY"}}</p>
+          <div class="mt-auto d-flex justify-content-between">
+            <p class="card-text participants" [attr.data-bs-target]="'#registered-users-modal'+event.eventId" data-bs-toggle="modal">Nombre de participants : {{users.length}}</p>
+            <button class="btn btn-custom-1" type="button" [attr.data-bs-target]="'#registration-modal'+event.eventId" data-bs-toggle="modal">S'inscrire</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal registered users-->
+<div class="modal fade" [attr.id]="'registered-users-modal'+event.eventId" tabindex="-1" aria-labelledby="registered-modal" aria-hidden="true"  #registeredUsersModal>
+  <div class="modal-dialog">
+    <div class="modal-content custom-modal-bg">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="registered-modal">Participant(s) :</h1>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="users && users.length > 0">
+          <div *ngFor="let user of users">
+            <p class="modal-text">{{user.username}}</p>
+          </div>
+        </div>
+        <div *ngIf="!users || users.length === 0">
+          <p class="modal-text">Aucun participant pour cet événement.</p>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-custom-1 " type="button" data-bs-dismiss="modal">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" [attr.id]="'registration-modal'+event.eventId" tabindex="-1" aria-labelledby="registration" aria-hidden="true" #registrationModal>
+  <div class="modal-dialog">
+    <div class="modal-content custom-modal-bg">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="registration">Inscription à l'évènement : {{event.title}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="needs-validation"
+        [formGroup]="newRegistration" (ngSubmit)="onSubmitRegistration(event.eventId)">
+          <div>
+            <label class="modal-text">Utilisateur :</label>
+            <input id="username-input" type="text" class="form-control" formControlName="username"
+                   [class.is-invalid]="username.invalid && username.touched"
+                   [class.is-valid]="username.valid && username.touched">
+            <div *ngIf="username?.invalid && username.touched" class="invalid-feedback text-danger"
+            >
+              <div *ngIf="username?.errors?.['required']">Un nom d'utilisateur doit être fourni !</div>
+            </div>
+          </div>
+          <div class="mt-4">
+            <button id = "submit-registration-disabled" *ngIf="username?.invalid"  type="submit" class="btn btn-secondary modal-text" data-bs-dismiss="modal" disabled>Enregistrer</button>
+            <button id = "submit-registration-enabled" *ngIf="username?.valid"  type="submit" class="btn btn-secondary modal-text" data-bs-dismiss="modal" style="background-color: #9147FF;" >Enregistrer</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
