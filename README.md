@@ -19,7 +19,7 @@ Developed as part of the **Web Programming course** during the **MIAGE Master's 
 ![Current events](https://github.com/juliehuyen/GameParty/blob/main/assets/current_events.png)
 ![Past events](https://github.com/juliehuyen/GameParty/blob/main/assets/past_event.png)
 
---
+---
 
 ## 🛠 Tech Stack
 
