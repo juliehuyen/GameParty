@@ -13,6 +13,14 @@ Developed as part of the **Web Programming course** during the **MIAGE Master's 
 
 ---
 
+## 📸 Screenshots
+
+![Main page](https://github.com/juliehuyen/GameParty/blob/main/assets/main_page.png)
+![Current events](https://github.com/juliehuyen/GameParty/blob/main/assets/current_events.png)
+![Past events](https://github.com/juliehuyen/GameParty/blob/main/assets/past_event.png)
+
+--
+
 ## 🛠 Tech Stack
 
 - **Backend**: Java, Spring Boot, Swagger, PostgreSQL (hosted on Neon)  
